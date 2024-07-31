@@ -36,7 +36,7 @@ const StBox = styled.div`
     width: 100px;
     height: 100px;
 
-    border: 5px solid ${(props) => props.bordercolor};
+    border: 5px solid ${(props) => props.$bordercolor};
 
     padding: 10px;
 `;
@@ -68,7 +68,7 @@ function App() {
                 <MainContainer>
                     {boxList.map((box) => {
                         return (
-                            <StBox key={box} bordercolor={box}>
+                            <StBox key={box} $bordercolor={box}>
                                 {getBoxName(box)}
                             </StBox>
                         );
