@@ -48,7 +48,7 @@
 
 - 상태관리 라이브러리: `Redux`
 
-- CSS: `Styped Component`
+- CSS: `styled-components`
 
 - 빌드 도구: `CRA`
 
