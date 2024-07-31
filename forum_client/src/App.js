@@ -2,12 +2,12 @@ import styled from 'styled-components';
 import UnifyedButton from './components/UnifyedButton';
 
 const ForumContainer = styled.div`
-    /* width: full; */
-
-    height: 100vh;
-
     max-width: 550px;
     min-width: 330px;
+    height: 100vh;
+
+    margin: 0 auto;
+
     border: 5px solid black;
 `;
 
