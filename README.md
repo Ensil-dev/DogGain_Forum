@@ -1,70 +1,73 @@
-# Getting Started with Create React App
+# 📝 Hanghae99 FE Plus React 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br/>
 
-## Available Scripts
 
-In the project directory, you can run:
+## 🎯 목표: 나만의 React App 만들기
 
-### `npm start`
+<br/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## ✅ 과제를 진행하며 체크할 부분
+- 상태관리 ( 유지 / 초기화 ) 가 잘 되어있나요?
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- 각 컴포넌트의 재사용성이 높나요?
 
-### `npm test`
+- 예외처리가 미흡한 부분은 없나요?
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br/>
 
-### `npm run build`
+## 🕹️ 요구 사항
+- **필수 요구 사항**
+    - **UI/UX**
+        - 기능의 UX를 고려해서 UI를 자유롭게 구성해보세요.
+        - 요구사항에 없어도 만들고 싶은 기능이 있다면 **OK!**
+    - 게시물 조회 / 추가 / 삭제 / 수정 기능
+    - 상태관리 라이브러리 활용
+        - ex) Redux, Recoil, Redux toolkit, Mobx 등
+    - 동적 라우팅
+    - 유효성 검증
+        - ex) 제목을 10글자 이상 기입하지 않으면, 글을 추가할 수 없도록 제한(`Alert` 으로 안내)
+        - ex) Form에서 모든 input 값을 입력하지 않으면, 버튼 비활성화
+    - 배포된 결과물에서는 `console.log()` 가 보이지 않도록 처리합니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<br/>
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **추가 요구 사항**(선택)
+    - 로그인/회원가입 기능
+    - 1개 이상의 `Custom Hook`
+    - 버튼 컴포넌트 1개로 모든 버튼을 구현하세요. 모든 스타일과 기능을 적용할 수 있는 만능 버튼을 만들어봅니다.
 
-### `npm run eject`
+<br/>
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📚 일정 & 기술 스택
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 1차 Sprint (7.30 ~ 8.20)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- 프로그래밍 언어: `Javascript`
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- 상태관리 라이브러리: `Redux`
 
-## Learn More
+- CSS: `Styped Component`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 빌드 도구: `CRA`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- 패키지 매니저: `yarn`
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 2차 Sprint (8.20 ~ 9.3)
 
-### Analyzing the Bundle Size
+- 프로그래밍 언어: `Typescript`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- 상태관리 라이브러리: `Zustand`
 
-### Making a Progressive Web App
+- CSS: `tailwindcss`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- 빌드 도구: `Vite`
 
-### Advanced Configuration
+- 패키지 매니저: `yarn`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
+### 3차 Sprint (9.4 ~ 9.10)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- 리팩토링
