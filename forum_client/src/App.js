@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 import UnifyedButton from './components/UnifyedButton';
+// import UnifiedImage from './components/UnifyedImage';
+import { MdLightMode } from 'react-icons/md';
+import { MdDarkMode } from 'react-icons/md';
+import { FaSearch } from 'react-icons/fa';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { useState } from 'react';
 
 const ForumContainer = styled.div`
     max-width: 550px;
@@ -67,10 +73,10 @@ const HomeLogoBox = styled.div`
 
 const MenueOptionBox = styled.div`
     display: flex;
-    justify-content: center;
+    justify-content: end;
     width: 100%;
     /* margin-left: 30px; */
-    gap: 5px;
+    gap: 20px;
     /* border: 3px solid gray; */
     font-size: ${(props) => props.fontSize};
 `;
@@ -111,7 +117,9 @@ const SelectFilteringContainer = styled.div`
     margin-right: 10px;
 `;
 
-const setContainerContentBox = (container) => {
+const setContainerContentBox = (container, isDarkMode, handleClickModeButton) => {
+    console.log(isDarkMode);
+
     switch (container) {
         case 'Navigation':
             return (
@@ -121,10 +129,21 @@ const setContainerContentBox = (container) => {
                             <UnifyedButton text='Forum'></UnifyedButton>
                         </HomeLogoBox>
                         <MenueOptionBox fontSize={getNavigationBoxFontSize('MenueOptionBox')}>
-                            <UnifyedButton text='로그인'></UnifyedButton>
-                            <UnifyedButton text='모드'></UnifyedButton>
-                            <UnifyedButton text='검색'></UnifyedButton>
-                            <UnifyedButton text='메뉴'></UnifyedButton>
+                            <UnifyedButton text='로그인' $marginLeft='0px' $marginRight='0px' $fontSize='medium' $opacity='0.65' $backgroundColor='#006699' $color='white' $radius='8px' $padding='4px 8px'></UnifyedButton>
+
+                            <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
+                                {isDarkMode === false ? (
+                                    <MdDarkMode style={{ width: '28px', height: '28px', color: 'lightgray' }} />
+                                ) : (
+                                    <MdLightMode style={{ width: '28px', height: '28px', color: 'white', background: 'black' }} />
+                                )}
+                            </button>
+                            <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
+                                <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray' }} />
+                            </button>
+                            <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
+                                <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray' }} />
+                            </button>
                         </MenueOptionBox>
                     </SubNavigationContainer>
                 </>
@@ -134,14 +153,14 @@ const setContainerContentBox = (container) => {
                 <>
                     <FilteringContainer>
                         <div className='custom-select'>
-                            <select id='options' style={{ textAlign: 'center', fontSize: 'larger', padding: '4px 8px', borderRadius: '8px' }}>
+                            <select id='options' style={{ textAlign: 'center', fontSize: 'larger', padding: '4px 8px', marginLeft: '5px', borderRadius: '8px' }}>
                                 <option value='최신'>최신</option>
                                 <option value='카테고리'>카테고리</option>
                                 <option value='주요'>주요</option>
                             </select>
                         </div>
                         <SelectFilteringContainer fontSize={getNavigationBoxFontSize('writeBox')}>
-                            <UnifyedButton text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger'></UnifyedButton>
+                            <UnifyedButton text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifyedButton>
                         </SelectFilteringContainer>
                     </FilteringContainer>
                 </>
@@ -154,6 +173,13 @@ const setContainerContentBox = (container) => {
 };
 
 function App() {
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    const handleClickModeButton = () => {
+        setIsDarkMode((mode) => !mode);
+        console.log('isDarkMode?: ', isDarkMode);
+    };
+
     return (
         <>
             <ForumContainer>
@@ -164,7 +190,7 @@ function App() {
                     {mainContainerBoxs.map((container) => {
                         return (
                             <ContainerBox key={container} $bordercolor={getContainerBoxColor(container)}>
-                                {setContainerContentBox(container)}
+                                {setContainerContentBox(container, isDarkMode, handleClickModeButton)}
                             </ContainerBox>
                         );
                     })}
