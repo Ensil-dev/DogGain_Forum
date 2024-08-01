@@ -3,7 +3,6 @@ import styled from 'styled-components';
 // Define a styled button that accepts transient props for styling
 const UfButton = styled.button`
     border: ${(props) => props.$border || 'none'};
-    outline: ${(props) => props.$outline || 'none'};
     background-color: ${(props) => props.$backgroundColor || 'inherit'};
     opacity: ${(props) => props.$opacity || 'inherit'};
     cursor: ${(props) => props.$cursor || 'pointer'};
@@ -13,7 +12,7 @@ const UfButton = styled.button`
     font-weight: ${(props) => props.$fontWeight || 'bold'};
 
     margin-left: ${(props) => props.$marginLeft || '5px'};
-    margin-right: ${(props) => props.$marginRight || '10px'};
+    margin-right: ${(props) => props.$marginRight || '0px'};
 
     padding: ${(props) => props.$padding || 'none'};
     border-radius: ${(props) => props.$radius || '0px'};

@@ -14,7 +14,7 @@ const ForumContainer = styled.div`
 
     margin: 0 auto;
 
-    border: 3px solid lightgray;
+    border: 1px solid lightgray;
 `;
 
 const TopContainer = styled.div`
@@ -118,7 +118,6 @@ const SelectFilteringContainer = styled.div`
 `;
 
 const setContainerContentBox = (container, isDarkMode, handleClickModeButton) => {
-    console.log(isDarkMode);
 
     switch (container) {
         case 'Navigation':
@@ -138,11 +137,13 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton) =>
                                     <MdLightMode style={{ width: '28px', height: '28px', color: 'white', background: 'black' }} />
                                 )}
                             </button>
+
                             <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
                                 <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray' }} />
                             </button>
+
                             <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
-                                <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray' }} />
+                                <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }} />
                             </button>
                         </MenueOptionBox>
                     </SubNavigationContainer>
@@ -166,7 +167,7 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton) =>
                 </>
             );
         case 'Post':
-            return 'blue';
+            return 'Post';
         default:
             return 'black';
     }
