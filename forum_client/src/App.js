@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 import UnifyedButton from './components/UnifyedButton';
 // import UnifiedImage from './components/UnifyedImage';
-import { MdLightMode } from 'react-icons/md';
-import { MdDarkMode } from 'react-icons/md';
+import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { useState } from 'react';
@@ -40,12 +39,12 @@ const MainContainer = styled.div`
 const ContainerBox = styled.div`
     // 그리고 이 안에 스타일 코드를 작성합니다. 스타일 코드는 우리가 알고 있는 css와 동일합니다.
 
-    width: full;
-    height: 50px;
+    /* width: full; */
+    height: 40px;
 
     /* border: 5px solid ${(props) => props.$bordercolor}; */
 
-    padding: 5px;
+    padding: '5px';
 `;
 
 const SubNavigationContainer = styled.div`
@@ -118,7 +117,6 @@ const SelectFilteringContainer = styled.div`
 `;
 
 const setContainerContentBox = (container, isDarkMode, handleClickModeButton) => {
-
     switch (container) {
         case 'Navigation':
             return (
@@ -167,7 +165,44 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton) =>
                 </>
             );
         case 'Post':
-            return 'Post';
+            return (
+                <>
+                    <hr style={{ border: '1px solid gray', opacity: 0.2 }} />
+                    <div style={{}}>
+                        <div style={{ padding: '7px 0px' }}>
+                            <div style={{ display: 'grid', alignContent: 'center', gridTemplateColumns: '1fr 6fr' }}>
+                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>프로필</div>
+                                <div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>제목</div>
+                                        <div>댓글 수</div>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>카테고리</div>
+                                        <div>글 작성 시간</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style={{}}>
+                            <div style={{ display: 'grid', alignContent: 'center', gridTemplateColumns: '1fr 6fr' }}>
+                                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>프로필</div>
+                                <div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>제목</div>
+                                        <div>댓글 수</div>
+                                    </div>
+                                    <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                                        <div>카테고리</div>
+                                        <div>글 작성 시간</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </>
+            );
         default:
             return 'black';
     }
