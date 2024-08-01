@@ -33,7 +33,7 @@ const MainContainer = styled.div`
 
 const StBox = styled.div`
     // 그리고 이 안에 스타일 코드를 작성합니다. 스타일 코드는 우리가 알고 있는 css와 동일합니다.
-    width: 100px;
+    width: full;
     height: 100px;
 
     border: 5px solid ${(props) => props.$bordercolor};
@@ -46,13 +46,13 @@ const boxList = ['orange', 'green', 'blue', 'tomato'];
 const getBoxName = (color) => {
     switch (color) {
         case 'orange':
-            return '오렌지 박스';
+            return '네비게이션바 컨테이너 박스';
         case 'green':
-            return '초록 박스';
+            return '필터링 컨테이너 박스';
         case 'blue':
-            return '파랑 박스';
+            return '포럼 게시글 박스';
         case 'tomato':
-            return 'tomato 박스';
+            return '포럼 게시글 박스';
         default:
             return '검정 박스';
     }
