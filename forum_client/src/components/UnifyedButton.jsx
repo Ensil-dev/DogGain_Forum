@@ -3,7 +3,7 @@ import styled from 'styled-components';
 // Define a styled button that accepts transient props for styling
 const UfButton = styled.button`
     border: ${(props) => props.$border || 'none'};
-    background-color: ${(props) => props.$backgroundColor || 'inherit'};
+    background-color: ${(props) => props.$backgroundColor || 'white'};
     opacity: ${(props) => props.$opacity || 'inherit'};
     cursor: ${(props) => props.$cursor || 'pointer'};
 
