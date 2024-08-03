@@ -10,7 +10,7 @@ const Divider = styled.hr`
     opacity: ${(props) => props.$opacity || '0.15'};
 `;
 
-export default function UnifyedDivider({ $padding, $border, $opacity }) {
+export default function UnifiedDivider({ $padding, $border, $opacity }) {
     return (
         <>
             <DividerContainer $padding={$padding}>

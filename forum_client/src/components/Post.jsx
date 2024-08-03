@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import UnifyedDivider from './UnifyedDivider';
+import UnifiedDivider from './UnifiedDivider';
 
 const Table = styled.table`
     width: 100%;
@@ -81,7 +81,7 @@ export default function Post() {
                     </Tr>
                 </tbody>
             </Table>
-            <UnifyedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
+            <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
         </>
     );
 }
