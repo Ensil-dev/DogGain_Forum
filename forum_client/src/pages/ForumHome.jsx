@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Bi from './components/Bi';
-import ForumMain from './components/ForumMain';
+import Bi from '../components/Bi';
+import ForumMain from '../components/ForumMain';
 
 const ForumContainer = styled.div`
     max-width: 550px;
@@ -13,7 +13,8 @@ const ForumContainer = styled.div`
 
     border: 1px solid lightgray;
 `;
-function App() {
+
+export default function ForumHome() {
     return (
         <ForumContainer>
             <Bi />
@@ -21,5 +22,3 @@ function App() {
         </ForumContainer>
     );
 }
-
-export default App;
