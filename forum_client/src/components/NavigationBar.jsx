@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import UnifyedButton from './UnifyedButton';
+import UnifiedButton from './UnifiedButton';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
 import { GiHamburgerMenu } from 'react-icons/gi';
@@ -21,7 +21,7 @@ const HomeLogoBox = styled.div`
     /* border: 3px solid gray; */
 `;
 
-const MenueOptionBox = styled.div`
+const MenuOptionBox = styled.div`
     display: flex;
     justify-content: space-around;
     width: 100%;
@@ -36,27 +36,50 @@ export default function NavigationBar({ isDarkMode, handleClickModeButton }) {
         <header>
             <SubNavigationContainer>
                 <HomeLogoBox fontSize={getNavigationBoxFontSize('HomeLogoBox')}>
-                    <UnifyedButton text='Forum'></UnifyedButton>
+                    <UnifiedButton text="Forum"></UnifiedButton>
                 </HomeLogoBox>
-                <MenueOptionBox fontSize={getNavigationBoxFontSize('MenueOptionBox')}>
-                    <UnifyedButton text='로그인' $marginLeft='0px' $marginRight='0px' $fontSize='medium' $opacity='0.65' $backgroundColor='#006699' $color='white' $radius='8px' $padding='4px 8px'></UnifyedButton>
+                <MenuOptionBox fontSize={getNavigationBoxFontSize('MenuOptionBox')}>
+                    <UnifiedButton
+                        text="로그인"
+                        $marginLeft="0px"
+                        $marginRight="0px"
+                        $fontSize="medium"
+                        $opacity="0.65"
+                        $backgroundColor="#006699"
+                        $color="white"
+                        $radius="8px"
+                        $padding="4px 8px"
+                    ></UnifiedButton>
 
-                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
+                    <button
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        onClick={() => handleClickModeButton()}
+                    >
                         {isDarkMode === false ? (
                             <MdDarkMode style={{ width: '28px', height: '28px', color: 'lightgray' }} />
                         ) : (
-                            <MdLightMode style={{ width: '28px', height: '28px', color: 'white', background: 'black' }} />
+                            <MdLightMode
+                                style={{ width: '28px', height: '28px', color: 'white', background: 'black' }}
+                            />
                         )}
                     </button>
 
-                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
+                    <button
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        onClick={() => handleClickModeButton()}
+                    >
                         <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray' }} />
                     </button>
 
-                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
-                        <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }} />
+                    <button
+                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                        onClick={() => handleClickModeButton()}
+                    >
+                        <GiHamburgerMenu
+                            style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }}
+                        />
                     </button>
-                </MenueOptionBox>
+                </MenuOptionBox>
             </SubNavigationContainer>
         </header>
     );

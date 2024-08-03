@@ -18,7 +18,7 @@ const UfButton = styled.button`
     border-radius: ${(props) => props.$radius || '0px'};
 `;
 
-export default function UnifyedButton({ text, $border, $outline, $backgroundColor, $opacity, $cursor, $color, $fontSize, $fontWeight, $marginLeft, $marginRight, $padding, $radius }) {
+export default function UnifiedButton({ text, $border, $outline, $backgroundColor, $opacity, $cursor, $color, $fontSize, $fontWeight, $marginLeft, $marginRight, $padding, $radius }) {
     return (
         <UfButton
             $border={$border}

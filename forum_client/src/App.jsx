@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import UnifyedButton from './components/UnifyedButton';
+import UnifiedButton from './components/UnifiedButton';
 
 import { useState } from 'react';
 import NavigationBar from './components/NavigationBar';
@@ -43,22 +43,9 @@ const ContainerBox = styled.div`
     height: 40px;
 `;
 
-const mainContainerBoxs = ['Navigation', 'PostControllerBar', 'Post'];
+const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
 
-// const navigationBoxs = [SubNavigationContainer, HomeLogoBox, MenueOptionBox];
-
-const getContainerBoxColor = (container) => {
-    switch (container) {
-        case 'Navigation':
-            return 'orange';
-        case 'PostControllerBar':
-            return 'green';
-        case 'Post':
-            return 'blue';
-        default:
-            return 'black';
-    }
-};
+// const navigationBox = [SubNavigationContainer, HomeLogoBox, MenuOptionBox];
 
 const setContainerContentBox = (container, isDarkMode, handleClickModeButton) => {
     // const topic = {
@@ -68,7 +55,6 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton) =>
     //     isLastViewed: 'false',
     //     profileLink:
     //         '/forum/t/%EC%8A%A4%ED%83%80%EB%B2%85%EC%8A%A4-%EB%B2%A4%ED%8B%B0-%EA%B0%80%EA%B2%A9-6%EC%B2%9C-%EC%9B%90-%ED%9B%8C%EC%A9%8D%E2%80%A6%EB%82%B4%EB%8B%AC-2%EC%9D%BC%EB%B6%80%ED%84%B0-%EA%B0%80%EA%B2%A9-%EC%9D%B8%EC%83%81/18825/19',
-    //     poster: 'zzzm5',
     //     avatarSrc: '/forum/letter_avatar_proxy/v4/letter/z/db5fbb/60.png',
     //     avatarTitle: '커피전문가',
     //     topicLink:
@@ -113,12 +99,12 @@ function App() {
         <>
             <ForumContainer>
                 <TopContainer>
-                    <UnifyedButton text='DogGain'></UnifyedButton>
+                    <UnifiedButton text="DogGain"></UnifiedButton>
                 </TopContainer>
                 <MainContainer>
-                    {mainContainerBoxs.map((container) => {
+                    {mainContainerBox.map((container) => {
                         return (
-                            <ContainerBox key={container} $bordercolor={getContainerBoxColor(container)}>
+                            <ContainerBox key={container}>
                                 {setContainerContentBox(container, isDarkMode, handleClickModeButton)}
                             </ContainerBox>
                         );

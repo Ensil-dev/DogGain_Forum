@@ -2,7 +2,7 @@ export const getNavigationBoxFontSize = (container) => {
     switch (container) {
         case 'HomeLogoBox':
             return 'xx-large';
-        case 'MenueOptionBox':
+        case 'MenuOptionBox':
             return 'medium';
         case 'writeBox':
             return 'medium';

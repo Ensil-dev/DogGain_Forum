@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import SelectedComonent from './SelectedComonent';
-import UnifyedButton from './UnifyedButton';
+import SelectedComponent from './SelectedComponent';
+import UnifiedButton from './UnifiedButton';
 import { getNavigationBoxFontSize } from '../utils/util';
 
 const FilteringContainer = styled.div`
@@ -33,9 +33,9 @@ export default function PostControllerBar() {
 
     return (
         <FilteringContainer>
-            <SelectedComonent options={options} />
+            <SelectedComponent options={options} />
             <SelectFilteringContainer fontSize={getNavigationBoxFontSize('writeBox')}>
-                <UnifyedButton text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifyedButton>
+                <UnifiedButton text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifiedButton>
             </SelectFilteringContainer>
         </FilteringContainer>
     );

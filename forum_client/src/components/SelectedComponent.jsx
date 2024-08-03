@@ -13,7 +13,7 @@ const StyledSelect = styled.select`
     border-radius: 8px;
 `;
 
-export default function SelectedComonent({ options, ...props }) {
+export default function SelectedComponent({ options, ...props }) {
     return (
         <Container>
             <StyledSelect {...props}>
