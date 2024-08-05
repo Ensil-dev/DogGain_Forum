@@ -9,6 +9,7 @@ const MainContainer = styled.div`
     flex-direction: column;
     height: full;
     gap: 10px;
+    
     /* border: 3px solid gray; */
 `;
 

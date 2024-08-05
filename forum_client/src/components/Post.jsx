@@ -9,7 +9,7 @@ const Table = styled.table`
 
 const Tr = styled.tr`
     display: grid;
-    grid-template-columns: 5fr 3fr 1fr 2fr;
+    grid-template-columns: 6fr 3fr 1fr 3fr;
     padding: 12px 10px;
 
     &:hover {
@@ -66,7 +66,7 @@ export default function Post() {
                 <tbody>
                     <Tr>
                         <Td>
-                            <Title>무료 백신 추천하실 만한 것 있나요?</Title>
+                            <Title>무료 백신 추천하실 만한 것 있나요? 무료 백신 추천하실 만한 것 있나요?</Title>
                             <ForumType>🟠 자유포럼🗽</ForumType>
                         </Td>
                         <Td>

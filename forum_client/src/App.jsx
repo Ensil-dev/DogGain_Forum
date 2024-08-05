@@ -11,7 +11,10 @@ const ForumContainer = styled.div`
     margin: 0 auto;
     overflow: scroll;
 
-    border: 1px solid lightgray;
+    /* border: 1px solid lightgray; */
+    /* border-bottom: 1px solid lightgray; */
+    border-left: 1px solid lightgray;
+    border-right: 1px solid lightgray;
 `;
 function App() {
     return (

@@ -9,7 +9,7 @@ const Table = styled.table`
 
 const Tr = styled.tr`
     display: grid;
-    grid-template-columns: 5fr 3fr 1fr 2fr;
+    grid-template-columns: 6fr 3fr 1fr 3fr;
     padding: 12px 10px;
 
     color: gray;

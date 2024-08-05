@@ -11,6 +11,7 @@ html {
 body {
     /* 헤더 높이만큼 여백부여 */
     /* padding-top: 40px;  */
+
     -ms-overflow-style: none;
     touch-action: pan-x pan-y;
 }
