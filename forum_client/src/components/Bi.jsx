@@ -8,13 +8,13 @@ const BiContainer = styled.div`
     justify-content: center;
     align-items: flex-start;
 
-    height: 40px;
-    gap: 10px;
+    height: 60px;
 
     /* border: 3px solid gray; */
 `;
 
 export default function Bi() {
+    
     return (
         <BiContainer>
             <UnifiedButton text="DogGain"></UnifiedButton>
