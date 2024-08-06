@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Bi from './components/Bi';
 import ForumMain from './components/ForumMain';
+import { HamburgerMenuModal } from './components/HamburgerMenuModal';
 
 const ForumContainer = styled.div`
     max-width: 550px;
@@ -20,10 +21,13 @@ function App() {
     // const [isHide, setIsHide] = useState(false);
 
     return (
-        <ForumContainer className='forum'>
-            <Bi />
-            <ForumMain />
-        </ForumContainer>
+        <>
+            <ForumContainer className='forum'>
+                <Bi />
+                <ForumMain />
+            </ForumContainer>
+            <HamburgerMenuModal />
+        </>
     );
 }
 

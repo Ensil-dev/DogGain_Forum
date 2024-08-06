@@ -1,10 +1,9 @@
-import React from 'react';
 import styled from 'styled-components';
 import UnifiedButton from './UnifiedButton';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
-import { GiHamburgerMenu } from 'react-icons/gi';
 import { getNavigationBoxFontSize } from '../utils/util';
+import { HamburgerMenu } from './HamburgerMenu';
 
 const SubNavigationContainer = styled.div`
     display: grid;
@@ -31,54 +30,51 @@ const MenuOptionBox = styled.div`
     font-size: ${(props) => props.fontSize};
 `;
 
-export default function NavigationBar({ isDarkMode, handleClickModeButton }) {
+export const ModalView = styled.div.attrs((props) => ({
+    role: 'dialog',
+}))`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 200px;
+    height: 100px;
+    border-radius: 1rem;
+    background-color: white;
+    > .close-btn {
+        position: absolute;
+        top: 10px;
+        cursor: pointer;
+    }
+`;
+
+export default function NavigationBar({ isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal }) {
+
     return (
         <header>
             <SubNavigationContainer>
                 <HomeLogoBox fontSize={getNavigationBoxFontSize('HomeLogoBox')}>
-                    <UnifiedButton text="Forum"></UnifiedButton>
+                    <UnifiedButton text='Forum'></UnifiedButton>
                 </HomeLogoBox>
                 <MenuOptionBox fontSize={getNavigationBoxFontSize('MenuOptionBox')}>
-                    <UnifiedButton
-                        text="로그인"
-                        $marginLeft="0px"
-                        $marginRight="0px"
-                        $fontSize="medium"
-                        $opacity="0.65"
-                        $backgroundColor="#006699"
-                        $color="white"
-                        $radius="8px"
-                        $padding="4px 8px"
-                    ></UnifiedButton>
+                    <UnifiedButton text='로그인' $marginLeft='0px' $marginRight='0px' $fontSize='medium' $opacity='0.65' $backgroundColor='#006699' $color='white' $radius='8px' $padding='4px 8px'></UnifiedButton>
 
-                    <button
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        onClick={() => handleClickModeButton()}
-                    >
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
                         {isDarkMode === false ? (
                             <MdDarkMode style={{ width: '28px', height: '28px', color: 'lightgray' }} />
                         ) : (
-                            <MdLightMode
-                                style={{ width: '28px', height: '28px', color: 'white', background: 'black' }}
-                            />
+                            <MdLightMode style={{ width: '28px', height: '28px', color: 'white', background: 'black' }} />
                         )}
                     </button>
 
-                    <button
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        onClick={() => handleClickModeButton()}
-                    >
+                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
                         <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray' }} />
                     </button>
 
-                    <button
-                        style={{ background: 'none', border: 'none', cursor: 'pointer' }}
-                        onClick={() => handleClickModeButton()}
-                    >
-                        <GiHamburgerMenu
-                            style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }}
-                        />
-                    </button>
+
+                    <HamburgerMenu />
+
+
                 </MenuOptionBox>
             </SubNavigationContainer>
         </header>

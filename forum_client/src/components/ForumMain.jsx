@@ -9,7 +9,7 @@ const MainContainer = styled.div`
     flex-direction: column;
     height: full;
     gap: 10px;
-    
+
     /* border: 3px solid gray; */
 `;
 
@@ -21,7 +21,7 @@ const ContainerBox = styled.div`
 
 const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
 
-const setContainerContentBox = (container, isDarkMode, handleClickModeButton) => {
+const setContainerContentBox = (container, isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal) => {
     // const topic = {
     //     id: '18825',
     //     rowId: 'ember719',
@@ -51,7 +51,7 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton) =>
 
     switch (container) {
         case 'Navigation':
-            return <NavigationBar isDarkMode={isDarkMode} handleClickModeButton={handleClickModeButton} />;
+            return <NavigationBar isDarkMode={isDarkMode} handleClickModeButton={handleClickModeButton} isModalOpened={isModalOpened} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
         case 'PostControllerBar':
             return <PostControllerBar />;
         case 'Post':
@@ -69,14 +69,18 @@ export default function ForumMain() {
         console.log('isDarkMode?: ', isDarkMode);
     };
 
+    const [isModalOpened, setIsModalOpened] = useState(false);
+
+    const handleHamburgerMenuModal = () => {
+        setIsModalOpened((isModalOpened) => !isModalOpened);
+        console.log(isModalOpened);
+    };
+
     return (
+        
         <MainContainer>
             {mainContainerBox.map((container) => {
-                return (
-                    <ContainerBox key={container}>
-                        {setContainerContentBox(container, isDarkMode, handleClickModeButton)}
-                    </ContainerBox>
-                );
+                return <ContainerBox key={container}>{setContainerContentBox(container, isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal)}</ContainerBox>;
             })}
         </MainContainer>
     );
