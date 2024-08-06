@@ -18,7 +18,6 @@ const ForumContainer = styled.div`
     border-right: 1px solid lightgray;
 `;
 function App() {
-    // const [isHide, setIsHide] = useState(false);
 
     return (
         <>

@@ -64,7 +64,7 @@ export const ModalView = styled.div.attrs((props) => ({
     }
 `;
 
-export const HamburgerMenu = () => {
+export const HamburgerMenu = ({handleHamburgerMenuModal}) => {
     const [isOpen, setIsOpen] = useState(false);
     const openModalHandler = () => {
         setIsOpen(!isOpen);
@@ -72,7 +72,7 @@ export const HamburgerMenu = () => {
 
     return (
         <>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => openModalHandler()}>
+            <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleHamburgerMenuModal()}>
                 <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }} />
             </button>
             {isOpen ? (

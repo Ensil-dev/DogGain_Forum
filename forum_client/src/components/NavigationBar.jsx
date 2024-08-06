@@ -52,9 +52,7 @@ export const ModalView = styled.div.attrs((props) => ({
 export default function NavigationBar({ isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal }) {
 
     const modalStore = useSelector(state => state)
-    console.log(modalStore.mode.isDarkMode)
-
-    const modeDispatch = useDispatch();
+    console.log(modalStore)
 
     return (
         <header>
@@ -78,7 +76,7 @@ export default function NavigationBar({ isDarkMode, handleClickModeButton, isMod
                     </button>
 
 
-                    <HamburgerMenu />
+                    <HamburgerMenu handleHamburgerMenuModal={handleHamburgerMenuModal} />
 
 
                 </MenuOptionBox>

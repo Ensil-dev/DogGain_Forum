@@ -64,15 +64,17 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton, is
 
 export default function ForumMain() {
     const [isDarkMode, setIsDarkMode] = useState(false);
-    const modeDispatch = useDispatch();
+    const dispatch = useDispatch();
 
-    const modalStore = useSelector(state => state)
+    // const ReduxStore = useSelector(state => state)
+    const modalStore = useSelector(state => state).modal
+    const modeStore = useSelector(state => state).mode
     
     const handleClickModeButton = () => {
         setIsDarkMode((mode) => !mode);
         // console.log('isDarkMode?: ', isDarkMode);
-        modeDispatch({type: "DARKMODE_CHANGE"})
-        console.log(`modalStore.mode.isDarkMode: ${modalStore.mode.isDarkMode}`)
+        dispatch({type: "DARKMODE_CHANGE"})
+        console.log(`modalStore.isDarkMode: ${modalStore.isDarkMode}`)
 
     };
 
@@ -81,6 +83,10 @@ export default function ForumMain() {
     const handleHamburgerMenuModal = () => {
         setIsModalOpened((isModalOpened) => !isModalOpened);
         console.log(isModalOpened);
+
+        dispatch({type: "HAMBURGER_MODAL_CHANGE"})
+        console.log(`modeStore.isHamburgerModalOpen: ${modeStore.isHamburgerModalOpen}`)
+
     };
 
     return (

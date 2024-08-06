@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 
 export const ModalContainer = styled.div`
@@ -28,11 +29,10 @@ export const ModalBackdrop = styled.div`
     bottom: 0;
     /* 자식 컴포넌트인 모달창을 가운데 오게 하기 위한 flex */
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     animation: ${fadeIn} 0.3s ease-in-out;
-
 `;
 
 export const ModalBtn = styled.button`
@@ -52,30 +52,51 @@ export const ModalView = styled.div.attrs((props) => ({
     justify-content: center;
     align-items: center;
     position: fixed;
-    width: 200px;
-    height: 100px;
-    border-radius: 1rem;
+    width: ${(props) => `${props.$width}px` || '330px'};
+    height: 100vh;
+    /* border-radius: 1rem; */
     background-color: white;
     > .close-btn {
         position: absolute;
         top: 10px;
         cursor: pointer;
     }
+
+    animation: ${fadeIn} 2.3s step-start;
+`;
+
+export const ModalViewExcludeView = styled.div.attrs((props) => ({
+    role: 'exclude_area',
+}))`
+    width: ${(props) => `${props.$width}px` || '500px'};
+    height: 100vh;
+    background-color: orange;
 `;
 
 export const HamburgerMenuModal = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const openModalHandler = () => {
-        setIsOpen(!isOpen);
+    const modalStore = useSelector((state) => state).modal;
+
+    const dispatch = useDispatch();
+
+    const handleHamburgerMenuModal = () => {
+        dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
+        console.log(`modalStore.isHamburgerModalOpen: ${modalStore.isHamburgerModalOpen}`);
     };
+
+    const windowWidth = window.innerWidth;
 
     return (
         <>
-            {isOpen ? (
-                <ModalBackdrop onClick={openModalHandler}>
-                    <ModalView>
-                        <div className='close-btn'>&times;</div>메뉴
+            {modalStore.isHamburgerModalOpen ? (
+                // <ModalBackdrop onClick={handleHamburgerMenuModal}>
+                <ModalBackdrop>
+                    <ModalView $width={windowWidth - 60}>
+                        <div className='close-btn' onClick={handleHamburgerMenuModal}>
+                            &times;
+                        </div>
+                        메뉴
                     </ModalView>
+                    <ModalViewExcludeView />
                 </ModalBackdrop>
             ) : null}
         </>
