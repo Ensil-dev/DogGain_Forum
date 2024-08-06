@@ -4,6 +4,7 @@ import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
 import { getNavigationBoxFontSize } from '../utils/util';
 import { HamburgerMenu } from './HamburgerMenu';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SubNavigationContainer = styled.div`
     display: grid;
@@ -50,6 +51,11 @@ export const ModalView = styled.div.attrs((props) => ({
 
 export default function NavigationBar({ isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal }) {
 
+    const modalStore = useSelector(state => state)
+    console.log(modalStore.mode.isDarkMode)
+
+    const modeDispatch = useDispatch();
+
     return (
         <header>
             <SubNavigationContainer>
@@ -60,7 +66,7 @@ export default function NavigationBar({ isDarkMode, handleClickModeButton, isMod
                     <UnifiedButton text='로그인' $marginLeft='0px' $marginRight='0px' $fontSize='medium' $opacity='0.65' $backgroundColor='#006699' $color='white' $radius='8px' $padding='4px 8px'></UnifiedButton>
 
                     <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
-                        {isDarkMode === false ? (
+                        {modalStore.mode.isDarkMode === false ? (
                             <MdDarkMode style={{ width: '28px', height: '28px', color: 'lightgray' }} />
                         ) : (
                             <MdLightMode style={{ width: '28px', height: '28px', color: 'white', background: 'black' }} />

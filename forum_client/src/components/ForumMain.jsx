@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
 import PostControllerBar from './PostControllerBar';
 import PostContentsBox from './PostContentsBox';
+import { useDispatch, useSelector } from 'react-redux';
 
 const MainContainer = styled.div`
     display: flex;
@@ -63,10 +64,16 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton, is
 
 export default function ForumMain() {
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const modeDispatch = useDispatch();
 
+    const modalStore = useSelector(state => state)
+    
     const handleClickModeButton = () => {
         setIsDarkMode((mode) => !mode);
-        console.log('isDarkMode?: ', isDarkMode);
+        // console.log('isDarkMode?: ', isDarkMode);
+        modeDispatch({type: "DARKMODE_CHANGE"})
+        console.log(`modalStore.mode.isDarkMode: ${modalStore.mode.isDarkMode}`)
+
     };
 
     const [isModalOpened, setIsModalOpened] = useState(false);
