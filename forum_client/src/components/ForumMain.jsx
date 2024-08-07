@@ -22,7 +22,7 @@ const ContainerBox = styled.div`
 
 const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
 
-const setContainerContentBox = (container, isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal) => {
+const setContainerContentBox = (container, handleClickModeButton, isModalOpened, handleHamburgerMenuModal) => {
     // const topic = {
     //     id: '18825',
     //     rowId: 'ember719',
@@ -52,7 +52,7 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton, is
 
     switch (container) {
         case 'Navigation':
-            return <NavigationBar isDarkMode={isDarkMode} handleClickModeButton={handleClickModeButton} isModalOpened={isModalOpened} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
+            return <NavigationBar handleClickModeButton={handleClickModeButton} isModalOpened={isModalOpened} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
         case 'PostControllerBar':
             return <PostControllerBar />;
         case 'Post':
@@ -63,18 +63,16 @@ const setContainerContentBox = (container, isDarkMode, handleClickModeButton, is
 };
 
 export default function ForumMain() {
-    const [isDarkMode, setIsDarkMode] = useState(false);
     const dispatch = useDispatch();
+    console.log(dispatch)
 
-    // const ReduxStore = useSelector(state => state)
-    const modalStore = useSelector(state => state).modal
-    const modeStore = useSelector(state => state).mode
+    // const ReduxStore = useSelector(state => state.module)
+    const modeStore = useSelector(state => state.mode)
     
     const handleClickModeButton = () => {
-        setIsDarkMode((mode) => !mode);
         // console.log('isDarkMode?: ', isDarkMode);
         dispatch({type: "DARKMODE_CHANGE"})
-        console.log(`modalStore.isDarkMode: ${modalStore.isDarkMode}`)
+        console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`)
 
     };
 
@@ -93,7 +91,7 @@ export default function ForumMain() {
         
         <MainContainer>
             {mainContainerBox.map((container) => {
-                return <ContainerBox key={container}>{setContainerContentBox(container, isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal)}</ContainerBox>;
+                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickModeButton, isModalOpened, handleHamburgerMenuModal)}</ContainerBox>;
             })}
         </MainContainer>
     );

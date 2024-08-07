@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
+import useOnClickOutside from '../hooks/useOnClickOutside';
 
 export const ModalContainer = styled.div`
     display: flex;
@@ -74,9 +75,14 @@ export const ModalViewExcludeView = styled.div.attrs((props) => ({
 `;
 
 export const HamburgerMenuModal = () => {
-    const modalStore = useSelector((state) => state).modal;
-
+    const modalStore = useSelector((state) => state.modal);
     const dispatch = useDispatch();
+
+    const hamburgerRef = useRef();
+    useOnClickOutside(hamburgerRef, () => {
+        console.log('dispatch: HAMBURGER_MODAL_CHANGE !');
+        dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
+    });
 
     const handleHamburgerMenuModal = () => {
         dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
@@ -90,11 +96,8 @@ export const HamburgerMenuModal = () => {
             {modalStore.isHamburgerModalOpen ? (
                 // <ModalBackdrop onClick={handleHamburgerMenuModal}>
                 <ModalBackdrop>
-                    <ModalView $width={windowWidth - 60}>
-                        <div className='close-btn' onClick={handleHamburgerMenuModal}>
-                            &times;
-                        </div>
-                        메뉴
+                    <ModalView ref={hamburgerRef} $width={windowWidth - 60}>
+                        <div>메뉴</div>
                     </ModalView>
                     <ModalViewExcludeView />
                 </ModalBackdrop>

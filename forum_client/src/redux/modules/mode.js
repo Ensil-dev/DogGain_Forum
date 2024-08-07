@@ -5,8 +5,8 @@ const initialState = {
 
 // 리듀서
 const mode = (state = initialState, action) => {
-    console.log(`mode action: ${action.type}`); // 여기에 console.log(action.type) 추가
-    console.log(`mode state: ${state.isDarkMode}`); // 여기에 console.log(state.isDarkMode) 추가
+    // console.log(`mode action: ${action.type}`); // 여기에 console.log(action.type) 추가
+    // console.log(`mode state: ${state.isDarkMode}`); // 여기에 console.log(state.isDarkMode) 추가
     switch (action.type) {
         case 'DARKMODE_CHANGE':
             return {
