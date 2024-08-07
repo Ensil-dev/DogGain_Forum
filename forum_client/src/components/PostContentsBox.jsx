@@ -8,7 +8,7 @@ export default function PostContentsBox() {
         <main>
             <PostHeader />
 
-            <UnifiedDivider $padding='5px 10px' $border='2px solid gray' $opacity='0.15' />
+            <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
 
             <Post />
             <Post />

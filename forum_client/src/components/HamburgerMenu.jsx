@@ -66,9 +66,7 @@ export const ModalView = styled.div.attrs((props) => ({
 export const HamburgerMenu = ({ handleHamburgerMenuModal }) => {
     return (
         <>
-            <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleHamburgerMenuModal()}>
-                <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }} />
-            </button>
+            <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px', cursor: 'pointer' }} onClick={() => handleHamburgerMenuModal()} />
         </>
     );
 };

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import NavigationBar from './NavigationBar';
 import PostControllerBar from './PostControllerBar';
 import PostContentsBox from './PostContentsBox';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 const MainContainer = styled.div`
     display: flex;
@@ -22,7 +22,7 @@ const ContainerBox = styled.div`
 
 const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
 
-const setContainerContentBox = (container, handleClickModeButton, isModalOpened, handleHamburgerMenuModal) => {
+const setContainerContentBox = (container, handleClickModeButton, handleHamburgerMenuModal) => {
     // const topic = {
     //     id: '18825',
     //     rowId: 'ember719',
@@ -52,7 +52,7 @@ const setContainerContentBox = (container, handleClickModeButton, isModalOpened,
 
     switch (container) {
         case 'Navigation':
-            return <NavigationBar handleClickModeButton={handleClickModeButton} isModalOpened={isModalOpened} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
+            return <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
         case 'PostControllerBar':
             return <PostControllerBar />;
         case 'Post':
@@ -66,31 +66,19 @@ export default function ForumMain() {
     const dispatch = useDispatch();
 
     // const ReduxStore = useSelector(state => state.module)
-    const modeStore = useSelector(state => state.mode)
-    
     const handleClickModeButton = () => {
-        // console.log('isDarkMode?: ', isDarkMode);
-        dispatch({type: "DARKMODE_CHANGE"})
-        console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`)
-
+        dispatch({ type: 'DARKMODE_CHANGE' });
+        // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
     };
 
-    const [isModalOpened, setIsModalOpened] = useState(false);
-
     const handleHamburgerMenuModal = () => {
-        setIsModalOpened((isModalOpened) => !isModalOpened);
-        console.log(isModalOpened);
-
-        dispatch({type: "HAMBURGER_MODAL_CHANGE"})
-        console.log(`modeStore.isHamburgerModalOpen: ${modeStore.isHamburgerModalOpen}`)
-
+        dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
     };
 
     return (
-        
         <MainContainer>
             {mainContainerBox.map((container) => {
-                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickModeButton, isModalOpened, handleHamburgerMenuModal)}</ContainerBox>;
+                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickModeButton, handleHamburgerMenuModal)}</ContainerBox>;
             })}
         </MainContainer>
     );

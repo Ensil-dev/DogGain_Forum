@@ -76,7 +76,7 @@ export const ModalView = styled.div.attrs((props) => ({
         cursor: pointer;
     }
 
-    animation: ${({ modalStore }) => (modalStore ? showUp : showDown)} 0.5s;
+    animation: ${({ $modalStore }) => ($modalStore ? showUp : showDown)} 0.5s;
 `;
 
 export const ModalViewExcludeView = styled.div.attrs((props) => ({
@@ -102,7 +102,7 @@ export const HamburgerMenuModal = () => {
         <>
             {modalStore.isHamburgerModalOpen && (
                 <ModalBackdrop>
-                    <ModalView ref={hamburgerRef} $width={windowWidth - 60} modalStore={modalStore}>
+                    <ModalView ref={hamburgerRef} $width={windowWidth - 60} $modalStore={modalStore}>
                         <div>사이드바 메뉴</div>
                     </ModalView>
                     <ModalViewExcludeView />

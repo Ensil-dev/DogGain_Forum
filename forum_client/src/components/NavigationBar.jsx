@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import UnifiedButton from './UnifiedButton';
 import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
@@ -24,6 +24,7 @@ const HomeLogoBox = styled.div`
 const MenuOptionBox = styled.div`
     display: flex;
     justify-content: space-around;
+    align-items: center;
     width: 100%;
     /* padding: 0px 5px; */
     /* margin-left: 30px; */
@@ -49,9 +50,34 @@ export const ModalView = styled.div.attrs((props) => ({
     }
 `;
 
-export default function NavigationBar({ isDarkMode, handleClickModeButton, isModalOpened, handleHamburgerMenuModal }) {
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
-    const modeStore = useSelector(state => state.mode)
+const DarkModeIcon = styled(MdDarkMode)`
+    width: 28px;
+    height: 28px;
+    color: lightgray;
+    cursor: pointer;
+    /* animation: ${fadeIn} 1.5s ease-in-out; */
+`;
+
+const LightModeIcon = styled(MdLightMode)`
+    width: 28px;
+    height: 28px;
+    color: white;
+    background: black;
+    cursor: pointer;
+    animation: ${fadeIn} 1.5s ease-in-out;
+`;
+
+export default function NavigationBar({ handleClickModeButton, handleHamburgerMenuModal }) {
+    const modeStore = useSelector((state) => state.mode);
 
     return (
         <header>
@@ -62,22 +88,11 @@ export default function NavigationBar({ isDarkMode, handleClickModeButton, isMod
                 <MenuOptionBox fontSize={getNavigationBoxFontSize('MenuOptionBox')}>
                     <UnifiedButton text='로그인' $marginLeft='0px' $marginRight='0px' $fontSize='medium' $opacity='0.65' $backgroundColor='#006699' $color='white' $radius='8px' $padding='4px 8px'></UnifiedButton>
 
-                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
-                        {modeStore.isDarkMode === false ? (
-                            <MdDarkMode style={{ width: '28px', height: '28px', color: 'lightgray' }} />
-                        ) : (
-                            <MdLightMode style={{ width: '28px', height: '28px', color: 'white', background: 'black' }} />
-                        )}
-                    </button>
+                    {modeStore.isDarkMode === false ? <DarkModeIcon onClick={() => handleClickModeButton()} /> : <LightModeIcon onClick={() => handleClickModeButton()} />}
 
-                    <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleClickModeButton()}>
-                        <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray' }} />
-                    </button>
-
+                    <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray', cursor: 'pointer' }} onClick={() => handleClickModeButton()} />
 
                     <HamburgerMenu handleHamburgerMenuModal={handleHamburgerMenuModal} />
-
-
                 </MenuOptionBox>
             </SubNavigationContainer>
         </header>
