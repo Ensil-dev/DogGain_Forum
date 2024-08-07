@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import useOnClickOutside from '../hooks/useOnClickOutside';
@@ -12,12 +12,27 @@ export const ModalContainer = styled.div`
     position: relative;
 `;
 
-const fadeIn = keyframes`
-  from {
+// Define showUp animation
+const showUp = keyframes`
+  0% {
     opacity: 0;
+    transform: translateX(-100%);
   }
-  to {
+  100% {
     opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+// Define showDown animation
+const showDown = keyframes`
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-100%);
   }
 `;
 
@@ -32,8 +47,6 @@ export const ModalBackdrop = styled.div`
     display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    animation: ${fadeIn} 0.3s ease-in-out;
 `;
 
 export const ModalBtn = styled.button`
@@ -63,7 +76,7 @@ export const ModalView = styled.div.attrs((props) => ({
         cursor: pointer;
     }
 
-    animation: ${fadeIn} 2.3s step-start;
+    animation: ${({ modalStore }) => (modalStore ? showUp : showDown)} 0.5s;
 `;
 
 export const ModalViewExcludeView = styled.div.attrs((props) => ({
@@ -80,28 +93,21 @@ export const HamburgerMenuModal = () => {
 
     const hamburgerRef = useRef();
     useOnClickOutside(hamburgerRef, () => {
-        console.log('dispatch: HAMBURGER_MODAL_CHANGE !');
         dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
     });
-
-    const handleHamburgerMenuModal = () => {
-        dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
-        console.log(`modalStore.isHamburgerModalOpen: ${modalStore.isHamburgerModalOpen}`);
-    };
 
     const windowWidth = window.innerWidth;
 
     return (
         <>
-            {modalStore.isHamburgerModalOpen ? (
-                // <ModalBackdrop onClick={handleHamburgerMenuModal}>
+            {modalStore.isHamburgerModalOpen && (
                 <ModalBackdrop>
-                    <ModalView ref={hamburgerRef} $width={windowWidth - 60}>
-                        <div>메뉴</div>
+                    <ModalView ref={hamburgerRef} $width={windowWidth - 60} modalStore={modalStore}>
+                        <div>사이드바 메뉴</div>
                     </ModalView>
                     <ModalViewExcludeView />
                 </ModalBackdrop>
-            ) : null}
+            )}
         </>
     );
 };

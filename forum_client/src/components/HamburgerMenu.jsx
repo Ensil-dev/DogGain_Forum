@@ -1,4 +1,4 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { GiHamburgerMenu } from 'react-icons/gi';
 
@@ -33,7 +33,6 @@ export const ModalBackdrop = styled.div`
     align-items: center;
 
     animation: ${fadeIn} 0.3s ease-in-out;
-
 `;
 
 export const ModalBtn = styled.button`
@@ -64,24 +63,12 @@ export const ModalView = styled.div.attrs((props) => ({
     }
 `;
 
-export const HamburgerMenu = ({handleHamburgerMenuModal}) => {
-    const [isOpen, setIsOpen] = useState(false);
-    const openModalHandler = () => {
-        setIsOpen(!isOpen);
-    };
-
+export const HamburgerMenu = ({ handleHamburgerMenuModal }) => {
     return (
         <>
             <button style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleHamburgerMenuModal()}>
                 <GiHamburgerMenu style={{ width: '24px', height: '24px', color: 'lightgray', marginRight: '5px' }} />
             </button>
-            {isOpen ? (
-                <ModalBackdrop onClick={openModalHandler}>
-                    <ModalView>
-                        <div className='close-btn'>&times;</div>메뉴
-                    </ModalView>
-                </ModalBackdrop>
-            ) : null}
         </>
     );
 };

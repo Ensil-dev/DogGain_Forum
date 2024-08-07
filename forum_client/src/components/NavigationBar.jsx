@@ -4,7 +4,7 @@ import { MdLightMode, MdDarkMode } from 'react-icons/md';
 import { FaSearch } from 'react-icons/fa';
 import { getNavigationBoxFontSize } from '../utils/util';
 import { HamburgerMenu } from './HamburgerMenu';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const SubNavigationContainer = styled.div`
     display: grid;

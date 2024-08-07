@@ -8,6 +8,7 @@ export default function useOnClickOutside(ref, handler) {
       // 모달 밖을 클릭했는지
       handler();
     };
+    
     document.addEventListener("mousedown", listener);
 
     return () => {

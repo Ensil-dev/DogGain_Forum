@@ -64,7 +64,6 @@ const setContainerContentBox = (container, handleClickModeButton, isModalOpened,
 
 export default function ForumMain() {
     const dispatch = useDispatch();
-    console.log(dispatch)
 
     // const ReduxStore = useSelector(state => state.module)
     const modeStore = useSelector(state => state.mode)
