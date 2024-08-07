@@ -59,7 +59,7 @@ const Date = styled.div`
 //     border: 1px solid gray;
 //     opacity: 0.15;
 // `;
-export default function Post() {
+export default function ForumPost() {
     return (
         <>
             <Table>
