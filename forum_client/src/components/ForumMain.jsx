@@ -4,6 +4,7 @@ import NavigationBar from './NavigationBar';
 import PostControllerBar from './PostControllerBar';
 import PostContentsBox from './PostContentsBox';
 import { useDispatch } from 'react-redux';
+import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
 
 const MainContainer = styled.div`
     display: flex;
@@ -67,12 +68,12 @@ export default function ForumMain() {
 
     // const ReduxStore = useSelector(state => state.module)
     const handleClickModeButton = () => {
-        dispatch({ type: 'DARKMODE_CHANGE' });
+        dispatch(darkmodeChange());
         // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
     };
 
     const handleHamburgerMenuModal = () => {
-        dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
+        dispatch(hamburgerModalChange());
     };
 
     return (

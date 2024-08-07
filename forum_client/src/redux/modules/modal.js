@@ -1,5 +1,8 @@
 // src/modules/modal.js
 
+import { HAMBURGER_MODAL_CHANGE } from "../constants/constant";
+
+
 // 초기 상태값
 const initialState = {
     isHamburgerModalOpen: false,
@@ -11,7 +14,7 @@ const modal = (state = initialState, action) => {
     // console.log(`🖼️ modal action: ${action.type}`); // 여기에 console.log(action.type) 추가
     // console.log(`🖼️ modal state: ${state.isHamburgerModalOpen}`); // 여기에 console.log(state.isDarkMode) 추가
     switch (action.type) {
-        case 'HAMBURGER_MODAL_CHANGE':
+        case HAMBURGER_MODAL_CHANGE:
             return {
                 isHamburgerModalOpen: !state.isHamburgerModalOpen,
             };

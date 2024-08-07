@@ -1,3 +1,5 @@
+import { DARKMODE_CHANGE } from "../constants/constant";
+
 // 초기 상태값
 const initialState = {
     isDarkMode: false,
@@ -8,7 +10,7 @@ const mode = (state = initialState, action) => {
     // console.log(`mode action: ${action.type}`); // 여기에 console.log(action.type) 추가
     // console.log(`mode state: ${state.isDarkMode}`); // 여기에 console.log(state.isDarkMode) 추가
     switch (action.type) {
-        case 'DARKMODE_CHANGE':
+        case DARKMODE_CHANGE:
             return {
                 isDarkMode: !state.isDarkMode,
             };
