@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import { mediaQuery } from '../styles/mediaQuery';
 
 export const ModalContainer = styled.div`
     display: flex;
@@ -39,13 +40,17 @@ const showDown = keyframes`
 export const ModalBackdrop = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
     width: 100vw;
-
     height: 100vh;
     position: fixed;
     bottom: 0;
     /* 자식 컴포넌트인 모달창을 가운데 오게 하기 위한 flex */
     display: flex;
     justify-content: flex-start;
+
+    @media screen and (min-width: 550px) {
+        justify-content: center;
+    }
+
     align-items: center;
 `;
 
@@ -79,14 +84,6 @@ export const ModalView = styled.div.attrs((props) => ({
     animation: ${({ $modalStore }) => ($modalStore ? showUp : showDown)} 0.5s;
 `;
 
-export const ModalViewExcludeView = styled.div.attrs((props) => ({
-    role: 'exclude_area',
-}))`
-    width: ${(props) => `${props.$width}px` || '500px'};
-    height: 100vh;
-    background-color: orange;
-`;
-
 export const HamburgerMenuModal = () => {
     const modalStore = useSelector((state) => state.modal);
     const dispatch = useDispatch();
@@ -96,7 +93,11 @@ export const HamburgerMenuModal = () => {
         dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
     });
 
-    const windowWidth = window.innerWidth;
+    let windowWidth = window.innerWidth;
+
+    if (windowWidth >= 550) {
+        windowWidth = 550 + 60;
+    }
 
     return (
         <>
@@ -105,7 +106,6 @@ export const HamburgerMenuModal = () => {
                     <ModalView ref={hamburgerRef} $width={windowWidth - 60} $modalStore={modalStore}>
                         <div>사이드바 메뉴</div>
                     </ModalView>
-                    <ModalViewExcludeView />
                 </ModalBackdrop>
             )}
         </>

@@ -68,6 +68,7 @@ export default function ForumMain() {
 
     // const ReduxStore = useSelector(state => state.module)
     const handleClickModeButton = () => {
+        // dispatch의 인자로 Action creator 사용
         dispatch(darkmodeChange());
         // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
     };
