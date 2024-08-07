@@ -21,7 +21,7 @@ const ContainerBox = styled.div`
     height: 40px;
 `;
 
-const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
+const mainContainerBox = ['Navigation'];
 
 const setContainerContentBox = (container, handleClickModeButton, handleHamburgerMenuModal) => {
     // const topic = {
@@ -79,7 +79,9 @@ export default function PostMain() {
 
     return (
         <MainContainer>
-            <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />
+            {mainContainerBox.map((container) => {
+                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickModeButton, handleHamburgerMenuModal)}</ContainerBox>;
+            })}
         </MainContainer>
     );
 }
