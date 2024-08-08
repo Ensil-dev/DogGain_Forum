@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import UnifiedDivider from './UnifiedDivider';
+import { useNavigate } from 'react-router-dom';
 
 const Table = styled.table`
     width: 100%;
@@ -55,14 +56,13 @@ const Date = styled.div`
     opacity: 0.5;
 `;
 
-// const Divider = styled.hr`
-//     border: 1px solid gray;
-//     opacity: 0.15;
-// `;
 export default function ForumPost() {
+
+    const navigate = useNavigate();
+
     return (
         <>
-            <Table>
+            <Table onClick={() => navigate('/post')}>
                 <tbody>
                     <Tr>
                         <Td>
