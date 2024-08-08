@@ -6,7 +6,7 @@ import { postsSortedByLatest } from '../utils/util';
 
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+    const [isPostLoading, setIsPostLoading] = useState(false);
 
     useEffect(() => {
         // http 주소를 이용할 경우
@@ -15,14 +15,24 @@ export default function PostContentsBox() {
         // public 폴더의 절대 경로를 이용할 경우
         // fetch('/data/recommendData.json');
 
-        fetch('http://localhost:3000/mockData/post.json')
+        // fetch('http://localhost:3000/mockData/post.json')
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         const sortedPost = postsSortedByLatest(data).slice();
+
+        //         setPostContent((initialPost) => sortedPost);
+        //         setIsPostLoading((state) => true);
+        //     });
+
+        fetch('http://192.168.0.29:3000/mockData/post.json')
             .then((res) => res.json())
             .then((data) => {
                 const sortedPost = postsSortedByLatest(data).slice();
 
                 setPostContent((initialPost) => sortedPost);
-                setIsLoading((state) => true);
+                setIsPostLoading((state) => true);
             });
+
     }, []);
 
     useEffect(() => {
@@ -30,10 +40,10 @@ export default function PostContentsBox() {
     }, [postContent]);
 
     useEffect(() => {
-        console.log(isLoading);
-        if (isLoading === true) {
+        console.log(isPostLoading);
+        if (isPostLoading === true) {
         }
-    }, [isLoading]);
+    }, [isPostLoading]);
 
     return (
         <main>
@@ -41,7 +51,7 @@ export default function PostContentsBox() {
 
             <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
 
-            {isLoading && postContent.map((post) => <ForumPost key={post.postId} post={post} />)}
+            {isPostLoading && postContent.map((post) => <ForumPost key={post.postId} post={post} />)}
 
             {/* {postContent.map((post) => (
                 <ForumPost key={post.postId} />

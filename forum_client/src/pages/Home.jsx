@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Bi from '../components/Bi';
 import ForumMain from '../components/ForumMain';
 import { HamburgerMenuModal } from '../components/HamburgerMenuModal';
+import { getBrowserValue } from '../utils/util';
 
 export const HomeContainer = styled.div`
     max-width: 550px;
@@ -17,6 +18,9 @@ export const HomeContainer = styled.div`
 `;
 
 export default function Home() {
+    const browserValue = getBrowserValue(window.navigator.userAgent);
+    console.log(`at Home, browserValue: ${browserValue}`);
+
     return (
         <>
             <HomeContainer>

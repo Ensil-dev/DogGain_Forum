@@ -18,3 +18,30 @@ export const getNavigationBoxFontSize = (container) => {
             return 'medium';
     }
 };
+
+/**
+ * UserAgent 값에서 플랫폼 별 매핑 값(browser)을 반환하는 함수
+ * @param {string} userAgent
+ * @returns {number} desktop일때 1, android일때 2, ios일때 3 리턴
+ */
+export const getBrowserValue = function (userAgent) {
+    if (typeof userAgent === 'undefined') {
+        userAgent = window.navigator.userAgent;
+    }
+
+    userAgent = userAgent.toLowerCase();
+
+    if (userAgent.indexOf('android') >= 0) {
+        return 2;
+    } else if (userAgent.indexOf('iphone') >= 0) {
+        return 3;
+    } else if (userAgent.indexOf('ipad') >= 0) {
+        return 3;
+    } else if (userAgent.indexOf('ipod') >= 0) {
+        return 3;
+    } else if (userAgent.indexOf('windows') >= 0) {
+        return 1;
+    } else if (userAgent.indexOf('mac') >= 0) {
+        return 1;
+    }
+};
