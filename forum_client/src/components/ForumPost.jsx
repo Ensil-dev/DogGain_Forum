@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import UnifiedDivider from './UnifiedDivider';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
+
+    /* &:hover {
+        background-color: #e0e0e0;
+    } */
 `;
 
 const Tr = styled.tr`
@@ -33,6 +37,7 @@ const Td = styled.td`
 const Title = styled.div`
     font-size: medium;
     font-weight: bold;
+    color: gray;
     padding-right: 5px;
 `;
 
@@ -57,12 +62,46 @@ const Date = styled.div`
 `;
 
 export default function ForumPost({ post }) {
+    const [focusedElementId, setFocusedElementId] = useState(null);
 
+    const postRef = useRef(null);
+    const location = useLocation();
     const navigate = useNavigate();
+
+    // 1. post를 클릭했을 때의 post id정보를 전역 데이터(redux store)에 저장 - ForumPost 컴포넌트에서 클릭 이벤트 설정
+    // 2. 이전 페이지('/')로 돌아왔을 때 redux store에 저장된 post id 정보가 있다면 해당 post를 focus - 상위 컴포넌트에서 해당되는 id를 가진 ForumPost 컴포넌트를 포커싱
+    const handlePostClick = () => {
+        console.log(postRef);
+        setFocusedElementId(post.postId);
+        navigate('/post');
+    };
+
+    useEffect(() => {
+        // Check if the focusedElementId is set and the location is '/'
+        if (focusedElementId && location.pathname === '/') {
+            const element = document.getElementById(focusedElementId);
+            if (element) {
+                element.focus();
+            }
+        }
+    }, [focusedElementId, location.pathname]);
+
+    // useEffect(() => {
+    //     console.log(`postRef: ${postRef}`);
+    //     console.log(`focusedElementId: ${focusedElementId}`);
+    // }, [focusedElementId]);
+
+    // useEffect(() => {
+    //     // console.log(`postRef: ${postRef}`);
+    //     console.log(postRef);
+    //     // console.log(`focusedElementId: ${focusedElementId}`);
+    // }, [postRef]);
 
     return (
         <>
-            <Table onClick={() => navigate('/post')}>
+            {/* <Table> */}
+            <Table id={post.postId} ref={postRef} onClick={() => handlePostClick()}>
+                {/* <Link to='/post' style={{}}> */}
                 <tbody>
                     <Tr>
                         <Td>
@@ -80,6 +119,7 @@ export default function ForumPost({ post }) {
                         </Td>
                     </Tr>
                 </tbody>
+                {/* </Link> */}
             </Table>
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
         </>
