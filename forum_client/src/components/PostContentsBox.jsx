@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
+import { postsSortedByLatest } from '../utils/util';
 
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
@@ -17,10 +18,11 @@ export default function PostContentsBox() {
         fetch('http://localhost:3000/mockData/post.json')
             .then((res) => res.json())
             .then((data) => {
-                setPostContent((initialPost) => data.slice());
-                setIsLoading((state) => !state);
-            });
+                const sortedPost = postsSortedByLatest(data).slice();
 
+                setPostContent((initialPost) => sortedPost);
+                setIsLoading((state) => true);
+            });
     }, []);
 
     useEffect(() => {
@@ -29,6 +31,8 @@ export default function PostContentsBox() {
 
     useEffect(() => {
         console.log(isLoading);
+        if (isLoading === true) {
+        }
     }, [isLoading]);
 
     return (
@@ -37,7 +41,7 @@ export default function PostContentsBox() {
 
             <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
 
-            {/* {isLoading && postContent.map((post) => <ForumPost key={post.postId} />)} */}
+            {isLoading && postContent.map((post) => <ForumPost key={post.postId} post={post} />)}
 
             {/* {postContent.map((post) => (
                 <ForumPost key={post.postId} />

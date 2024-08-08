@@ -56,7 +56,7 @@ const Date = styled.div`
     opacity: 0.5;
 `;
 
-export default function ForumPost() {
+export default function ForumPost({ post }) {
 
     const navigate = useNavigate();
 
@@ -66,17 +66,17 @@ export default function ForumPost() {
                 <tbody>
                     <Tr>
                         <Td>
-                            <Title>무료 백신 추천하실 만한 것 있나요? 무료 백신 추천하실 만한 것 있나요?</Title>
-                            <ForumType>🟠 자유포럼🗽</ForumType>
+                            <Title>{post.title}</Title>
+                            <ForumType>{post.category.name}</ForumType>
                         </Td>
                         <Td>
-                            <Username>벨루가벨루가</Username>
+                            <Username>{post.profile.nickname}</Username>
                         </Td>
                         <Td>
-                            <Count>3</Count>
+                            <Count>{post.comments}</Count>
                         </Td>
                         <Td>
-                            <Date>24/08/02/15:00</Date>
+                            <Date>{post.created}</Date>
                         </Td>
                     </Tr>
                 </tbody>
