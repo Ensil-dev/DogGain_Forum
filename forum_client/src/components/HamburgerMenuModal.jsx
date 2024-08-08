@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import useOnClickOutside from '../hooks/useOnClickOutside';
-import { mediaQuery } from '../styles/mediaQuery';
 
 export const ModalContainer = styled.div`
     display: flex;

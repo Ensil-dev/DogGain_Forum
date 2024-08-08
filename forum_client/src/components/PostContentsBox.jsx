@@ -15,15 +15,7 @@ export default function PostContentsBox() {
         // public 폴더의 절대 경로를 이용할 경우
         // fetch('/data/recommendData.json');
 
-        // fetch('http://localhost:3000/mockData/post.json')
-        //     .then((res) => res.json())
-        //     .then((data) => {
-        //         const sortedPost = postsSortedByLatest(data).slice();
-
-        //         setPostContent((initialPost) => sortedPost);
-        //         setIsPostLoading((state) => true);
-        //     });
-
+        // Network 주소 사용
         fetch('http://192.168.0.29:3000/mockData/post.json')
             .then((res) => res.json())
             .then((data) => {
@@ -33,6 +25,15 @@ export default function PostContentsBox() {
                 setIsPostLoading((state) => true);
             });
 
+        // Local 주소 사용
+        // fetch('http://localhost:3000/mockData/post.json')
+        //     .then((res) => res.json())
+        //     .then((data) => {
+        //         const sortedPost = postsSortedByLatest(data).slice();
+
+        //         setPostContent((initialPost) => sortedPost);
+        //         setIsPostLoading((state) => true);
+        //     });
     }, []);
 
     useEffect(() => {

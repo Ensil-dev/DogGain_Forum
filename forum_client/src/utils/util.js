@@ -1,3 +1,7 @@
+import NavigationBar from "../components/NavigationBar";
+import PostContentsBox from "../components/PostContentsBox";
+import PostControllerBar from "../components/PostControllerBar";
+
 export const postsSortedByLatest = (posts) => {
     return posts.sort((a, b) => {
         const dateA = new Date(a.created.replace(/(\d{2})\/(\d{2})\/(\d{2})\/(\d{2}):(\d{2})/, '20$1-$2-$3T$4:$5:00'));
@@ -43,5 +47,18 @@ export const getBrowserValue = function (userAgent) {
         return 1;
     } else if (userAgent.indexOf('mac') >= 0) {
         return 1;
+    }
+};
+
+export const setContainerContentBox = (container, handleClickModeButton, handleHamburgerMenuModal) => {
+    switch (container) {
+        case 'Navigation':
+            return <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
+        case 'PostControllerBar':
+            return <PostControllerBar />;
+        case 'Post':
+            return <PostContentsBox />;
+        default:
+            return 'black';
     }
 };

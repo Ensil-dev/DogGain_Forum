@@ -1,33 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
-import Bi from '../components/Bi';
-import ForumMain from '../components/ForumMain';
-import { HamburgerMenuModal } from '../components/HamburgerMenuModal';
-import { getBrowserValue } from '../utils/util';
+import { useDispatch } from 'react-redux';
+import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
+import { setContainerContentBox } from '../utils/util';
 
-export const HomeContainer = styled.div`
-    max-width: 550px;
-    min-width: 330px;
-    height: 100vh;
+const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    height: full;
+    gap: 10px;
 
-    margin: 0 auto;
-    overflow: scroll;
-
-    border-right: 1px solid lightgray;
-    border-left: 1px solid lightgray;
+    /* border: 3px solid gray; */
 `;
 
+const ContainerBox = styled.div`
+    // 그리고 이 안에 스타일 코드를 작성합니다. 스타일 코드는 우리가 알고 있는 css와 동일합니다.
+    height: 40px;
+`;
+
+const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
+
 export default function Home() {
-    const browserValue = getBrowserValue(window.navigator.userAgent);
-    console.log(`at Home, browserValue: ${browserValue}`);
+    const dispatch = useDispatch();
+
+    // const ReduxStore = useSelector(state => state.module)
+    const handleClickModeButton = () => {
+        // dispatch의 인자로 Action creator 사용
+        dispatch(darkmodeChange());
+        // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
+    };
+
+    const handleHamburgerMenuModal = () => {
+        dispatch(hamburgerModalChange());
+    };
 
     return (
-        <>
-            <HomeContainer>
-                <Bi />
-                <ForumMain />
-            </HomeContainer>
-            <HamburgerMenuModal />
-        </>
+        <MainContainer>
+            {mainContainerBox.map((container) => {
+                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickModeButton, handleHamburgerMenuModal)}</ContainerBox>;
+            })}
+        </MainContainer>
     );
 }
