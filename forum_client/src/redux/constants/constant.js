@@ -15,10 +15,9 @@ export const hamburgerModalChange = () => {
 };
 
 export const TOUCHED_POST_ID_SAVE = 'TOUCHED_POST_ID_SAVE';
-export const touchedPostIdSave = (postId) => {
-    console.log('postId: ', postId)
+export const touchedPostInfoSave = (touchedPostScrollY) => {
     return {
         type: TOUCHED_POST_ID_SAVE,
-        payload: postId
+        payload: touchedPostScrollY
     };
 };

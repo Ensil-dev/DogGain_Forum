@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
 import { setContainerContentBox } from '../utils/util';
 
@@ -22,9 +22,6 @@ const ContainerBox = styled.div`
 const mainContainerBox = ['Navigation'];
 
 export default function Post() {
-
-    const clickInfoStore = useSelector(state => state.clickInfo)
-    console.log(clickInfoStore)
 
     const dispatch = useDispatch();
 

@@ -3,16 +3,31 @@ import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { postsSortedByLatest } from '../utils/util';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { touchedPostInfoSave } from '../redux/constants/constant';
 
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
     const [isPostLoading, setIsPostLoading] = useState(false);
+    const [previousPostInfo, setPreviousPostInfo] = useState(-1);
 
-    const clickInfoStore = useSelector(state => state.clickInfo)
-    console.log(clickInfoStore)
+    const clickInfoStore = useSelector((state) => state.clickInfo);
+    const dispatch = useDispatch();
 
     useEffect(() => {
+        if (clickInfoStore.touchedPostScrollY !== 0 && isPostLoading === true) {
+            console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
+            // setTimeout(() => {
+            window.scrollTo(0, clickInfoStore.touchedPostScrollY);
+            // }, 500);
+
+            // scroll 위치 초기화
+            dispatch(touchedPostInfoSave(0));
+        }
+    }, [clickInfoStore.touchedPostScrollY, isPostLoading, dispatch]);
+
+    useEffect(() => {
+        console.log('컨텐츠박스 첫 로드 시작');
         // http 주소를 이용할 경우
         // fetch('http://localhost:3000/data/recommendData.json');
 
@@ -40,12 +55,12 @@ export default function PostContentsBox() {
         //     });
     }, []);
 
-    useEffect(() => {
-        console.log(postContent);
-    }, [postContent]);
+    // useEffect(() => {
+    //     console.log(postContent);
+    // }, [postContent]);
 
     useEffect(() => {
-        console.log(isPostLoading);
+        console.log(`isPostLoading: ${isPostLoading}`);
         if (isPostLoading === true) {
         }
     }, [isPostLoading]);

@@ -9,7 +9,7 @@ export const LayoutContainer = styled.div`
     height: 100vh;
 
     margin: 0 auto;
-    overflow: scroll;
+    /* overflow: scroll; */
 
     border-right: 1px solid lightgray;
     border-left: 1px solid lightgray;
