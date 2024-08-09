@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
 import { setContainerContentBox } from '../utils/util';
 
@@ -27,6 +27,16 @@ export default function Post() {
     //         window.scrollTo(0, 0);
     //     }
     // }, []);
+
+    const clickInfoStore = useSelector((state) => state.clickInfo);
+    // const Store = useSelector((state) => state);
+    // console.log(Store)
+
+    console.log(clickInfoStore.touchedPostScrollY)
+
+    if (clickInfoStore.scrollElement) {
+        console.log(clickInfoStore.touchedPostScrollY);
+    }
 
     const dispatch = useDispatch();
 

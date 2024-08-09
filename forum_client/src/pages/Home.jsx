@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';

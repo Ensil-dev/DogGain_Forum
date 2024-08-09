@@ -11,19 +11,33 @@ export default function PostContentsBox() {
     const [isPostLoading, setIsPostLoading] = useState(false);
 
     const clickInfoStore = useSelector((state) => state.clickInfo);
+    const scrollEl = clickInfoStore.scrollElement;
+    const scrollLocation = clickInfoStore.touchedPostScrollY;
+
+    if (scrollEl && isPostLoading === true) {
+        console.log(`scrollEl: ${clickInfoStore.scrollElement}`);
+        console.log(`scrollEl.scrollTop: ${clickInfoStore.scrollElement.scrollTop}`);
+    }
+
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
+        console.log('scrollLocation: ', scrollLocation);
+
+        console.log('scrollEl: ', scrollEl);
+
         if (clickInfoStore.touchedPostScrollY !== 0 && isPostLoading === true) {
             console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
-            // setTimeout(() => {
-            window.scrollTo(0, clickInfoStore.touchedPostScrollY, 'instant');
-            // }, 500);
+
+            // if (scrollEl) {
+            //     console.log(scrollEl.scrollTop)
+            //     // clickInfoStore.scrollElement.scrollTo(0, clickInfoStore.scrollElement.scrollTop, 'instant');
+            // }
 
             // scroll 위치 초기화
-            dispatch(touchedPostInfoSave(0));
+            // dispatch(touchedPostInfoSave(0));
         }
-    }, [clickInfoStore.touchedPostScrollY, isPostLoading, dispatch]);
+    }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading, scrollEl]);
 
     useEffect(() => {
         console.log('컨텐츠박스 첫 로드 시작');

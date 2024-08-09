@@ -18,6 +18,14 @@ export const TOUCHED_POST_ID_SAVE = 'TOUCHED_POST_ID_SAVE';
 export const touchedPostInfoSave = (touchedPostScrollY) => {
     return {
         type: TOUCHED_POST_ID_SAVE,
-        payload: touchedPostScrollY
+        payload: touchedPostScrollY,
+    };
+};
+
+export const SCROLL_ELEMENT_SAVE = 'SCROLL_ELEMENT_SAVE';
+export const scrollElementSave = (scrollEl) => {
+    return {
+        type: SCROLL_ELEMENT_SAVE,
+        payload: scrollEl,
     };
 };

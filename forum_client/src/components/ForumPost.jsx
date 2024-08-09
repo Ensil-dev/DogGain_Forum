@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import UnifiedDivider from './UnifiedDivider';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { touchedPostInfoSave } from '../redux/constants/constant';
+import { useEffect } from 'react';
 
 const Table = styled.table`
     width: 100%;
@@ -70,12 +71,43 @@ export default function ForumPost({ post }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    const clickInfoStore = useSelector((state) => state.clickInfo);
+    const scrollEl = clickInfoStore.scrollElement;
+
+    function getRootScrollTop() {
+        const rootElement = document.getElementById('rooot');
+        if (rootElement) {
+            return rootElement.scrollTop;
+        }
+        return 0; // Return 0 if the element is not found
+    }
+
     // 1. post를 클릭했을 때의 post id정보를 전역 데이터(redux store)에 저장 - ForumPost 컴포넌트에서 클릭 이벤트 설정
     // 2. 이전 페이지('/')로 돌아왔을 때 redux store에 저장된 post id 정보가 있다면 해당 post를 focus - 상위 컴포넌트에서 해당되는 id를 가진 ForumPost 컴포넌트를 포커싱
     const handlePostClick = () => {
-        dispatch(touchedPostInfoSave(window.scrollY));
+        dispatch(touchedPostInfoSave(getRootScrollTop()));
+        console.log('get st: ', getRootScrollTop());
+        console.log(clickInfoStore);
         navigate('/post');
     };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const scrollTop = getRootScrollTop();
+            console.log('Scroll Top of #root:', scrollTop);
+        };
+
+        const rootElement = document.getElementById('rooot');
+        if (rootElement) {
+            rootElement.addEventListener('scroll', handleScroll);
+        }
+
+        return () => {
+            if (rootElement) {
+                rootElement.removeEventListener('scroll', handleScroll);
+            }
+        };
+    }, []);
 
     return (
         <>
