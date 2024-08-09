@@ -17,10 +17,12 @@ combineReducers은 여러 개의 독립적인 reducer의 반환 값을 하나의
 // 스토어와 모듈(modal)을 연결
 import modal from '../modules/modal';
 import mode from '../modules/mode';
+import clickInfo from '../modules/clickInfo';
 
 const rootReducer = combineReducers({
     modal: modal,
     mode: mode,
+    clickInfo: clickInfo,
 });
 const store = createStore(rootReducer);
 

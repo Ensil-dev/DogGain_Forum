@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import UnifiedDivider from './UnifiedDivider';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { touchedPostIdSave } from '../redux/constants/constant';
 
 const Table = styled.table`
     width: 100%;
@@ -67,12 +69,15 @@ export default function ForumPost({ post }) {
     const postRef = useRef(null);
     const location = useLocation();
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     // 1. post를 클릭했을 때의 post id정보를 전역 데이터(redux store)에 저장 - ForumPost 컴포넌트에서 클릭 이벤트 설정
     // 2. 이전 페이지('/')로 돌아왔을 때 redux store에 저장된 post id 정보가 있다면 해당 post를 focus - 상위 컴포넌트에서 해당되는 id를 가진 ForumPost 컴포넌트를 포커싱
     const handlePostClick = () => {
         console.log(postRef);
         setFocusedElementId(post.postId);
+        console.log(post.postId)
+        dispatch(touchedPostIdSave(post.postId));
         navigate('/post');
     };
 

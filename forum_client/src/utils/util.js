@@ -56,7 +56,7 @@ export const setContainerContentBox = (container, handleClickModeButton, handleH
             return <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
         case 'PostControllerBar':
             return <PostControllerBar />;
-        case 'Post':
+        case 'PostContentsBox':
             return <PostContentsBox />;
         default:
             return 'black';

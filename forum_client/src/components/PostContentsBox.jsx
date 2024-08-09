@@ -3,10 +3,14 @@ import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { postsSortedByLatest } from '../utils/util';
+import { useSelector } from 'react-redux';
 
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
     const [isPostLoading, setIsPostLoading] = useState(false);
+
+    const clickInfoStore = useSelector(state => state.clickInfo)
+    console.log(clickInfoStore)
 
     useEffect(() => {
         // http 주소를 이용할 경우

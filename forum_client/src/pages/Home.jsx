@@ -18,7 +18,7 @@ const ContainerBox = styled.div`
     height: 40px;
 `;
 
-const mainContainerBox = ['Navigation', 'PostControllerBar', 'Post'];
+const mainContainerBox = ['Navigation', 'PostControllerBar', 'PostContentsBox'];
 
 export default function Home() {
     const dispatch = useDispatch();

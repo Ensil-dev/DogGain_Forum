@@ -13,3 +13,12 @@ export const hamburgerModalChange = () => {
         type: HAMBURGER_MODAL_CHANGE,
     };
 };
+
+export const TOUCHED_POST_ID_SAVE = 'TOUCHED_POST_ID_SAVE';
+export const touchedPostIdSave = (postId) => {
+    console.log('postId: ', postId)
+    return {
+        type: TOUCHED_POST_ID_SAVE,
+        payload: postId
+    };
+};
