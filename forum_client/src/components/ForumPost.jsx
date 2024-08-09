@@ -39,7 +39,8 @@ const Td = styled.td`
 const Title = styled.div`
     font-size: medium;
     font-weight: bold;
-    color: gray;
+    color: black;
+    opacity: 0.75;
     padding-right: 5px;
 `;
 
