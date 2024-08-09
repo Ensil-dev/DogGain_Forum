@@ -5,6 +5,7 @@ import { FaSearch } from 'react-icons/fa';
 import { getNavigationBoxFontSize } from '../utils/util';
 import { HamburgerMenu } from './HamburgerMenu';
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const SubNavigationContainer = styled.div`
     display: grid;
@@ -78,12 +79,13 @@ const LightModeIcon = styled(MdLightMode)`
 
 export default function NavigationBar({ handleClickModeButton, handleHamburgerMenuModal }) {
     const modeStore = useSelector((state) => state.mode);
+    const navigate = useNavigate();
 
     return (
         <header>
             <SubNavigationContainer>
                 <HomeLogoBox fontSize={getNavigationBoxFontSize('HomeLogoBox')}>
-                    <UnifiedButton text='Forum'></UnifiedButton>
+                    <UnifiedButton text='Forum' $onClick={() => navigate('/')}></UnifiedButton>
                 </HomeLogoBox>
                 <MenuOptionBox fontSize={getNavigationBoxFontSize('MenuOptionBox')}>
                     <UnifiedButton text='로그인' $marginLeft='0px' $marginRight='0px' $fontSize='medium' $opacity='0.65' $backgroundColor='#006699' $color='white' $radius='8px' $padding='4px 8px'></UnifiedButton>

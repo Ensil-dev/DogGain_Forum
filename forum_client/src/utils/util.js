@@ -1,6 +1,7 @@
-import NavigationBar from "../components/NavigationBar";
-import PostContentsBox from "../components/PostContentsBox";
-import PostControllerBar from "../components/PostControllerBar";
+import NavigationBar from '../components/NavigationBar';
+import PostContentsBox from '../components/PostContentsBox';
+import PostControllerBar from '../components/PostControllerBar';
+import { useNavigate } from 'react-router-dom';
 
 export const postsSortedByLatest = (posts) => {
     return posts.sort((a, b) => {

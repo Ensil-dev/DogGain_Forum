@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import UnifiedButton from './UnifiedButton';
+import { useNavigate } from 'react-router-dom';
+
 
 const BiContainer = styled.div`
     display: flex;
@@ -14,10 +16,12 @@ const BiContainer = styled.div`
 `;
 
 export default function Bi() {
+
+    const navigate = useNavigate()
     
     return (
         <BiContainer>
-            <UnifiedButton text="DogGain"></UnifiedButton>
+            <UnifiedButton text="DogGain" $onClick={() => navigate('/')}></UnifiedButton>
         </BiContainer>
     );
 }

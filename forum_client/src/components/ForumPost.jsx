@@ -52,6 +52,7 @@ const Username = styled.div`
     font-size: small;
     font-weight: bold;
     opacity: 0.5;
+    padding-left: 5px;
 `;
 
 const Count = styled.div`
