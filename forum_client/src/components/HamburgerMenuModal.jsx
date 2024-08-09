@@ -95,14 +95,14 @@ export const HamburgerMenuModal = () => {
     let windowWidth = window.innerWidth;
 
     if (windowWidth >= 550) {
-        windowWidth = 550 + 60;
+        windowWidth = 550 + 160;
     }
 
     return (
         <>
             {modalStore.isHamburgerModalOpen && (
                 <ModalBackdrop>
-                    <ModalView ref={hamburgerRef} $width={windowWidth - 60} $modalStore={modalStore}>
+                    <ModalView ref={hamburgerRef} $width={windowWidth - 160} $modalStore={modalStore}>
                         <div>사이드바 메뉴</div>
                     </ModalView>
                 </ModalBackdrop>

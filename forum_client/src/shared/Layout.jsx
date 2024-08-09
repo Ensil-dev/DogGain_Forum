@@ -6,7 +6,7 @@ import { HamburgerMenuModal } from '../components/HamburgerMenuModal';
 export const LayoutContainer = styled.div`
     max-width: 550px;
     min-width: 330px;
-    height: 100vh;
+    height: 150vh;
 
     margin: 0 auto;
     /* overflow: scroll; */

@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import UnifiedDivider from './UnifiedDivider';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { touchedPostInfoSave } from '../redux/constants/constant';
 
 const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
+    cursor: pointer;
 
     /* &:hover {
         background-color: #e0e0e0;
@@ -18,9 +19,9 @@ const Tr = styled.tr`
     grid-template-columns: 6fr 3fr 1fr 3fr;
     padding: 12px 10px;
 
-    &:hover {
+    /* &:hover {
         background-color: #e0e0e0;
-    }
+    } */
 `;
 
 const Td = styled.td`

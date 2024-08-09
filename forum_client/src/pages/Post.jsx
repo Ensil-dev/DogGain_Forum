@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useDispatch } from 'react-redux';
 import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
@@ -22,6 +22,12 @@ const ContainerBox = styled.div`
 const mainContainerBox = ['Navigation'];
 
 export default function Post() {
+    // useEffect(() => {
+    //     console.log(window.scrollY);
+    //     if (window.scrollY > 0) {
+    //         window.scrollTo(0, 0);
+    //     }
+    // }, []);
 
     const dispatch = useDispatch();
 

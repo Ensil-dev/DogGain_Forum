@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
@@ -9,16 +9,15 @@ import { touchedPostInfoSave } from '../redux/constants/constant';
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
     const [isPostLoading, setIsPostLoading] = useState(false);
-    const [previousPostInfo, setPreviousPostInfo] = useState(-1);
 
     const clickInfoStore = useSelector((state) => state.clickInfo);
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         if (clickInfoStore.touchedPostScrollY !== 0 && isPostLoading === true) {
             console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
             // setTimeout(() => {
-            window.scrollTo(0, clickInfoStore.touchedPostScrollY);
+            window.scrollTo(0, clickInfoStore.touchedPostScrollY, 'instant');
             // }, 500);
 
             // scroll 위치 초기화
