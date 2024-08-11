@@ -63,3 +63,11 @@ export const setContainerContentBox = (container, handleClickModeButton, handleH
             return 'black';
     }
 };
+
+export function getRootScrollTop() {
+    const rootElement = document.getElementById('rooot');
+    if (rootElement) {
+        return rootElement.scrollTop;
+    }
+    return 0; // Return 0 if the element is not found
+}

@@ -14,16 +14,17 @@ export const hamburgerModalChange = () => {
     };
 };
 
-export const TOUCHED_POST_ID_SAVE = 'TOUCHED_POST_ID_SAVE';
-export const touchedPostInfoSave = (touchedPostScrollY) => {
+export const SCROLL_LOCATION_SAVE = 'SCROLL_LOCATION_SAVE';
+export const scrollLocationSave = (touchedPostScrollY) => {
     return {
-        type: TOUCHED_POST_ID_SAVE,
+        type: SCROLL_LOCATION_SAVE,
         payload: touchedPostScrollY,
     };
 };
 
 export const SCROLL_ELEMENT_SAVE = 'SCROLL_ELEMENT_SAVE';
 export const scrollElementSave = (scrollEl) => {
+    console.log('scrollElementSave!!!');
     return {
         type: SCROLL_ELEMENT_SAVE,
         payload: scrollEl,

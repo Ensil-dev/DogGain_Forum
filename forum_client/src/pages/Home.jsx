@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
 import { setContainerContentBox } from '../utils/util';
 
@@ -21,6 +21,13 @@ const mainContainerBox = ['Navigation', 'PostControllerBar', 'PostContentsBox'];
 
 export default function Home() {
     const dispatch = useDispatch();
+
+    const clickInfoStore = useSelector((state) => state.clickInfo);
+    // const Store = useSelector((state) => state);
+    // console.log(Store)
+
+    console.log('Home.jsx is rendering')
+    console.log(clickInfoStore)
 
     // const ReduxStore = useSelector(state => state.module)
     const handleClickModeButton = () => {

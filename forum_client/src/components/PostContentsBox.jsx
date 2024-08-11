@@ -4,7 +4,7 @@ import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { touchedPostInfoSave } from '../redux/constants/constant';
+import { scrollLocationSave } from '../redux/constants/constant';
 
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
@@ -29,15 +29,14 @@ export default function PostContentsBox() {
         if (clickInfoStore.touchedPostScrollY !== 0 && isPostLoading === true) {
             console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
 
-            // if (scrollEl) {
-            //     console.log(scrollEl.scrollTop)
-            //     // clickInfoStore.scrollElement.scrollTo(0, clickInfoStore.scrollElement.scrollTop, 'instant');
-            // }
+            const rootEl = document.getElementById('rooot');
+            console.log(rootEl);
+            rootEl.scrollTo(0, clickInfoStore.touchedPostScrollY);
 
             // scroll 위치 초기화
-            // dispatch(touchedPostInfoSave(0));
+            // dispatch(scrollLocationSave(0));
         }
-    }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading, scrollEl]);
+    }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading, scrollEl, scrollLocation]);
 
     useEffect(() => {
         console.log('컨텐츠박스 첫 로드 시작');
@@ -48,7 +47,8 @@ export default function PostContentsBox() {
         // fetch('/data/recommendData.json');
 
         // Network 주소 사용
-        fetch('http://192.168.0.29:3000/mockData/post.json')
+        // fetch('http://192.168.0.29:3000/mockData/post.json')
+        fetch('http://192.168.0.13:3000/mockData/post.json')
             .then((res) => res.json())
             .then((data) => {
                 const sortedPost = postsSortedByLatest(data).slice();
@@ -82,7 +82,7 @@ export default function PostContentsBox() {
         <main>
             <PostHeader />
 
-            <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
+            <UnifiedDivider $padding="0px 10px" $border="2px solid gray" $opacity="0.15" />
 
             {isPostLoading && postContent.map((post) => <ForumPost key={post.postId} post={post} />)}
 
