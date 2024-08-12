@@ -1,6 +1,7 @@
 import NavigationBar from '../components/NavigationBar';
 import PostContentsBox from '../components/PostContentsBox';
 import PostControllerBar from '../components/PostControllerBar';
+import PostDetail from '../components/PostDetail';
 
 export const postsSortedByLatest = (posts) => {
     return posts.sort((a, b) => {
@@ -58,6 +59,8 @@ export const setContainerContentBox = (container, handleClickModeButton, handleH
             return <PostControllerBar />;
         case 'PostContentsBox':
             return <PostContentsBox />;
+        case 'PostDetail':
+            return <PostDetail />;
         default:
             return 'black';
     }

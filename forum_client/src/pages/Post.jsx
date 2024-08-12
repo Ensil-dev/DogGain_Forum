@@ -18,7 +18,7 @@ const ContainerBox = styled.div`
     height: 40px;
 `;
 
-const mainContainerBox = ['Navigation'];
+const mainContainerBox = ['Navigation' , 'PostDetail'];
 
 export default function Post() {
     // useEffect(() => {

@@ -13,6 +13,7 @@ export default function Router() {
                 <Routes>
                     <Route path='/' element={<Home />} />
                     <Route path='/post' element={<Post />} />
+                    <Route path='/post/:id' element={<Post />} />
                 </Routes>
             </Layout>
         </BrowserRouter>

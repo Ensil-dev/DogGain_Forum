@@ -75,36 +75,18 @@ export default function ForumPost({ post }) {
 
     // 1. post를 클릭했을 때의 post id정보를 전역 데이터(redux store)에 저장 - ForumPost 컴포넌트에서 클릭 이벤트 설정
     // 2. 이전 페이지('/')로 돌아왔을 때 redux store에 저장된 post id 정보가 있다면 해당 post를 focus - 상위 컴포넌트에서 해당되는 id를 가진 ForumPost 컴포넌트를 포커싱
-    const handlePostClick = () => {
+    const handlePostClick = (postId) => {
         dispatch(scrollLocationSave(getRootScrollTop()));
         console.log('get st: ', getRootScrollTop());
 
         console.log(clickInfoStore);
-        navigate('/post');
+        navigate(`/post/${postId}`);
     };
-
-    // useEffect(() => {
-    //     const handleScroll = () => {
-    //         const scrollTop = getRootScrollTop();
-    //         console.log('Scroll Top of #root:', scrollTop);
-    //     };
-
-    //     const rootElement = document.getElementById('rooot');
-    //     if (rootElement) {
-    //         rootElement.addEventListener('scroll', handleScroll);
-    //     }
-
-    //     return () => {
-    //         if (rootElement) {
-    //             rootElement.removeEventListener('scroll', handleScroll);
-    //         }
-    //     };
-    // }, []);
 
     return (
         <>
             {/* <Table> */}
-            <Table id={post.postId} onClick={() => handlePostClick()}>
+            <Table id={post.postId} onClick={() => handlePostClick(post.postId)}>
                 {/* <Link to='/post' style={{}}> */}
                 <tbody>
                     <Tr>
