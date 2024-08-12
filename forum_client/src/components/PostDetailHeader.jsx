@@ -1,38 +1,31 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const Table = styled.table`
+const DetailHeaderContainer = styled.h2`
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
 `;
 
-const Tr = styled.tr`
+const Title = styled.div`
     display: grid;
-    grid-template-columns: 6fr 3fr 1fr 3fr;
-    padding: 12px 10px;
+    padding: 12px 10px 0px 10px;
 
-    color: gray;
+    color: black;
+    /* font-size: large; */
+    word-break: keep-all;
 `;
 
-const Th = styled.th`
-    font-weight: bold;
-    text-align: center;
-    &:first-child {
-        text-align: start;
-        padding-right: 5px;
-    }
+const Category = styled.div`
+    padding: 0px 10px 6px 10px;
     font-size: small;
 `;
 
-export default function PostDetailHeader() {
+export default function PostDetailHeader({ title, category }) {
     return (
-        <Table>
-            <thead>
-                <Tr>
-                    <Th>글</Th>
-                </Tr>
-            </thead>
-        </Table>
+        <DetailHeaderContainer>
+            <Title>{title}</Title>
+            <Category>{category}</Category>
+        </DetailHeaderContainer>
     );
 }

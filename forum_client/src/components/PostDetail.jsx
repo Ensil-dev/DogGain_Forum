@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { POST_URL } from '../api/api';
 import { useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
+import { useQuery } from 'react-query';
 
 export default function PostDetail() {
     const [postDetailContent, setPostContent] = useState([]);
@@ -15,37 +16,49 @@ export default function PostDetail() {
     const postId = param.id;
     console.log('postId: ', postId);
 
-    useEffect(() => {
-        console.log('컨텐츠박스 첫 로드 시작');
-        // http 주소를 이용할 경우
-        // fetch('http://localhost:3000/data/recommendData.json');
+    // useEffect(() => {
+    //     console.log('컨텐츠박스 첫 로드 시작');
 
-        // public 폴더의 절대 경로를 이용할 경우
-        // fetch('/data/recommendData.json');
+    //     fetch(POST_URL + postId)
+    //         .then((res) => res.json())
+    //         .then((data) => {
+    //             const sortedPost = postsSortedByLatest(data).slice();
 
-        // Network 주소 사용
-        // fetch('http://192.168.0.13:3000/mockData/post.json')
-        fetch(POST_URL + postId)
-            .then((res) => res.json())
-            .then((data) => {
-                const sortedPost = postsSortedByLatest(data).slice();
+    //             setPostContent((initialPost) => sortedPost);
+    //             setIsPostLoading((state) => true);
+    //         });
+    // }, [postId]);
 
-                setPostContent((initialPost) => sortedPost);
-                setIsPostLoading((state) => true);
-            });
-    }, [postId]);
+    // useEffect(() => {
+    //     console.log(`isPostLoading: ${isPostLoading}`);
+    // }, [isPostLoading]);
 
-    useEffect(() => {
-        console.log(`isPostLoading: ${isPostLoading}`);
-    }, [isPostLoading]);
+    const { data: posts, status } = useQuery(['posts']);
+
+    // if (status === 'loading') return <p>Loading summary...</p>;
+    // if (status === 'error') return <p>Error loading summary.</p>;
+
+    console.log(posts);
+
+    const filteredPosts = (fetchingPostId) => {
+        return posts.filter((post) => {
+            return post.postId === fetchingPostId;
+        });
+    };
+
+    console.log(filteredPosts(postId)[0]);
+
+    const postDetailInfo = filteredPosts(postId)[0];
 
     return (
         <main>
-            <PostDetailHeader />
+            <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
 
-            <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
+            <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
 
-            {isPostLoading && postDetailContent.map((post) => <ForumPost key={post.postId} post={post} />)}
+            <p>Total Posts: {posts.length}</p>
+
+            {/* {isPostLoading && posts.map((post) => <ForumPost key={post.postId} post={post} />)} */}
         </main>
     );
 }
