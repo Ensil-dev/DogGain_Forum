@@ -20,8 +20,8 @@ const clickInfo = (state = initialState, action) => {
             });
 
         case SCROLL_ELEMENT_SAVE:
-            console.log('SCROLL_ELEMENT_SAVE!!');
-            console.log(action.payload);
+            // console.log('SCROLL_ELEMENT_SAVE!!');
+            // console.log(action.payload);
 
             if (state.scrollElement === null) {
                 return Object.assign({}, state, {

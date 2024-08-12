@@ -23,7 +23,7 @@ export default function Layout({ children }) {
     const layoutRef = useRef(null);
 
     const dispatch = useDispatch();
-    const clickInfoStore = useSelector(state => state.clickInfo)
+    // const clickInfoStore = useSelector(state => state.clickInfo)
 
     useEffect(() => {
         // console.log(layoutRef.current);
