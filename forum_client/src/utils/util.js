@@ -1,7 +1,6 @@
 import NavigationBar from '../components/NavigationBar';
 import PostContentsBox from '../components/PostContentsBox';
 import PostControllerBar from '../components/PostControllerBar';
-import { useNavigate } from 'react-router-dom';
 
 export const postsSortedByLatest = (posts) => {
     return posts.sort((a, b) => {
@@ -65,7 +64,7 @@ export const setContainerContentBox = (container, handleClickModeButton, handleH
 };
 
 export function getRootScrollTop() {
-    const rootElement = document.getElementById('rooot');
+    const rootElement = document.getElementById('topLayout');
     if (rootElement) {
         return rootElement.scrollTop;
     }

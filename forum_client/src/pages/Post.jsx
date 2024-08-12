@@ -32,9 +32,7 @@ export default function Post() {
     // const Store = useSelector((state) => state);
     // console.log(Store)
 
-    console.log('Post.jsx is rendering')
-    console.log(clickInfoStore)
-    console.log(clickInfoStore.touchedPostScrollY)
+    console.log('Post.jsx is rendering');
 
     if (clickInfoStore.scrollElement) {
         console.log(clickInfoStore.touchedPostScrollY);

@@ -4,15 +4,14 @@ import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { scrollLocationSave } from '../redux/constants/constant';
 
 export default function PostContentsBox() {
     const [postContent, setPostContent] = useState([]);
     const [isPostLoading, setIsPostLoading] = useState(false);
 
     const clickInfoStore = useSelector((state) => state.clickInfo);
-    const scrollEl = clickInfoStore.scrollElement;
     const scrollLocation = clickInfoStore.touchedPostScrollY;
+    const scrollEl = clickInfoStore.scrollElement;
 
     if (scrollEl && isPostLoading === true) {
         console.log(`scrollEl: ${clickInfoStore.scrollElement}`);
@@ -29,7 +28,7 @@ export default function PostContentsBox() {
         if (clickInfoStore.touchedPostScrollY !== 0 && isPostLoading === true) {
             console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
 
-            const rootEl = document.getElementById('rooot');
+            const rootEl = document.getElementById('topLayout');
             console.log(rootEl);
             rootEl.scrollTo(0, clickInfoStore.touchedPostScrollY);
 
@@ -47,8 +46,8 @@ export default function PostContentsBox() {
         // fetch('/data/recommendData.json');
 
         // Network 주소 사용
-        // fetch('http://192.168.0.29:3000/mockData/post.json')
-        fetch('http://192.168.0.13:3000/mockData/post.json')
+        // fetch('http://192.168.0.13:3000/mockData/post.json')
+        fetch('http://192.168.0.40:3000/mockData/post.json')
             .then((res) => res.json())
             .then((data) => {
                 const sortedPost = postsSortedByLatest(data).slice();

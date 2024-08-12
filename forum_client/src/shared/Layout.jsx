@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Bi from '../components/Bi';
 import { HamburgerMenuModal } from '../components/HamburgerMenuModal';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { scrollElementSave } from '../redux/constants/constant';
 
 export const LayoutContainer = styled.div`
@@ -23,6 +23,7 @@ export default function Layout({ children }) {
     const layoutRef = useRef(null);
 
     const dispatch = useDispatch();
+    const clickInfoStore = useSelector(state => state.clickInfo)
 
     useEffect(() => {
         // console.log(layoutRef.current);
@@ -33,7 +34,7 @@ export default function Layout({ children }) {
 
     return (
         <>
-            <LayoutContainer id='rooot' ref={layoutRef}>
+            <LayoutContainer id='topLayout' ref={layoutRef}>
                 <Bi />
                 {children}
             </LayoutContainer>
