@@ -4,20 +4,10 @@ import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPosts, POST_URL } from '../api/api';
-import { useQuery } from 'react-query';
+import { POST_URL } from '../api/api';
+import { latestPostDataSave } from '../redux/constants/constant';
 
 export default function PostContentsBox() {
-    const {
-        data: posts,
-        status,
-        error,
-        refetch,
-    } = useQuery(['posts'], fetchPosts, {
-        staleTime: 1000 * 30, // 30 seconds
-        // staleTime: 1000 * 60 * 1, // 1 minutes
-    });
-
     const [postContent, setPostContent] = useState([]);
     const [isPostLoading, setIsPostLoading] = useState(false);
 
@@ -40,24 +30,19 @@ export default function PostContentsBox() {
         }
     }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading, scrollEl, scrollLocation]);
 
-    // useEffect(() => {
-    //     console.log('컨텐츠박스 첫 로드 시작');
-
-    //     fetch(POST_URL)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             const sortedPost = postsSortedByLatest(data).slice();
-
-    //             setPostContent((initialPost) => sortedPost);
-    //             setIsPostLoading((state) => true);
-    //         });
-    // }, []);
-
-    // const memoizedPostContent = useMemo(() => postContent, [postContent]);
-
     useEffect(() => {
-        setIsPostLoading(true);
-    }, []);
+        console.log('컨텐츠박스 첫 로드 시작');
+
+        fetch(POST_URL)
+            .then((res) => res.json())
+            .then((data) => {
+                const sortedPost = postsSortedByLatest(data).slice();
+
+                setPostContent((initialPost) => sortedPost);
+                dispatch(latestPostDataSave(sortedPost))
+                setIsPostLoading((state) => true);
+            });
+    }, [dispatch]);
 
     useEffect(() => {
         console.log(`isPostLoading: ${isPostLoading}`);
@@ -67,10 +52,7 @@ export default function PostContentsBox() {
         <main>
             <PostHeader />
             <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
-            {status === 'loading' && <p>Loading...</p>}
-            {status === 'error' && <p>Error: {error.message}</p>}
-            {status === 'success' && posts.map((post) => <ForumPost key={post.postId} post={post} />)}
-            <button onClick={refetch}>Refresh Posts</button> {/* Optional Refresh Button */}
+            {isPostLoading && postContent.map((post) => <ForumPost key={post.postId} post={post} />)}
         </main>
     );
 }

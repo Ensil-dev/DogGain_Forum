@@ -5,6 +5,7 @@ const DetailHeaderContainer = styled.h2`
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+    padding-bottom: 15px;
 `;
 
 const Title = styled.div`

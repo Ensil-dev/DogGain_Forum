@@ -1,64 +1,51 @@
 import React, { useEffect, useState } from 'react';
 import UnifiedDivider from './UnifiedDivider';
-import ForumPost from './ForumPost';
-import { postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
 import { POST_URL } from '../api/api';
 import { useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
-import { useQuery } from 'react-query';
 
 export default function PostDetail() {
-    const [postDetailContent, setPostContent] = useState([]);
-    const [isPostLoading, setIsPostLoading] = useState(false);
+    const [postComment, setPostComment] = useState(null);
+    const [isPostCommentLoading, setisPostCommentLoading] = useState(false);
 
     const param = useParams();
     const postId = param.id;
-    console.log('postId: ', postId);
+    // console.log('postId: ', postId);
 
-    // useEffect(() => {
-    //     console.log('컨텐츠박스 첫 로드 시작');
+    const postInfoStore = useSelector((state) => state.postInfo);
 
-    //     fetch(POST_URL + postId)
-    //         .then((res) => res.json())
-    //         .then((data) => {
-    //             const sortedPost = postsSortedByLatest(data).slice();
+    // console.log(postInfoStore);
 
-    //             setPostContent((initialPost) => sortedPost);
-    //             setIsPostLoading((state) => true);
-    //         });
-    // }, [postId]);
+    const posts = postInfoStore.latestPostData;
 
-    // useEffect(() => {
-    //     console.log(`isPostLoading: ${isPostLoading}`);
-    // }, [isPostLoading]);
-
-    const { data: posts, status } = useQuery(['posts']);
-
-    // if (status === 'loading') return <p>Loading summary...</p>;
-    // if (status === 'error') return <p>Error loading summary.</p>;
-
-    console.log(posts);
-
-    const filteredPosts = (fetchingPostId) => {
+    const filteredPost = (fetchingPostId) => {
         return posts.filter((post) => {
             return post.postId === fetchingPostId;
-        });
+        })[0];
     };
 
-    console.log(filteredPosts(postId)[0]);
+    const postDetailInfo = filteredPost(postId);
 
-    const postDetailInfo = filteredPosts(postId)[0];
+    console.log(postDetailInfo);
 
     return (
         <main>
             <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
 
+            <div style={{ display: 'flex', width: '100%', padding: '12px 0px' }}>
+                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5 }}>{postDetailInfo.content}</p>
+            </div>
+
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
 
-            <p>Total Posts: {posts.length}</p>
+            <div style={{ display: 'flex', width: '100%', padding: '12px 0px' }}>
+                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5 }}>{postDetailInfo.profile.nickname}</p>
+            </div>
 
-            {/* {isPostLoading && posts.map((post) => <ForumPost key={post.postId} post={post} />)} */}
+            <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />
+
+            {/* {posts.map((post) => <ForumPost key={post.postId} post={post} />)} */}
         </main>
     );
 }

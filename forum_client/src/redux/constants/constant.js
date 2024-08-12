@@ -30,3 +30,12 @@ export const scrollElementSave = (scrollEl) => {
         payload: scrollEl,
     };
 };
+
+export const LATEST_POST_DATA_SAVE = 'LATEST_POST_DATA_SAVE';
+export const latestPostDataSave = (posts) => {
+    console.log('LATEST_POST_DATA_SAVE!!!');
+    return {
+        type: LATEST_POST_DATA_SAVE,
+        payload: posts,
+    };
+};

@@ -18,11 +18,13 @@ combineReducers은 여러 개의 독립적인 reducer의 반환 값을 하나의
 import modal from '../modules/modal';
 import mode from '../modules/mode';
 import clickInfo from '../modules/clickInfo';
+import postInfo from '../modules/postInfo';
 
 const rootReducer = combineReducers({
     modal: modal,
     mode: mode,
     clickInfo: clickInfo,
+    postInfo: postInfo
 });
 const store = createStore(rootReducer);
 
