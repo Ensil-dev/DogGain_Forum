@@ -40,7 +40,7 @@ export default function PostDetail() {
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
 
             <div style={{ display: 'flex', width: '100%', padding: '12px 0px' }}>
-                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5 }}>{postDetailInfo.profile.nickname}</p>
+                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5, fontWeight:'500' }}>{postDetailInfo.profile.nickname}</p>
             </div>
 
             <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />

@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useState, useMemo } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
@@ -12,8 +12,10 @@ export default function PostContentsBox() {
     const [isPostLoading, setIsPostLoading] = useState(false);
 
     const clickInfoStore = useSelector((state) => state.clickInfo);
-    const scrollLocation = clickInfoStore.touchedPostScrollY;
-    const scrollEl = clickInfoStore.scrollElement;
+    const postInfoStore = useSelector((state) => state.postInfo);
+    // console.log(postInfoStore.latestPostData?.length);
+    // const scrollLocation = clickInfoStore.touchedPostScrollY;
+    // const scrollEl = clickInfoStore.scrollElement;
 
     // if (scrollEl && isPostLoading === true) {
     //     console.log(clickInfoStore.scrollElement);
@@ -28,21 +30,28 @@ export default function PostContentsBox() {
 
             console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
         }
-    }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading, scrollEl, scrollLocation]);
+    }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading]);
 
     useEffect(() => {
         console.log('컨텐츠박스 첫 로드 시작');
 
-        fetch(POST_URL)
-            .then((res) => res.json())
-            .then((data) => {
-                const sortedPost = postsSortedByLatest(data).slice();
+        const postsData = postInfoStore.latestPostData;
 
-                setPostContent((initialPost) => sortedPost);
-                dispatch(latestPostDataSave(sortedPost))
-                setIsPostLoading((state) => true);
-            });
-    }, [dispatch]);
+        if (postsData === null) {
+            fetch(POST_URL)
+                .then((res) => res.json())
+                .then((data) => {
+                    const sortedPost = postsSortedByLatest(data).slice();
+
+                    setPostContent((initialPost) => sortedPost);
+                    dispatch(latestPostDataSave(sortedPost));
+                    setIsPostLoading((state) => true);
+                });
+        } else {
+            setPostContent((initialPost) => postsData);
+            setIsPostLoading((state) => true);
+        }
+    }, [dispatch, postInfoStore.latestPostData]);
 
     useEffect(() => {
         console.log(`isPostLoading: ${isPostLoading}`);

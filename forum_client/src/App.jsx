@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { StrictMode } from 'react';
 import Router from './shared/Router';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
@@ -6,9 +6,11 @@ const queryClient = new QueryClient();
 
 function App() {
     return (
-        <QueryClientProvider client={queryClient}>
-            <Router />
-        </QueryClientProvider>
+        // <StrictMode>
+            <QueryClientProvider client={queryClient}>
+                <Router />
+            </QueryClientProvider>
+        // </StrictMode>
     );
 }
 
