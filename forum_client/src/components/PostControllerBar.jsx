@@ -27,7 +27,6 @@ export default function PostControllerBar() {
         { value: '지름후기', label: '지름후기' },
         { value: '핫딜공유', label: '핫딜공유' },
         { value: '꿀팁공유', label: '꿀팁공유' },
-        { value: '의견/제안', label: '의견/제안' },
         { value: '공지사항', label: '공지사항' },
     ];
 
