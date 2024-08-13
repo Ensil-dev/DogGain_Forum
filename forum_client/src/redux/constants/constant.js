@@ -39,3 +39,13 @@ export const latestPostDataSave = (posts) => {
         payload: posts,
     };
 };
+
+
+export const FILTERING_OPTION_SAVE = 'FILTERING_OPTION_SAVE';
+export const filteringOptionSave = (option) => {
+    console.log('FILTERING_OPTION_SAVE!!!');
+    return {
+        type: FILTERING_OPTION_SAVE,
+        payload: option,
+    };
+};

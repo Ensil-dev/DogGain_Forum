@@ -19,12 +19,14 @@ import modal from '../modules/modal';
 import mode from '../modules/mode';
 import clickInfo from '../modules/clickInfo';
 import postInfo from '../modules/postInfo';
+import filteringOption from '../modules/filtering';
 
 const rootReducer = combineReducers({
     modal: modal,
     mode: mode,
     clickInfo: clickInfo,
-    postInfo: postInfo
+    postInfo: postInfo,
+    filteringOption: filteringOption,
 });
 const store = createStore(rootReducer);
 

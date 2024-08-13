@@ -1,5 +1,3 @@
-// src/modules/modal.js
-
 import { LATEST_POST_DATA_SAVE } from '../constants/constant';
 
 // 초기 상태값

@@ -13,6 +13,7 @@ export default function PostContentsBox() {
 
     const clickInfoStore = useSelector((state) => state.clickInfo);
     const postInfoStore = useSelector((state) => state.postInfo);
+    const optionStore = useSelector((store) => store.filteringOption);
     // console.log(postInfoStore.latestPostData?.length);
     // const scrollLocation = clickInfoStore.touchedPostScrollY;
     // const scrollEl = clickInfoStore.scrollElement;
@@ -20,6 +21,14 @@ export default function PostContentsBox() {
     // if (scrollEl && isPostLoading === true) {
     //     console.log(clickInfoStore.scrollElement);
     // }
+
+    const filteringPostOption = (postContent, option) => {
+        if (option !== '최신') {
+            return postContent.filter((post) => post.category.name.includes(option));
+        }
+
+        return postContent;
+    };
 
     const dispatch = useDispatch();
 
@@ -61,7 +70,7 @@ export default function PostContentsBox() {
         <main>
             <PostHeader />
             <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
-            {isPostLoading && postContent.map((post) => <ForumPost key={post.postId} post={post} />)}
+            {isPostLoading && filteringPostOption(postContent, optionStore.filteringOption).map((post) => <ForumPost key={post.postId} post={post} />)}
         </main>
     );
 }
