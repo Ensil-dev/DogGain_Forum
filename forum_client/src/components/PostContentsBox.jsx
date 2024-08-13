@@ -23,6 +23,7 @@ export default function PostContentsBox() {
     // }
 
     const filteringPostOption = (postContent, option) => {
+        console.log(postContent)
         if (option !== '최신') {
             return postContent.filter((post) => post.category.name.includes(option));
         }

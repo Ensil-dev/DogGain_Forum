@@ -40,12 +40,19 @@ export const latestPostDataSave = (posts) => {
     };
 };
 
-
 export const FILTERING_OPTION_SAVE = 'FILTERING_OPTION_SAVE';
 export const filteringOptionSave = (option) => {
     console.log('FILTERING_OPTION_SAVE!!!');
     return {
         type: FILTERING_OPTION_SAVE,
         payload: option,
+    };
+};
+
+export const POST_ADD = 'POST_ADD';
+export const addPost = (post) => {
+    return {
+        type: POST_ADD,
+        payload: post,
     };
 };

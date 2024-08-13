@@ -1,4 +1,4 @@
-import { LATEST_POST_DATA_SAVE } from '../constants/constant';
+import { LATEST_POST_DATA_SAVE, POST_ADD } from '../constants/constant';
 
 // 초기 상태값
 const initialState = {
@@ -21,6 +21,18 @@ const postInfo = (state = initialState, action) => {
             } else {
                 return state;
             }
+
+        case POST_ADD:
+            // console.log(state.latestPostData);
+            const newPostData = state.latestPostData.slice();
+            newPostData.unshift(action.payload);
+            // console.log(action.payload);
+            // console.log(newPostData);
+
+            // return state
+            return Object.assign({}, state, {
+                latestPostData: newPostData,
+            });
 
         default:
             return state;
