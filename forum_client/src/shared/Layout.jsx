@@ -2,8 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import Bi from '../components/Bi';
 import { HamburgerMenuModal } from '../components/HamburgerMenuModal';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { scrollElementSave } from '../redux/constants/constant';
+import { PostWritingModal } from '../components/PostWritingModal';
 
 export const LayoutContainer = styled.div`
     position: relative;
@@ -38,7 +39,6 @@ export default function Layout({ children }) {
                 <Bi />
                 {children}
             </LayoutContainer>
-            <HamburgerMenuModal />
         </>
     );
 }

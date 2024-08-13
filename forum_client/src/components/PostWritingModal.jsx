@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import useOnClickOutside from '../hooks/useOnClickOutside';
+import { postWritingModalChange } from '../redux/constants/constant';
 
 export const ModalContainer = styled.div`
     display: flex;
@@ -83,14 +84,13 @@ export const ModalView = styled.div.attrs((props) => ({
     animation: ${({ $modalStore }) => ($modalStore ? showUp : showDown)} 0.5s;
 `;
 
-export const HamburgerMenuModal = () => {
+export const PostWritingModal = () => {
     const modalStore = useSelector((state) => state.modal);
     const dispatch = useDispatch();
 
-    const hamburgerRef = useRef();
-
-    useOnClickOutside(hamburgerRef, () => {
-        dispatch({ type: 'HAMBURGER_MODAL_CHANGE' });
+    const postWritingRef = useRef();
+    useOnClickOutside(postWritingRef, () => {
+        dispatch(postWritingModalChange());
     });
 
     let windowWidth = window.innerWidth;
@@ -101,9 +101,9 @@ export const HamburgerMenuModal = () => {
 
     return (
         <>
-            {modalStore.isHamburgerModalOpen && (
+            {modalStore.isPostWritingModalOpen && (
                 <ModalBackdrop>
-                    <ModalView ref={hamburgerRef} $width={windowWidth - 130} $modalStore={modalStore}>
+                    <ModalView ref={postWritingRef} $width={windowWidth - 130} $modalStore={modalStore}>
                         <div>사이드바 메뉴</div>
                     </ModalView>
                 </ModalBackdrop>

@@ -14,6 +14,13 @@ export const hamburgerModalChange = () => {
     };
 };
 
+export const POST_WRITING_MODAL_CHANGE = 'POST_WRITING_MODAL_CHANGE';
+export const postWritingModalChange = () => {
+    return {
+        type: POST_WRITING_MODAL_CHANGE,
+    };
+};
+
 export const SCROLL_LOCATION_SAVE = 'SCROLL_LOCATION_SAVE';
 export const scrollLocationSave = (touchedPostScrollY) => {
     return {

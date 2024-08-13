@@ -1,11 +1,12 @@
 // src/modules/modal.js
 
-import { HAMBURGER_MODAL_CHANGE } from "../constants/constant";
+import { HAMBURGER_MODAL_CHANGE, POST_WRITING_MODAL_CHANGE } from "../constants/constant";
 
 
 // 초기 상태값
 const initialState = {
     isHamburgerModalOpen: false,
+    isPostWritingModalOpen: false,
     isSearchModalOpen: false,
 };
 
@@ -18,6 +19,15 @@ const modal = (state = initialState, action) => {
             return {
                 isHamburgerModalOpen: !state.isHamburgerModalOpen,
             };
+
+            // return Object.assign({}, state, {
+            //     isHamburgerModalOpen: !state.isHamburgerModalOpen,
+            // });
+        
+            case POST_WRITING_MODAL_CHANGE:
+                return {
+                    isPostWritingModalOpen: !state.isPostWritingModalOpen,
+                };
 
         default:
             return state;

@@ -4,7 +4,7 @@ import SelectedComponent from './SelectedComponent';
 import UnifiedButton from './UnifiedButton';
 import { getNavigationBoxFontSize } from '../utils/util';
 import { useDispatch } from 'react-redux';
-import { addPost } from '../redux/constants/constant';
+import { addPost, postWritingModalChange } from '../redux/constants/constant';
 
 const FilteringContainer = styled.div`
     display: grid;
@@ -23,7 +23,7 @@ const SelectFilteringContainer = styled.div`
 `;
 
 export default function PostControllerBar() {
-    const addPostDispatch = useDispatch();
+    const dispatch = useDispatch();
 
     const exampleObj = {
         postId: '22222',
@@ -50,12 +50,19 @@ export default function PostControllerBar() {
         { value: '공지사항', label: '공지사항' },
     ];
 
+    const handlePostWritingTouched = () => {
+
+        dispatch(postWritingModalChange())
+
+        // dispatch(addPost(exampleObj))
+    }
+
     return (
         <FilteringContainer>
             <SelectedComponent options={options} />
             <SelectFilteringContainer fontSize={getNavigationBoxFontSize('writeBox')}>
                 <UnifiedButton
-                    $onClick={() => addPostDispatch(addPost(exampleObj))}
+                    $onClick={handlePostWritingTouched}
                     text='✚ 글쓰기'
                     $backgroundColor='#E9E9E9'
                     $padding='6px 12px'
