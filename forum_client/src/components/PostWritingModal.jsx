@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import useOnClickOutside from '../hooks/useOnClickOutside';
 import { postWritingModalChange } from '../redux/constants/constant';
+import PostWritingForm from './PostWritingForm';
 
 export const ModalContainer = styled.div`
     display: flex;
@@ -68,7 +69,7 @@ export const ModalView = styled.div.attrs((props) => ({
     role: 'dialog',
 }))`
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
     position: fixed;
     width: ${(props) => `${props.$width}px` || '330px'};
@@ -104,13 +105,7 @@ export const PostWritingModal = () => {
             {modalStore.isPostWritingModalOpen && (
                 <ModalBackdrop>
                     <ModalView ref={postWritingRef} $width={windowWidth} $modalStore={modalStore}>
-                        <div className='close-btn' onClick={handleWritingModal}>
-                            &times;
-                        </div>
-                        <div>
-                            <div>글쓰기 메뉴</div>
-                            <div>글쓰기 메뉴</div>
-                        </div>
+                        <PostWritingForm handleWritingModal={handleWritingModal} />
                     </ModalView>
                 </ModalBackdrop>
             )}
