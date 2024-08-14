@@ -4,8 +4,6 @@ import Home from '../pages/Home';
 import Post from '../pages/Post';
 import Layout from './Layout';
 import ScrollToInitialRender from '../components/ScrollToInitialRender';
-import { HamburgerMenuModal } from '../components/HamburgerMenuModal';
-import { PostWritingModal } from '../components/PostWritingModal';
 
 export default function Router() {
     return (
@@ -17,8 +15,6 @@ export default function Router() {
                     <Route path='/post' element={<Post />} />
                     <Route path='/post/:id' element={<Post />} />
                 </Routes>
-                <HamburgerMenuModal />
-                <PostWritingModal />
             </Layout>
         </BrowserRouter>
     );

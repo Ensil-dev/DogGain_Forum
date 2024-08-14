@@ -4,6 +4,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { POST_URL } from '../api/api';
 import { useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
+import styled from 'styled-components';
+
+const Content = styled.div`
+    display: flex;
+    width: 100%;
+    padding: 12px 0px;
+
+    /* font-size: large; */
+    word-break: keep-all;
+`;
 
 export default function PostDetail() {
     const [postComment, setPostComment] = useState(null);
@@ -29,18 +39,25 @@ export default function PostDetail() {
 
     console.log(postDetailInfo);
 
+    // @media screen and (min-width: 550px) {
+    //     // 너비가 550px보다 클 때 적용할 CSS
+    //     grid-template-columns: 3fr 2fr;
+
+    //     /* background-color: black; */
+    // }
+
     return (
         <main>
             <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
 
-            <div style={{ display: 'flex', width: '100%', padding: '12px 0px' }}>
+            <Content>
                 <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5 }}>{postDetailInfo.content}</p>
-            </div>
+            </Content>
 
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
 
             <div style={{ display: 'flex', width: '100%', padding: '12px 0px' }}>
-                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5, fontWeight:'500' }}>{postDetailInfo.profile.nickname}</p>
+                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5, fontWeight: '500' }}>{postDetailInfo.profile.nickname}</p>
             </div>
 
             <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />

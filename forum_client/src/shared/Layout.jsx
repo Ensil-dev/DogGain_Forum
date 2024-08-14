@@ -10,6 +10,12 @@ export const LayoutContainer = styled.div`
     position: relative;
 
     max-width: 550px;
+
+    @media screen and (min-width: 550px) {
+        // 너비가 550px보다 클 때 적용할 CSS
+        /* background-color: black; */
+    }
+
     min-width: 330px;
     height: 100%;
     overflow-y: scroll;
@@ -29,8 +35,6 @@ export default function Layout({ children }) {
     useEffect(() => {
         // console.log(layoutRef.current);
         dispatch(scrollElementSave(layoutRef.current));
-
-    
     }, [dispatch]);
 
     return (
@@ -39,6 +43,8 @@ export default function Layout({ children }) {
                 <Bi />
                 {children}
             </LayoutContainer>
+            <HamburgerMenuModal />
+            <PostWritingModal />
         </>
     );
 }

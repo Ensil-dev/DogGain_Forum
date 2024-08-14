@@ -38,7 +38,7 @@ const showDown = keyframes`
 
 export const ModalBackdrop = styled.div`
     background-color: rgba(0, 0, 0, 0.5);
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     position: fixed;
     bottom: 0;
@@ -96,7 +96,7 @@ export const HamburgerMenuModal = () => {
     let windowWidth = window.innerWidth;
 
     if (windowWidth >= 550) {
-        windowWidth = 550 + 130;
+        windowWidth = 550 + 230;
     }
 
     return (

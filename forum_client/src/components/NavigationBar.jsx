@@ -12,6 +12,12 @@ const SubNavigationContainer = styled.div`
     align-content: center;
     grid-template-columns: 1fr 2fr;
     height: 90%;
+
+    @media screen and (min-width: 550px) {
+        // 너비가 550px보다 클 때 적용할 CSS
+        grid-template-columns: 3fr 2fr;
+    }
+
     /* border: 5px solid black; */
 `;
 

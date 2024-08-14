@@ -59,7 +59,7 @@ export const ModalBtn = styled.button`
     text-decoration: none;
     border: none;
     padding: 20px;
-    color: white;
+    color: #ffffff;
     border-radius: 30px;
     cursor: pointer;
 `;
@@ -81,7 +81,7 @@ export const ModalView = styled.div.attrs((props) => ({
         cursor: pointer;
     }
 
-    animation: ${({ $modalStore }) => ($modalStore ? showUp : showDown)} 0.5s;
+    /* animation: ${({ $modalStore }) => ($modalStore ? showUp : showDown)} 0.5s; */
 `;
 
 export const PostWritingModal = () => {
@@ -95,16 +95,22 @@ export const PostWritingModal = () => {
 
     let windowWidth = window.innerWidth;
 
-    if (windowWidth >= 550) {
-        windowWidth = 550 + 130;
-    }
+    const handleWritingModal = () => {
+        dispatch(postWritingModalChange());
+    };
 
     return (
         <>
             {modalStore.isPostWritingModalOpen && (
                 <ModalBackdrop>
-                    <ModalView ref={postWritingRef} $width={windowWidth - 130} $modalStore={modalStore}>
-                        <div>사이드바 메뉴</div>
+                    <ModalView ref={postWritingRef} $width={windowWidth} $modalStore={modalStore}>
+                        <div className='close-btn' onClick={handleWritingModal}>
+                            &times;
+                        </div>
+                        <div>
+                            <div>글쓰기 메뉴</div>
+                            <div>글쓰기 메뉴</div>
+                        </div>
                     </ModalView>
                 </ModalBackdrop>
             )}

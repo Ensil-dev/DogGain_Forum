@@ -10,6 +10,7 @@ const FilteringContainer = styled.div`
     display: grid;
     align-content: center;
     grid-template-columns: 1fr 1fr;
+
     height: 100%;
     margin-top: 10px;
     /* padding-top: 10px; */
@@ -35,8 +36,7 @@ export default function PostControllerBar() {
             id: '5',
             name: '🟠 자유포럼🗽',
         },
-        content:
-            '잠실구장에서 처음 야구보는데 8월이라 날도 덥고 걱정이 많이 되네요..! 많은 꿀팁 공유 부탁드려요!',
+        content: '잠실구장에서 처음 야구보는데 8월이라 날도 덥고 걱정이 많이 되네요..! 많은 꿀팁 공유 부탁드려요!',
         comments: 6,
         created: '24/08/13/18:35',
     };
@@ -51,26 +51,16 @@ export default function PostControllerBar() {
     ];
 
     const handlePostWritingTouched = () => {
-
-        dispatch(postWritingModalChange())
+        dispatch(postWritingModalChange());
 
         // dispatch(addPost(exampleObj))
-    }
+    };
 
     return (
         <FilteringContainer>
             <SelectedComponent options={options} />
             <SelectFilteringContainer fontSize={getNavigationBoxFontSize('writeBox')}>
-                <UnifiedButton
-                    $onClick={handlePostWritingTouched}
-                    text='✚ 글쓰기'
-                    $backgroundColor='#E9E9E9'
-                    $padding='6px 12px'
-                    $radius='6px'
-                    $fontSize='18px'
-                    $fontWeight='larger'
-                    $color='orange'
-                ></UnifiedButton>
+                <UnifiedButton $onClick={handlePostWritingTouched} text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifiedButton>
             </SelectFilteringContainer>
         </FilteringContainer>
     );
