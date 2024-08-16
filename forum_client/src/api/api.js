@@ -12,6 +12,7 @@ export const fetchPosts = async () => {
     const response = await fetch(DEV_POST_URL || PRODUCTION_POST_URL);
     const data = await response.json();
     return postsSortedByLatest(data);
+    
 };
 
 export const PUBLIC_URL = 'http://192.168.0.40:3000/'

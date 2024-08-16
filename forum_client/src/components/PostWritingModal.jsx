@@ -69,7 +69,7 @@ export const ModalView = styled.div.attrs((props) => ({
     role: 'dialog',
 }))`
     display: flex;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
     position: fixed;
     width: ${(props) => `${props.$width}px` || '330px'};

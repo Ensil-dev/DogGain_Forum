@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import SelectedComponent from './SelectedComponent';
 import UnifiedButton from './UnifiedButton';
-import { getNavigationBoxFontSize } from '../utils/util';
+import { categoryOptions, getNavigationBoxFontSize } from '../utils/util';
 import { useDispatch } from 'react-redux';
 import { addPost, postWritingModalChange } from '../redux/constants/constant';
 
@@ -41,15 +41,6 @@ export default function PostControllerBar() {
         created: '24/08/13/18:35',
     };
 
-    const options = [
-        { value: '최신', label: '최신' },
-        { value: '자유포럼', label: '자유포럼' },
-        { value: '지름후기', label: '지름후기' },
-        { value: '핫딜공유', label: '핫딜공유' },
-        { value: '꿀팁공유', label: '꿀팁공유' },
-        { value: '공지사항', label: '공지사항' },
-    ];
-
     const handlePostWritingTouched = () => {
         dispatch(postWritingModalChange());
 
@@ -58,7 +49,7 @@ export default function PostControllerBar() {
 
     return (
         <FilteringContainer>
-            <SelectedComponent options={options} />
+            <SelectedComponent options={categoryOptions} />
             <SelectFilteringContainer fontSize={getNavigationBoxFontSize('writeBox')}>
                 <UnifiedButton $onClick={handlePostWritingTouched} text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifiedButton>
             </SelectFilteringContainer>
