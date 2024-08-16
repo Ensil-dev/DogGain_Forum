@@ -117,15 +117,23 @@ export default function PostWritingForm({ handleWritingModal }) {
                         placeholder='제목 (특수문자 금지입니다)'
                     ></input>
                 </div>
-                <div style={{ padding: '24px 8px 0px 8px', border: 'none', textAlign: 'center' }}>
-                    <select id='writingForumOption' onChange={handleOptionChanged} value={categoryOption}>
-                        {writingFormCategoryOptions.map((option) => (
-                            <option key={option.value} value={option.value}>
-                                {option.label}
-                            </option>
-                        ))}
-                    </select>
+
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', alignItems: 'center', height: '50px', padding: '0px 8px', fontSize: 'larger' }}>
+                    <div style={{ border: 'none', textAlign: 'center' }}>
+                        <select id='writingForumOption' onChange={handleOptionChanged} value={categoryOption}>
+                            {writingFormCategoryOptions.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div style={{ width: '100px', fontSize: 'medium', textAlign: 'end' }}>닉네임: &nbsp;</div>
+                        <input type='text' />
+                    </div>
                 </div>
+
                 <div style={{ padding: '24px 8px 0px 8px', textAlign: 'center' }}>
                     <textarea onChange={listenBodyValue} required style={{ width: '95%', height: '50vh', paddingLeft: '8px', paddingTop: '8px' }} placeholder='여기에 본문을 입력하세요.'></textarea>
                 </div>
