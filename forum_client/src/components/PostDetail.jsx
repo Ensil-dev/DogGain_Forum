@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import UnifiedDivider from './UnifiedDivider';
 import { useDispatch, useSelector } from 'react-redux';
-import { POST_URL } from '../api/api';
+import { DEV_POST_URL } from '../api/api';
 import { useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';

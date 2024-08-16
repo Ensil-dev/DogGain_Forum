@@ -4,7 +4,7 @@ import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { POST_URL } from '../api/api';
+import { DEV_POST_URL, PRODUCTION_POST_URL } from '../api/api';
 import { latestPostDataSave } from '../redux/constants/constant';
 
 export default function PostContentsBox() {
@@ -48,7 +48,7 @@ export default function PostContentsBox() {
         const postsData = postInfoStore.latestPostData;
 
         if (postsData === null) {
-            fetch(POST_URL)
+            fetch(DEV_POST_URL || PRODUCTION_POST_URL)
                 .then((res) => res.json())
                 .then((data) => {
                     const sortedPost = postsSortedByLatest(data).slice();

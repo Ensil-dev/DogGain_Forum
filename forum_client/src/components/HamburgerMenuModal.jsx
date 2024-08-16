@@ -46,9 +46,9 @@ export const ModalBackdrop = styled.div`
     display: flex;
     justify-content: flex-start;
 
-    @media screen and (min-width: 550px) {
+    /* @media screen and (min-width: 550px) {
         justify-content: center;
-    }
+    } */
 
     align-items: center;
 `;
