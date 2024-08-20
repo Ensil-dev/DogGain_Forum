@@ -24,6 +24,16 @@ export const getNavigationBoxFontSize = (container) => {
     }
 };
 
+export const isIosSafari = () => {
+    const userAgent = window.navigator.userAgent;
+    const isIos = /iPhone|iPad|iPod/.test(userAgent);
+    // console.log('isIOS: ', isIos)
+    const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
+    // console.log('issafari: ', isSafari)
+
+    return isIos && isSafari;
+};
+
 /**
  * UserAgent 값에서 플랫폼 별 매핑 값(browser)을 반환하는 함수
  * @param {string} userAgent
@@ -54,7 +64,12 @@ export const getBrowserValue = function (userAgent) {
 export const setContainerContentBox = (container, handleClickModeButton, handleHamburgerMenuModal) => {
     switch (container) {
         case 'Navigation':
-            return <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
+            return (
+                <NavigationBar
+                    handleClickModeButton={handleClickModeButton}
+                    handleHamburgerMenuModal={handleHamburgerMenuModal}
+                />
+            );
         case 'PostControllerBar':
             return <PostControllerBar />;
         case 'PostContentsBox':
