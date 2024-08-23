@@ -18,7 +18,7 @@ const Title = styled.div`
 `;
 
 const Category = styled.div`
-    padding: 0px 10px 6px 10px;
+    padding: 6px 10px 6px 10px;
     font-size: small;
 `;
 

@@ -1,3 +1,4 @@
+import { getUniquePostId } from '../../utils/util';
 import { LATEST_POST_DATA_SAVE, POST_ADD } from '../constants/constant';
 
 // 초기 상태값
@@ -15,8 +16,9 @@ const postInfo = (state = initialState, action) => {
             // console.log(state.latestPostData);
 
             if (state.latestPostData === null) {
+                
                 return Object.assign({}, state, {
-                    latestPostData: action.payload,
+                    latestPostData: action.payload
                 });
             } else {
                 return state;

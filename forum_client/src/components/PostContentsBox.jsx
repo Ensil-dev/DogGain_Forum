@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useState } from 'react';
 import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
-import { postsSortedByLatest } from '../utils/util';
+import { filteringPostOption, postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
 import { DEV_POST_URL, PRODUCTION_POST_URL } from '../api/api';
 import { latestPostDataSave } from '../redux/constants/constant';
@@ -21,15 +21,6 @@ export default function PostContentsBox() {
     // if (scrollEl && isPostLoading === true) {
     //     console.log(clickInfoStore.scrollElement);
     // }
-
-    const filteringPostOption = (postContent, option) => {
-        console.log(postContent)
-        if (option !== '최신') {
-            return postContent.filter((post) => post.category.name.includes(option));
-        }
-
-        return postContent;
-    };
 
     const dispatch = useDispatch();
 

@@ -1,6 +1,6 @@
 [
     {
-        "postId": "18893",
+        "postId": 1,
         "profile": {
             "nickname": "멍청한_야옹맨"
         },
@@ -14,7 +14,7 @@
         "created": "24/08/07/12:29"
     },
     {
-        "postId": "18859",
+        "postId": 2,
         "profile": {
             "nickname": "개발자"
         },
@@ -28,7 +28,7 @@
         "created": "24/08/03/14:04"
     },
     {
-        "postId": "18811",
+        "postId": 3,
         "profile": {
             "nickname": "흥미로운 청개구리"
         },
@@ -42,7 +42,7 @@
         "created": "24/07/30/06:44"
     },
     {
-        "postId": "18889",
+        "postId": 4,
         "profile": {
             "nickname": "춤추는 벨루가"
         },
@@ -57,7 +57,7 @@
         "created": "24/08/07/14:17"
     },
     {
-        "postId": "18710",
+        "postId": 5,
         "profile": {
             "nickname": "배고픈 스마일"
         },
@@ -71,7 +71,7 @@
         "created": "24/08/08/19:35"
     },
     {
-        "postId": "18888",
+        "postId": 6,
         "profile": {
             "nickname": "대단한_매미"
         },
@@ -86,7 +86,7 @@
         "created": "24/08/07/11:32"
     },
     {
-        "postId": "18886",
+        "postId": 7,
         "profile": {
             "nickname": "배고픈자똥을먹어라"
         },
@@ -100,7 +100,7 @@
         "created": "24/08/07/09:12"
     },
     {
-        "postId": "18832",
+        "postId": 8,
         "profile": {
             "nickname": "혼란스러운 멸치"
         },
@@ -114,7 +114,7 @@
         "created": "24/07/31/22:54"
     },
     {
-        "postId": "18876",
+        "postId": 9,
         "profile": {
             "nickname": "원래안먹는데이건맛있네"
         },
@@ -128,7 +128,7 @@
         "created": "24/08/06/16:40"
     },
     {
-        "postId": "18885",
+        "postId": 10,
         "profile": {
             "nickname": "매우빠른_게"
         },
@@ -142,7 +142,7 @@
         "created": "24/08/07/15:11"
     },
     {
-        "postId": "18881",
+        "postId": 11,
         "profile": {
             "nickname": "공부하는_메뚜기"
         },
@@ -156,7 +156,7 @@
         "created": "24/08/06/19:54"
     },
     {
-        "postId": "18870",
+        "postId": 12,
         "profile": {
             "nickname": "갑갑한검은담비"
         },
@@ -170,7 +170,7 @@
         "created": "24/08/05/19:54"
     },
     {
-        "postId": "18877",
+        "postId": 13,
         "profile": {
             "nickname": "똑똑한_멸치"
         },
@@ -184,7 +184,7 @@
         "created": "24/08/06/16:45"
     },
     {
-        "postId": "17624",
+        "postId": 14,
         "profile": {
             "nickname": "난처한 토도사"
         },
@@ -198,7 +198,7 @@
         "created": "24/08/05/14:55"
     },
     {
-        "postId": "18868",
+        "postId": 15,
         "profile": {
             "nickname": "여유로운 가자미"
         },
@@ -212,7 +212,7 @@
         "created": "24/08/05/14:30"
     },
     {
-        "postId": "18862",
+        "postId": 16,
         "profile": {
             "nickname": "펭구999"
         },
@@ -226,7 +226,7 @@
         "created": "24/08/05/01:26"
     },
     {
-        "postId": "18640",
+        "postId": 17,
         "profile": {
             "nickname": "흉포한맹수"
         },
@@ -240,7 +240,7 @@
         "created": "24/07/25/05:26"
     },
     {
-        "postId": "18574",
+        "postId": 18,
         "profile": {
             "nickname": "난처한 토도사"
         },
@@ -254,7 +254,7 @@
         "created": "24/07/17/13:42"
     },
     {
-        "postId": "18513",
+        "postId": 19,
         "profile": {
             "nickname": "멜로나"
         },
@@ -268,7 +268,7 @@
         "created": "24/07/15/12:02"
     },
     {
-        "postId": "18279",
+        "postId": 20,
         "profile": {
             "nickname": "뻐꾸기"
         },
@@ -282,7 +282,7 @@
         "created": "24/07/10/19:39"
     },
     {
-        "postId": "14955",
+        "postId": 21,
         "profile": {
             "nickname": "뭐야내잔고돌려줘요"
         },
@@ -296,7 +296,7 @@
         "created": "23/11/10/00:42"
     },
     {
-        "postId": "18047",
+        "postId": 22,
         "profile": {
             "nickname": "심비오트스파이더맨"
         },
@@ -310,7 +310,7 @@
         "created": "24/06/17/16:27"
     },
     {
-        "postId": "17992",
+        "postId": 23,
         "profile": {
             "nickname": "멜로나"
         },
@@ -324,7 +324,7 @@
         "created": "24/06/13/13:15"
     },
     {
-        "postId": "17976",
+        "postId": 24,
         "profile": {
             "nickname": "매우빠른_투계"
         },
@@ -338,7 +338,7 @@
         "created": "24/08/06/20:03"
     },
     {
-        "postId": "17928",
+        "postId": 25,
         "profile": {
             "nickname": "난처한 토도사"
         },
@@ -352,7 +352,7 @@
         "created": "24/08/07/16:30"
     },
     {
-        "postId": "17792",
+        "postId": 26,
         "profile": {
             "nickname": "개발자"
         },
@@ -366,7 +366,7 @@
         "created": "24/05/30/19:46"
     },
     {
-        "postId": "17848",
+        "postId": 27,
         "profile": {
             "nickname": "향기로운_나무늘보"
         },
@@ -380,7 +380,7 @@
         "created": "24/06/04/01:46"
     },
     {
-        "postId": "113",
+        "postId": 28,
         "profile": {
             "nickname": "개발자"
         },
@@ -395,7 +395,7 @@
         "views": "2.6천"
     },
     {
-        "postId": "18864",
+        "postId": 29,
         "profile": {
             "nickname": "알리가또얄랑셩"
         },
@@ -410,7 +410,7 @@
         "views": "1.3천"
     },
     {
-        "postId": "18807",
+        "postId": 30,
         "profile": {
             "nickname": "이로운_자라"
         },
@@ -425,7 +425,7 @@
         "views": "2.3천"
     },
     {
-        "postId": "18849",
+        "postId": 31,
         "profile": {
             "nickname": "음메에에"
         },
@@ -440,7 +440,7 @@
         "views": "1.7천"
     },
     {
-        "postId": "18752",
+        "postId": 32,
         "profile": {
             "nickname": "sho_Ony"
         },

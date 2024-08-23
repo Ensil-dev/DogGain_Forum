@@ -97,3 +97,47 @@ export const categoryOptions = [
     { value: '꿀팁공유', label: '꿀팁공유' },
     { value: '공지사항', label: '공지사항' },
 ];
+
+export const filteringPostOption = (postContent, option) => {
+    console.log(postContent);
+    if (option !== '최신') {
+        return postContent.filter((post) => post.category.name.includes(option));
+    }
+
+    return postContent;
+};
+
+/**
+ * 유니크한 postId를 만드는 함수
+ * @param {post} post
+ * @param {existingPosts} existingPosts
+ * @returns
+ */
+export function getUniquePostId(post, existingPosts) {
+    // Parse the postId as a number
+    console.log(post)
+    let currentPostId = post.postId;
+    console.log('currentPostId: ', currentPostId)
+    let maxPostId = currentPostId;
+
+    // Track if the current postId is a duplicate
+    let isDuplicate = false;
+
+    // Single pass to find max postId and check for duplicates
+    for (const existingPost of existingPosts) {
+        if (existingPost.postId === currentPostId) {
+            isDuplicate = true;
+        }
+        if (existingPost.postId > maxPostId) {
+            maxPostId = existingPost.postId;
+        }
+    }
+
+    // If a duplicate was found, generate a new postId
+    if (isDuplicate) {
+        currentPostId = maxPostId + 1;
+    }
+
+    // Return only the unique postId
+    return currentPostId;
+}

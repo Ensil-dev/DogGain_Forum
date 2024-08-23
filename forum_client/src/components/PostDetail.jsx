@@ -31,7 +31,9 @@ export default function PostDetail() {
 
     const filteredPost = (fetchingPostId) => {
         return posts.filter((post) => {
-            return post.postId === fetchingPostId;
+            // console.log('post.postId: ', post.postId)
+            // console.log('fetchingPostId: ', fetchingPostId)
+            return Number(post.postId) === Number(fetchingPostId);
         })[0];
     };
 
@@ -51,7 +53,7 @@ export default function PostDetail() {
             <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
 
             <Content>
-                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5 }}>{postDetailInfo.content}</p>
+                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>{postDetailInfo.content}</p>
             </Content>
 
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
