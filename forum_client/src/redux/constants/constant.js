@@ -63,3 +63,11 @@ export const addPost = (post) => {
         payload: post,
     };
 };
+
+export const POST_DELETE = 'POST_DELETE';
+export const deletePost = (postId) => {
+    return {
+        type: POST_DELETE,
+        payload: postId,
+    };
+};

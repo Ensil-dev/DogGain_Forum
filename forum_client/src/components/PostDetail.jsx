@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { DEV_POST_URL } from '../api/api';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';
+import { deletePost } from '../redux/constants/constant';
 
 const Content = styled.div`
     display: flex;
@@ -50,6 +51,28 @@ export default function PostDetail() {
     //     /* background-color: black; */
     // }
 
+    const dispatch = useDispatch()
+    const navigate = useNavigate();
+
+    const handleClickDeleteButton = () => {
+        let result = window.confirm("정말로 이 게시글을 삭제 하시겠습니까?")
+        if(result){
+            dispatch(deletePost(postId))
+            navigate('/')
+            alert("삭제 완료했습니다!")
+        } else {
+            
+        }
+    }
+    const handleClickEditButton = () => {
+        let result = window.confirm("이 게시글을 수정 하시겠습니까?")
+        if(result){
+            alert("게시글 수정을 시작합니다!")
+        } else {
+            
+        }
+    }
+
     return (
         <main>
             <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
@@ -63,12 +86,12 @@ export default function PostDetail() {
             {/* <div> */}
             <div style={{ display: 'grid', gridTemplateColumns: '9fr 1fr 1fr', alignContent: 'center', width: '100%', padding: '12px 0px', gap: '4px' }}>
                 <div style={{ width: '100%', padding: '0px 20px 0px 20px', lineHeight: 1.5, fontWeight: '500' }}>{postDetailInfo.profile.nickname}</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '80px', gap: '4px', border: '2px solid lightgray', cursor: 'pointer' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '80px', gap: '4px', border: '2px solid lightgray', cursor: 'pointer' }} onClick={handleClickEditButton}>
                     <FaEdit style={{ width: '24px', height: '24px', color: 'lightgray' }} />
                     <div style={{ fontSize: 'small' }}>수정</div>
                 </div>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '80px', gap: '4px', marginRight: '20px', border: '2px solid lightgray', cursor: 'pointer' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '80px', gap: '4px', marginRight: '20px', border: '2px solid lightgray', cursor: 'pointer' }} onClick={handleClickDeleteButton}>
                     <MdDeleteForever style={{ width: '24px', height: '24px', color: 'lightgray' }} />
                     <div style={{ fontSize: 'small' }}>삭제</div>
                 </div>

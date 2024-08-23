@@ -150,7 +150,7 @@ export default function PostWritingForm({ handleWritingModal }) {
                         autoFocus
                         required
                         style={{ width: '95%', height: '50px', paddingLeft: '8px' }}
-                        placeholder='제목 (특수문자 금지입니다)'
+                        placeholder='제목을 입력하세요.'
                     ></input>
                 </div>
 
