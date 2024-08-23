@@ -29,7 +29,7 @@ export const isIosSafari = () => {
     const isIos = /iPhone|iPad|iPod/.test(userAgent);
     // console.log('isIOS: ', isIos)
     const isSafari = /^((?!chrome|android).)*safari/i.test(userAgent);
-    // console.log('issafari: ', isSafari)
+    // console.log('isSafari: ', isSafari)
 
     return isIos && isSafari;
 };

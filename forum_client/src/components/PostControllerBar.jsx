@@ -4,7 +4,7 @@ import SelectedComponent from './SelectedComponent';
 import UnifiedButton from './UnifiedButton';
 import { categoryOptions, getNavigationBoxFontSize } from '../utils/util';
 import { useDispatch } from 'react-redux';
-import { addPost, postWritingModalChange } from '../redux/constants/constant';
+import { postWritingModalChange } from '../redux/constants/constant';
 
 const FilteringContainer = styled.div`
     display: grid;
