@@ -91,11 +91,11 @@ export function getRootScrollTop() {
 
 export const categoryOptions = [
     { value: '최신', label: '최신' },
-    { value: '자유포럼', label: '자유포럼' },
-    { value: '지름후기', label: '지름후기' },
-    { value: '핫딜공유', label: '핫딜공유' },
-    { value: '꿀팁공유', label: '꿀팁공유' },
-    { value: '공지사항', label: '공지사항' },
+    { value: '🟠 자유포럼', label: '🟠 자유포럼' },
+    { value: '🔶 지름후기', label: '🔶 지름후기' },
+    { value: '🛒 핫딜공유', label: '🛒 핫딜공유' },
+    { value: '🔵 꿀팁공유', label: '🔵 꿀팁공유' },
+    { value: '🔘 공지사항', label: '🔘 공지사항' },
 ];
 
 export const filteringPostOption = (postContent, option) => {
