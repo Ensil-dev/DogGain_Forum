@@ -1,9 +1,10 @@
 import { getUniquePostId } from '../../utils/util';
-import { LATEST_POST_DATA_SAVE, POST_ADD, POST_DELETE } from '../constants/constant';
+import { LATEST_POST_DATA_SAVE, POST_ADD, POST_DELETE, POST_UPDATE, SAVE_EDITING_POST } from '../constants/constant';
 
 // 초기 상태값
 const initialState = {
     latestPostData: null,
+    informationOfModifyingPost: null,
 };
 
 // 리듀서
@@ -16,9 +17,8 @@ const postInfo = (state = initialState, action) => {
             // console.log(state.latestPostData);
 
             if (state.latestPostData === null) {
-                
                 return Object.assign({}, state, {
-                    latestPostData: action.payload
+                    latestPostData: action.payload,
                 });
             } else {
                 return state;
@@ -36,18 +36,40 @@ const postInfo = (state = initialState, action) => {
                 latestPostData: newPostData,
             });
 
-            case POST_DELETE:
-                console.log(state.latestPostData);
-                console.log(action.payload);
-                const totalDeletedPosts = state.latestPostData.slice().filter(post => Number(post.postId) !== Number(action.payload))
-                // totalDeletedPosts = totalDeletedPosts.filter(post => post.id !== action.payload)
-                // console.log(action.payload);
-                console.log(totalDeletedPosts);
-    
-                // return state
-                return Object.assign({}, state, {
-                    latestPostData: totalDeletedPosts,
-                });
+        case POST_DELETE:
+            console.log(state.latestPostData);
+            console.log(action.payload);
+            const totalDeletedPosts = state.latestPostData.slice().filter((post) => Number(post.postId) !== Number(action.payload));
+            // totalDeletedPosts = totalDeletedPosts.filter(post => post.id !== action.payload)
+            // console.log(action.payload);
+            console.log(totalDeletedPosts);
+
+            // return state
+            return Object.assign({}, state, {
+                latestPostData: totalDeletedPosts,
+            });
+
+        case SAVE_EDITING_POST:
+            console.log('SAVE_EDITING_POST');
+            console.log(action.payload);
+
+            return Object.assign({}, state, {
+                informationOfModifyingPost: action.payload,
+            });
+
+        case POST_UPDATE:
+            console.log(state.latestPostData);
+            console.log(action.payload);
+            const totalUdatedPosts = state.latestPostData.slice();
+
+            // totalDeletedPosts = totalDeletedPosts.filter(post => post.id !== action.payload)
+            // console.log(action.payload);
+            console.log(totalUdatedPosts);
+
+            // return state
+            return Object.assign({}, state, {
+                latestPostData: totalUdatedPosts,
+            });
 
         default:
             return state;

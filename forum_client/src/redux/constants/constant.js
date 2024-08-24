@@ -15,9 +15,10 @@ export const hamburgerModalChange = () => {
 };
 
 export const POST_WRITING_MODAL_CHANGE = 'POST_WRITING_MODAL_CHANGE';
-export const postWritingModalChange = () => {
+export const postWritingModalChange = (postDetailInfo) => {
     return {
         type: POST_WRITING_MODAL_CHANGE,
+        payload: postDetailInfo
     };
 };
 
@@ -69,5 +70,23 @@ export const deletePost = (postId) => {
     return {
         type: POST_DELETE,
         payload: postId,
+    };
+
+};
+
+export const SAVE_EDITING_POST = 'SAVE_EDITING_POST'
+export const saveEditingPost = (postDetailInfo) => {
+    console.log('saveEditingPost!@!')
+    return {
+        type: SAVE_EDITING_POST,
+        payload: postDetailInfo,
+    };
+};
+
+export const POST_UPDATE = 'POST_UPDATE';
+export const updatePost = (newPostDetailInfo) => {
+    return {
+        type: POST_DELETE,
+        payload: newPostDetailInfo,
     };
 };

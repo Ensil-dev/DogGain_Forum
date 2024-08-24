@@ -17,7 +17,6 @@ const Form = styled.form`
 
     @media screen and (min-width: 550px) {
         border-bottom: 1px solid rgb(222, 226, 230);
-        ;
     }
 `;
 
@@ -39,15 +38,21 @@ const CloseBtn = styled.div`
 `;
 
 export default function PostWritingForm({ handleWritingModal }) {
-    const [titleInputValue, setTitleInputValue] = useState('');
-    const [bodyInputValue, setBodyInputValue] = useState('');
-    const [categoryOption, setCategoryOption] = useState('자유포럼');
-    const [nicknameInputValue, setNicknameInputValue] = useState('');
-
-    const writingFormCategoryOptions = categoryOptions.slice(1);
-
     const dispatch = useDispatch();
     const postInfoStore = useSelector((state) => state.postInfo);
+    const { latestPostData, informationOfModifyingPost } = postInfoStore;
+
+    console.log('informationOfModifyingPost informationOfModifyingPost informationOfModifyingPost informationOfModifyingPost informationOfModifyingPost');
+    console.log(informationOfModifyingPost);
+
+    const [titleInputValue, setTitleInputValue] = useState(informationOfModifyingPost.title);
+    const [bodyInputValue, setBodyInputValue] = useState(informationOfModifyingPost.content);
+    const [categoryOption, setCategoryOption] = useState(informationOfModifyingPost.category.name);
+    const [nicknameInputValue, setNicknameInputValue] = useState(informationOfModifyingPost.profile.nickname);
+    const [isEditingForm, setIsEditingForim] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+
+    const writingFormCategoryOptions = categoryOptions.slice(1);
 
     const handleModalState = () => {
         console.log('✅ handleModalState');
@@ -136,7 +141,7 @@ export default function PostWritingForm({ handleWritingModal }) {
     return (
         <Form id="writingForm" style={{ overflow: 'clip', maxWidth: '550px' }}>
             <div style={{ padding: '8px 0px', border: 'none', backgroundColor: 'lightblue' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', alignItems: 'center', height: '30px', padding: '0px 8px', fontSize: 'larger', fontWeight:'bold' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', alignItems: 'center', height: '30px', padding: '0px 8px', fontSize: 'larger', fontWeight: 'bold' }}>
                     <div>게시판 글쓰기</div>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <CloseBtn className="close-btn" onClick={handleWritingModal}>
@@ -147,12 +152,12 @@ export default function PostWritingForm({ handleWritingModal }) {
             </div>
             <div>
                 <div style={{ padding: '24px 8px 0px 8px', border: 'none', textAlign: 'center' }}>
-                    <input onChange={listenTitleValue} type="text" minLength="10" maxLength="100" autoFocus required style={{ width: '95%', height: '50px', paddingLeft: '8px' }} placeholder="제목을 입력하세요."></input>
+                    <input onChange={listenTitleValue} type="text" minLength="10" maxLength="100" autoFocus required style={{ width: '95%', height: '50px', paddingLeft: '8px' }} placeholder="제목을 입력하세요." value={titleInputValue}></input>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', alignItems: 'center', height: '50px', padding: '8px', fontSize: 'larger' }}>
-                    <div style={{ border: 'none', textAlign: 'center'}}>
-                        <select id="writingForumOption" onChange={handleOptionChanged} value={categoryOption} style={{padding:'4px'}}>
+                    <div style={{ border: 'none', textAlign: 'center' }}>
+                        <select id="writingForumOption" onChange={handleOptionChanged} value={categoryOption} style={{ padding: '4px' }}>
                             {writingFormCategoryOptions.map((option) => (
                                 <option key={option.value} value={option.value}>
                                     {option.label}
@@ -162,12 +167,12 @@ export default function PostWritingForm({ handleWritingModal }) {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <div style={{ width: '100px', fontSize: 'small', fontWeight: '500', textAlign: 'end' }}>닉네임: &nbsp;</div>
-                        <input onChange={listenNicknameInputValueValue} type="text" minLength="2" maxLength="10" style={{ width: '100px' }} />
+                        <input onChange={listenNicknameInputValueValue} type="text" minLength="2" maxLength="10" style={{ width: '100px' }} value={nicknameInputValue} />
                     </div>
                 </div>
 
                 <div style={{ padding: '0px 8px 0px 8px', textAlign: 'center' }}>
-                    <textarea onChange={listenBodyValue} required style={{ width: '95%', height: '40vh', paddingLeft: '8px', paddingTop: '8px' }} placeholder="여기에 본문을 입력하세요." wrap="hard"></textarea>
+                    <textarea onChange={listenBodyValue} required style={{ width: '95%', height: '40vh', paddingLeft: '8px', paddingTop: '8px' }} placeholder="여기에 본문을 입력하세요." wrap="hard" value={bodyInputValue}></textarea>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '8px', padding: '12px 8px', textAlign: 'center' }}>

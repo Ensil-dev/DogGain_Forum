@@ -7,7 +7,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';
-import { deletePost, postWritingModalChange } from '../redux/constants/constant';
+import { deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
 
 const Content = styled.div`
     display: flex;
@@ -66,7 +66,11 @@ export default function PostDetail() {
     const handleClickEditButton = () => {
         let result = window.confirm('이 게시글을 수정 하시겠습니까?');
         if (result) {
+
             navigate('/', { replace: true });
+            
+            dispatch(saveEditingPost(postDetailInfo))
+
             dispatch(postWritingModalChange());
 
             alert('게시글 수정을 시작합니다!');
