@@ -10,12 +10,12 @@ import { useNavigate } from 'react-router-dom';
 const SubNavigationContainer = styled.div`
     display: grid;
     align-content: center;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 3fr 2fr;
     height: 90%;
 
     @media screen and (min-width: 550px) {
         // 너비가 550px보다 클 때 적용할 CSS
-        grid-template-columns: 3fr 2fr;
+        grid-template-columns: 2fr 1fr;
     }
 
     /* border: 5px solid black; */
@@ -100,7 +100,7 @@ export default function NavigationBar({ handleClickModeButton, handleHamburgerMe
 
                     <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray', cursor: 'pointer' }} onClick={() => handleClickModeButton()} />
 
-                    <HamburgerMenu handleHamburgerMenuModal={handleHamburgerMenuModal} />
+                    {/* <HamburgerMenu handleHamburgerMenuModal={handleHamburgerMenuModal} /> */}
                 </MenuOptionBox>
             </SubNavigationContainer>
         </header>
