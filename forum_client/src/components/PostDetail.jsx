@@ -7,7 +7,7 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';
-import { deletePost } from '../redux/constants/constant';
+import { deletePost, postWritingModalChange } from '../redux/constants/constant';
 
 const Content = styled.div`
     display: flex;
@@ -58,7 +58,7 @@ export default function PostDetail() {
         let result = window.confirm("정말로 이 게시글을 삭제 하시겠습니까?")
         if(result){
             dispatch(deletePost(postId))
-            navigate('/')
+            navigate('/', { replace: true })
             alert("삭제 완료했습니다!")
         } else {
             
@@ -67,6 +67,11 @@ export default function PostDetail() {
     const handleClickEditButton = () => {
         let result = window.confirm("이 게시글을 수정 하시겠습니까?")
         if(result){
+
+
+            navigate('/', { replace: true })
+            dispatch(postWritingModalChange());
+
             alert("게시글 수정을 시작합니다!")
         } else {
             
@@ -78,7 +83,7 @@ export default function PostDetail() {
             <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
 
             <Content>
-                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.5, whiteSpace: 'pre-wrap' }}>{postDetailInfo.content}</p>
+                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>{postDetailInfo.content}</p>
             </Content>
 
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
