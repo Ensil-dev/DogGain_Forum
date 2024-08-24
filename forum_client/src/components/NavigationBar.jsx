@@ -10,8 +10,9 @@ import { useNavigate } from 'react-router-dom';
 const SubNavigationContainer = styled.div`
     display: grid;
     align-content: center;
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: 1fr 1fr;
     height: 90%;
+    /* margin: 0px 12px; */
 
     @media screen and (min-width: 550px) {
         // 너비가 550px보다 클 때 적용할 CSS
@@ -30,9 +31,17 @@ const HomeLogoBox = styled.div`
 
 const MenuOptionBox = styled.div`
     display: flex;
-    justify-content: space-around;
+    
+    @media screen and (min-width: 550px) {
+        // 너비가 550px보다 클 때 적용할 CSS
+        /* justify-content: space-around;   */
+    }
+
     align-items: center;
+    justify-content: center;
     width: 100%;
+    gap: 20px;
+    /* padding-right: 10px; */
     /* padding: 0px 5px; */
     /* margin-left: 30px; */
     /* border: 3px solid gray; */
