@@ -14,6 +14,11 @@ const Form = styled.form`
 
     border-right: 1px solid rgb(222, 226, 230);
     border-left: 1px solid rgb(222, 226, 230);
+
+    @media screen and (min-width: 550px) {
+        border-bottom: 1px solid rgb(222, 226, 230);
+        ;
+    }
 `;
 
 const CloseBtn = styled.div`
@@ -85,7 +90,7 @@ export default function PostWritingForm({ handleWritingModal }) {
             title: titleInputValue,
             category: {
                 id: '5',
-                name: `🟠 ${categoryOption}🗽`,
+                name: `${categoryOption}`,
             },
             content: bodyInputValue,
             comments: 0,
@@ -129,12 +134,12 @@ export default function PostWritingForm({ handleWritingModal }) {
     }, [categoryOption]);
 
     return (
-        <Form id='writingForm' style={{ overflow: 'clip', maxWidth: '550px' }}>
+        <Form id="writingForm" style={{ overflow: 'clip', maxWidth: '550px' }}>
             <div style={{ padding: '8px 0px', border: 'none', backgroundColor: 'lightblue' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', alignItems: 'center', height: '30px', padding: '0px 8px', fontSize: 'larger' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '3fr 1fr', alignItems: 'center', height: '30px', padding: '0px 8px', fontSize: 'larger', fontWeight:'bold' }}>
                     <div>게시판 글쓰기</div>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                        <CloseBtn className='close-btn' onClick={handleWritingModal}>
+                        <CloseBtn className="close-btn" onClick={handleWritingModal}>
                             &times;
                         </CloseBtn>
                     </div>
@@ -142,21 +147,12 @@ export default function PostWritingForm({ handleWritingModal }) {
             </div>
             <div>
                 <div style={{ padding: '24px 8px 0px 8px', border: 'none', textAlign: 'center' }}>
-                    <input
-                        onChange={listenTitleValue}
-                        type='text'
-                        minLength='10'
-                        maxLength='100'
-                        autoFocus
-                        required
-                        style={{ width: '95%', height: '50px', paddingLeft: '8px' }}
-                        placeholder='제목을 입력하세요.'
-                    ></input>
+                    <input onChange={listenTitleValue} type="text" minLength="10" maxLength="100" autoFocus required style={{ width: '95%', height: '50px', paddingLeft: '8px' }} placeholder="제목을 입력하세요."></input>
                 </div>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', alignItems: 'center', height: '50px', padding: '0px 8px', fontSize: 'larger' }}>
-                    <div style={{ border: 'none', textAlign: 'center' }}>
-                        <select id='writingForumOption' onChange={handleOptionChanged} value={categoryOption}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', alignItems: 'center', height: '50px', padding: '8px', fontSize: 'larger' }}>
+                    <div style={{ border: 'none', textAlign: 'center'}}>
+                        <select id="writingForumOption" onChange={handleOptionChanged} value={categoryOption} style={{padding:'4px'}}>
                             {writingFormCategoryOptions.map((option) => (
                                 <option key={option.value} value={option.value}>
                                     {option.label}
@@ -166,12 +162,12 @@ export default function PostWritingForm({ handleWritingModal }) {
                     </div>
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <div style={{ width: '100px', fontSize: 'small', fontWeight: '500', textAlign: 'end' }}>닉네임: &nbsp;</div>
-                        <input onChange={listenNicknameInputValueValue} type='text' minLength='2' maxLength='10' style={{ width: '100px' }} />
+                        <input onChange={listenNicknameInputValueValue} type="text" minLength="2" maxLength="10" style={{ width: '100px' }} />
                     </div>
                 </div>
 
                 <div style={{ padding: '0px 8px 0px 8px', textAlign: 'center' }}>
-                    <textarea onChange={listenBodyValue} required style={{ width: '95%', height: '40vh', paddingLeft: '8px', paddingTop: '8px' }} placeholder='여기에 본문을 입력하세요.' wrap='hard'></textarea>
+                    <textarea onChange={listenBodyValue} required style={{ width: '95%', height: '40vh', paddingLeft: '8px', paddingTop: '8px' }} placeholder="여기에 본문을 입력하세요." wrap="hard"></textarea>
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '8px', padding: '12px 8px', textAlign: 'center' }}>
@@ -180,13 +176,13 @@ export default function PostWritingForm({ handleWritingModal }) {
                     </button>
                     {/* <div onClick={handleModalState}> */}
                     <input
-                        id='submitBtn'
+                        id="submitBtn"
                         // onClick={handleModalState}
                         onClick={submitWritingForm}
                         // disabled
                         // disabled={titleInputValue !== '' && bodyInputValue !== ''}
-                        type='submit'
-                        value='작성완료'
+                        type="submit"
+                        value="작성완료"
                         style={{ padding: '10px', backgroundColor: '#606060', color: '#ffffff', opacity: '0.8', border: 'none', borderRadius: '5px', cursor: 'pointer' }}
                     ></input>
                     {/* </div> */}

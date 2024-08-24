@@ -70,7 +70,7 @@ export const ModalView = styled.div.attrs((props) => ({
 }))`
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     position: fixed;
     width: ${(props) => `${props.$width}px` || '330px'};
     height: 100vh;
