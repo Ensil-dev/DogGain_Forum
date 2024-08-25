@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
-import { addPost, postWritingModalChange } from '../redux/constants/constant';
+import { addPost, deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
 import { categoryOptions, getUniquePostId, isIosSafari } from '../utils/util';
 
 const Form = styled.form`
@@ -42,20 +42,22 @@ export default function PostWritingForm({ handleWritingModal }) {
     const postInfoStore = useSelector((state) => state.postInfo);
     const { latestPostData, informationOfModifyingPost } = postInfoStore;
 
-    console.log('informationOfModifyingPost informationOfModifyingPost informationOfModifyingPost informationOfModifyingPost informationOfModifyingPost');
-    console.log(informationOfModifyingPost);
-
-    const [titleInputValue, setTitleInputValue] = useState(informationOfModifyingPost.title);
-    const [bodyInputValue, setBodyInputValue] = useState(informationOfModifyingPost.content);
-    const [categoryOption, setCategoryOption] = useState(informationOfModifyingPost.category.name);
-    const [nicknameInputValue, setNicknameInputValue] = useState(informationOfModifyingPost.profile.nickname);
-    const [isEditingForm, setIsEditingForim] = useState(false);
-    const [isLoading, setIsLoading] = useState(false);
+    const [titleInputValue, setTitleInputValue] = useState('');
+    const [categoryOption, setCategoryOption] = useState('');
+    const [nicknameInputValue, setNicknameInputValue] = useState('');
+    const [bodyInputValue, setBodyInputValue] = useState('');
+    const [isEditingForm, setIsEditingForm] = useState(false);
 
     const writingFormCategoryOptions = categoryOptions.slice(1);
 
     const handleModalState = () => {
         console.log('✅ handleModalState');
+        dispatch(postWritingModalChange());
+    };
+
+    const handleCancleButtonTouched = () => {
+        setIsEditingForm(false);
+        dispatch(saveEditingPost(null));
         dispatch(postWritingModalChange());
     };
 
@@ -85,7 +87,7 @@ export default function PostWritingForm({ handleWritingModal }) {
             return alert('닉네임은 최소 2글자 이상입니다.');
         }
 
-        const { latestPostData } = postInfoStore;
+        // const { latestPostData } = postInfoStore;
 
         const userInputPostInfo = {
             postId: latestPostData.length,
@@ -102,15 +104,28 @@ export default function PostWritingForm({ handleWritingModal }) {
             created: '24/08/13/18:35',
         };
 
-        const uniquePostId = getUniquePostId(userInputPostInfo, latestPostData);
+        if (isEditingForm === false) {
+            const uniquePostId = getUniquePostId(userInputPostInfo, latestPostData);
 
-        const newPost = {
-            ...userInputPostInfo,
-            postId: uniquePostId,
-        };
+            const newPost = {
+                ...userInputPostInfo,
+                postId: uniquePostId,
+            };
 
-        dispatch(addPost(newPost));
-        handleModalState();
+            dispatch(addPost(newPost));
+            handleModalState();
+        } else {
+            const newPost = {
+                ...userInputPostInfo,
+                postId: informationOfModifyingPost.postId,
+            };
+
+            dispatch(deletePost(informationOfModifyingPost.postId));
+            dispatch(addPost(newPost));
+            dispatch(saveEditingPost(null));
+            setIsEditingForm(false);
+            handleModalState();
+        }
     };
 
     const submitElem = document.querySelector('#submitBtn');
@@ -135,8 +150,19 @@ export default function PostWritingForm({ handleWritingModal }) {
     }, [titleInputValue, bodyInputValue, submitElem]);
 
     useEffect(() => {
-        console.log(categoryOption);
-    }, [categoryOption]);
+        console.log('categoryOption: ', categoryOption);
+        console.log('isEditingForm: ', isEditingForm);
+    }, [categoryOption, isEditingForm]);
+
+    useEffect(() => {
+        if (informationOfModifyingPost) {
+            setTitleInputValue(informationOfModifyingPost.title);
+            setCategoryOption(informationOfModifyingPost.category.name);
+            setNicknameInputValue(informationOfModifyingPost.profile.nickname);
+            setBodyInputValue(informationOfModifyingPost.content);
+            setIsEditingForm(true);
+        }
+    }, []);
 
     return (
         <Form id="writingForm" style={{ overflow: 'clip', maxWidth: '550px' }}>
@@ -176,7 +202,7 @@ export default function PostWritingForm({ handleWritingModal }) {
                 </div>
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '8px', padding: '12px 8px', textAlign: 'center' }}>
-                    <button style={{ color: 'black', backgroundColor: '#EFEFEF', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleModalState}>
+                    <button style={{ color: 'black', backgroundColor: '#EFEFEF', border: 'none', borderRadius: '5px', cursor: 'pointer' }} onClick={handleCancleButtonTouched}>
                         취소
                     </button>
                     {/* <div onClick={handleModalState}> */}
