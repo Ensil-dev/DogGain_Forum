@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 
 export default function useOnClickOutside(ref, handler) {
-  console.log('ref.current')
-  console.log(ref.current)
-  console.log(handler)
+  // console.log('ref.current')
+  // console.log(ref.current)
+  // console.log(handler)
   
   useEffect(() => {
     const listener = (e) => {

@@ -1,4 +1,3 @@
-import { getUniquePostId } from '../../utils/util';
 import { LATEST_POST_DATA_SAVE, POST_ADD, POST_DELETE, POST_UPDATE, SAVE_EDITING_POST } from '../constants/constant';
 
 // 초기 상태값
@@ -60,15 +59,15 @@ const postInfo = (state = initialState, action) => {
         case POST_UPDATE:
             console.log(state.latestPostData);
             console.log(action.payload);
-            const totalUdatedPosts = state.latestPostData.slice();
+            const totalUpdatedPosts = state.latestPostData.slice();
 
             // totalDeletedPosts = totalDeletedPosts.filter(post => post.id !== action.payload)
             // console.log(action.payload);
-            console.log(totalUdatedPosts);
+            console.log(totalUpdatedPosts);
 
             // return state
             return Object.assign({}, state, {
-                latestPostData: totalUdatedPosts,
+                latestPostData: totalUpdatedPosts,
             });
 
         default:

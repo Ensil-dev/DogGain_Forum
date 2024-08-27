@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import UnifiedDivider from './UnifiedDivider';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { scrollLocationSave } from '../redux/constants/constant';
 import { getRootScrollTop } from '../utils/util';
 
@@ -77,15 +77,15 @@ export default function ForumPost({ post }) {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const clickInfoStore = useSelector((state) => state.clickInfo);
+    // const clickInfoStore = useSelector((state) => state.clickInfo);
 
     // 1. post를 클릭했을 때의 post id정보를 전역 데이터(redux store)에 저장 - ForumPost 컴포넌트에서 클릭 이벤트 설정
     // 2. 이전 페이지('/')로 돌아왔을 때 redux store에 저장된 post id 정보가 있다면 해당 post를 focus - 상위 컴포넌트에서 해당되는 id를 가진 ForumPost 컴포넌트를 포커싱
     const handlePostClick = (postId) => {
         dispatch(scrollLocationSave(getRootScrollTop()));
-        console.log('get st: ', getRootScrollTop());
+        // console.log('get st: ', getRootScrollTop());
 
-        console.log(clickInfoStore);
+        // console.log(clickInfoStore);
         navigate(`/post/${postId}`);
     };
 

@@ -32,7 +32,7 @@ export const scrollLocationSave = (touchedPostScrollY) => {
 
 export const SCROLL_ELEMENT_SAVE = 'SCROLL_ELEMENT_SAVE';
 export const scrollElementSave = (scrollEl) => {
-    console.log('scrollElementSave!!!');
+    // console.log('scrollElementSave!!!');
     return {
         type: SCROLL_ELEMENT_SAVE,
         payload: scrollEl,
@@ -41,7 +41,7 @@ export const scrollElementSave = (scrollEl) => {
 
 export const LATEST_POST_DATA_SAVE = 'LATEST_POST_DATA_SAVE';
 export const latestPostDataSave = (posts) => {
-    console.log('LATEST_POST_DATA_SAVE!!!');
+    // console.log('LATEST_POST_DATA_SAVE!!!');
     return {
         type: LATEST_POST_DATA_SAVE,
         payload: posts,

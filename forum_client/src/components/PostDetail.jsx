@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import UnifiedDivider from './UnifiedDivider';
 import { useDispatch, useSelector } from 'react-redux';
-import { DEV_POST_URL } from '../api/api';
+// import { DEV_POST_URL } from '../api/api';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -18,10 +18,43 @@ const Content = styled.div`
     word-break: keep-all;
 `;
 
-export default function PostDetail() {
-    const [postComment, setPostComment] = useState(null);
-    const [isPostCommentLoading, setisPostCommentLoading] = useState(false);
+const UserControlContainer = styled.div`
+    display: grid;
+    grid-template-columns: 9fr 1fr 1fr;
+    align-content: center;
+    width: 100%;
+    padding: 12px 0;
+    gap: 4px;
+`;
 
+const Nickname = styled.div`
+    width: 100%;
+    padding: 0 20px;
+    line-height: 1.5;
+    font-weight: 600;
+`;
+
+const Button = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    gap: 4px;
+    border: 2px solid lightgray;
+    cursor: pointer;
+`;
+
+const Icon = styled.div`
+    width: 24px;
+    height: 24px;
+    color: lightgray;
+`;
+
+const SmallText = styled.div`
+    font-size: small;
+`;
+
+export default function PostDetail() {
     const param = useParams();
     const postId = param.id;
     // console.log('postId: ', postId);
@@ -66,10 +99,9 @@ export default function PostDetail() {
     const handleClickEditButton = () => {
         let result = window.confirm('이 게시글을 수정 하시겠습니까?');
         if (result) {
-
             navigate('/', { replace: true });
-            
-            dispatch(saveEditingPost(postDetailInfo))
+
+            dispatch(saveEditingPost(postDetailInfo));
 
             dispatch(postWritingModalChange());
 
@@ -86,26 +118,21 @@ export default function PostDetail() {
                 <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>{postDetailInfo.content}</p>
             </Content>
 
-            <UnifiedDivider $padding="0px 10px" $border="1px solid gray" $opacity="0.15" />
+            <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
 
-            {/* <div> */}
-            <div style={{ display: 'grid', gridTemplateColumns: '9fr 1fr 1fr', alignContent: 'center', width: '100%', padding: '12px 0px', gap: '4px' }}>
-                <div style={{ width: '100%', padding: '0px 20px 0px 20px', lineHeight: 1.5, fontWeight: '600' }}>{postDetailInfo.profile.nickname}</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '80px', gap: '4px', border: '2px solid lightgray', cursor: 'pointer' }} onClick={handleClickEditButton}>
-                    <FaEdit style={{ width: '24px', height: '24px', color: 'lightgray' }} />
-                    <div style={{ fontSize: 'small' }}>수정</div>
-                </div>
+            <UserControlContainer>
+                <Nickname>{postDetailInfo.profile.nickname}</Nickname>
+                <Button onClick={handleClickEditButton}>
+                    <Icon as={FaEdit} />
+                    <SmallText>수정</SmallText>
+                </Button>
+                <Button onClick={handleClickDeleteButton} style={{ marginRight: '20px' }}>
+                    <Icon as={MdDeleteForever} />
+                    <SmallText>삭제</SmallText>
+                </Button>
+            </UserControlContainer>
 
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '80px', gap: '4px', marginRight: '20px', border: '2px solid lightgray', cursor: 'pointer' }} onClick={handleClickDeleteButton}>
-                    <MdDeleteForever style={{ width: '24px', height: '24px', color: 'lightgray' }} />
-                    <div style={{ fontSize: 'small' }}>삭제</div>
-                </div>
-            </div>
-            {/* </div> */}
-
-            <UnifiedDivider $padding="0px 0px" $border="4px solid gray" $opacity="0.15" />
-
-            {/* {posts.map((post) => <ForumPost key={post.postId} post={post} />)} */}
+            <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />
         </main>
     );
 }

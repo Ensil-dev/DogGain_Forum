@@ -14,13 +14,6 @@ export default function PostContentsBox() {
     const clickInfoStore = useSelector((state) => state.clickInfo);
     const postInfoStore = useSelector((state) => state.postInfo);
     const optionStore = useSelector((store) => store.filteringOption);
-    // console.log(postInfoStore.latestPostData?.length);
-    // const scrollLocation = clickInfoStore.touchedPostScrollY;
-    // const scrollEl = clickInfoStore.scrollElement;
-
-    // if (scrollEl && isPostLoading === true) {
-    //     console.log(clickInfoStore.scrollElement);
-    // }
 
     const dispatch = useDispatch();
 
@@ -34,8 +27,6 @@ export default function PostContentsBox() {
     }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading]);
 
     useEffect(() => {
-        console.log('컨텐츠박스 첫 로드 시작');
-
         const postsData = postInfoStore.latestPostData;
 
         if (postsData === null) {
@@ -54,9 +45,9 @@ export default function PostContentsBox() {
         }
     }, [dispatch, postInfoStore.latestPostData]);
 
-    useEffect(() => {
-        console.log(`isPostLoading: ${isPostLoading}`);
-    }, [isPostLoading]);
+    // useEffect(() => {
+    //     console.log(`isPostLoading: ${isPostLoading}`);
+    // }, [isPostLoading]);
 
     return (
         <main>

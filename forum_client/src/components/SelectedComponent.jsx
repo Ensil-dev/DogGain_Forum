@@ -18,11 +18,11 @@ const StyledSelect = styled.select`
 export default function SelectedComponent({ options, ...props }) {
     const optionDispatch = useDispatch();
     const optionStore = useSelector((store) => store.filteringOption);
-    console.log(optionStore);
+    // console.log(optionStore);
 
     const handleOptionChanged = (event) => {
-        console.log('handleOptionChanged');
-        console.log(event.target.value);
+        // console.log('handleOptionChanged');
+        // console.log(event.target.value);
 
         optionDispatch(filteringOptionSave(event.target.value));
     };

@@ -64,12 +64,7 @@ export const getBrowserValue = function (userAgent) {
 export const setContainerContentBox = (container, handleClickModeButton, handleHamburgerMenuModal) => {
     switch (container) {
         case 'Navigation':
-            return (
-                <NavigationBar
-                    handleClickModeButton={handleClickModeButton}
-                    handleHamburgerMenuModal={handleHamburgerMenuModal}
-                />
-            );
+            return <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
         case 'PostControllerBar':
             return <PostControllerBar />;
         case 'PostContentsBox':
@@ -99,7 +94,7 @@ export const categoryOptions = [
 ];
 
 export const filteringPostOption = (postContent, option) => {
-    console.log(postContent);
+    // console.log(postContent);
     if (option !== '최신') {
         return postContent.filter((post) => post.category.name.includes(option));
     }
@@ -115,9 +110,9 @@ export const filteringPostOption = (postContent, option) => {
  */
 export function getUniquePostId(post, existingPosts) {
     // Parse the postId as a number
-    console.log(post)
+    console.log(post);
     let currentPostId = post.postId;
-    console.log('currentPostId: ', currentPostId)
+    console.log('currentPostId: ', currentPostId);
     let maxPostId = currentPostId;
 
     // Track if the current postId is a duplicate
