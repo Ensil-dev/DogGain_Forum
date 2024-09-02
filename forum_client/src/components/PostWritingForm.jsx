@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { addPost, deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
 import { categoryOptions, formatKoreanTime, getUniquePostId, isIosSafari } from '../utils/util';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import { db } from '../../src/firebase';
 
 const Form = styled.form`
@@ -221,6 +221,19 @@ export default function PostWritingForm({ handleWritingModal }) {
             }
         }
 
+        async function UpdatePost(post) {
+            console.log('UpdatePost');
+
+            await updateDoc(doc(db, 'posts', 'MtAOktLmn1yBUFXPoy2C'), post);
+
+            // try {
+            //     const docRef = await updateDoc(collection(db, 'posts', 'MtAOktLmn1yBUFXPoy2C'), post);
+            //     console.log('Document written with ID: ', docRef.id);
+            // } catch (e) {
+            //     console.error('Error adding document: ', e);
+            // }
+        }
+
         // 게시글 CREATE 생성
         if (isEditingForm === false) {
             const uniquePostId = getUniquePostId(userInputPostInfo, latestPostData);
@@ -238,6 +251,8 @@ export default function PostWritingForm({ handleWritingModal }) {
         } else {
             // 게시글 UPDATE 업데이트
 
+            console.log('게시글 UPDATE 업데이트');
+
             const newPost = {
                 ...userInputPostInfo,
                 postId: informationOfModifyingPost.postId,
@@ -246,7 +261,7 @@ export default function PostWritingForm({ handleWritingModal }) {
             dispatch(deletePost(informationOfModifyingPost.postId));
             dispatch(addPost(newPost));
 
-            CreatePost(newPost);
+            UpdatePost(newPost);
 
             dispatch(saveEditingPost(null));
             setIsEditingForm(false);

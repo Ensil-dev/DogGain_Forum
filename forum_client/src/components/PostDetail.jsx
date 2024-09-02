@@ -8,6 +8,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';
 import { deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
+import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const Content = styled.div`
     display: flex;
@@ -91,6 +93,18 @@ export default function PostDetail() {
         let result = window.confirm('정말로 이 게시글을 삭제 하시겠습니까?');
         if (result) {
             dispatch(deletePost(postId));
+
+            // 게시글 DELETE 삭제
+            deleteDoc(doc(db, 'posts', 'wHBloCx0SnFX0NRCtbVg'));
+
+            // const docRef = doc(db, "posts", 'nzwUMJzjQhLf6kdlZpOQ');
+            // updateDoc(docRef, {
+            //   delete: deleteField()
+            // });
+            // if (docRef) {
+            //   console.log('delete 성공');
+            // }
+
             navigate('/', { replace: true });
             alert('삭제 완료했습니다!');
         } else {
