@@ -55,19 +55,19 @@
 - 패키지 매니저: `yarn`
 
 
-### 2차 Sprint (8.20 ~ 9.3)
+### 2차 Sprint (8.21 ~ 9.10)
 
 - 프로그래밍 언어: `Typescript`
 
-- 상태관리 라이브러리: `Zustand`
+- 상태관리 라이브러리: `Redux toolkit`
 
-- CSS: `tailwindcss`
+- CSS: `styled-components`
 
 - 빌드 도구: `Vite`
 
 - 패키지 매니저: `yarn`
 
 
-### 3차 Sprint (9.4 ~ 9.10)
+### 3차 Sprint (9.11 ~ 9.18)
 
 - 리팩토링
