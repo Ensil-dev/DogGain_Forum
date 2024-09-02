@@ -136,3 +136,15 @@ export function getUniquePostId(post, existingPosts) {
     // Return only the unique postId
     return currentPostId;
 }
+
+export function formatKoreanTime() {
+    const now = new Date();
+
+    const year = now.getFullYear().toString().slice(-2); // Last two digits of the year
+    const month = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed, pad with leading zero
+    const day = String(now.getDate()).padStart(2, '0'); // Pad with leading zero
+    const hours = String(now.getHours()).padStart(2, '0'); // Pad with leading zero
+    const minutes = String(now.getMinutes()).padStart(2, '0'); // Pad with leading zero
+
+    return `${year}/${month}/${day}/${hours}:${minutes}`;
+}

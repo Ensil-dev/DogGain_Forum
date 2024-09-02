@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { addPost, deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
-import { categoryOptions, getUniquePostId, isIosSafari } from '../utils/util';
+import { categoryOptions, formatKoreanTime, getUniquePostId, isIosSafari } from '../utils/util';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../../src/firebase';
 
 const Form = styled.form`
     /* display: grid;
@@ -148,7 +150,7 @@ export default function PostWritingForm({ handleWritingModal }) {
     const { latestPostData, informationOfModifyingPost } = postInfoStore;
 
     const [titleInputValue, setTitleInputValue] = useState('');
-    const [categoryOption, setCategoryOption] = useState('');
+    const [categoryOption, setCategoryOption] = useState(categoryOptions[1].value);
     const [nicknameInputValue, setNicknameInputValue] = useState('');
     const [bodyInputValue, setBodyInputValue] = useState('');
     const [isEditingForm, setIsEditingForm] = useState(false);
@@ -202,14 +204,24 @@ export default function PostWritingForm({ handleWritingModal }) {
             },
             title: titleInputValue,
             category: {
-                id: '5',
                 name: `${categoryOption}`,
             },
             content: bodyInputValue,
             comments: 0,
-            created: '24/08/13/18:35',
+            created: formatKoreanTime(),
         };
 
+        async function CreatePost(post) {
+            console.log('CreatePost');
+            try {
+                const docRef = await addDoc(collection(db, 'posts'), post);
+                console.log('Document written with ID: ', docRef.id);
+            } catch (e) {
+                console.error('Error adding document: ', e);
+            }
+        }
+
+        // 게시글 CREATE 생성
         if (isEditingForm === false) {
             const uniquePostId = getUniquePostId(userInputPostInfo, latestPostData);
 
@@ -219,8 +231,13 @@ export default function PostWritingForm({ handleWritingModal }) {
             };
 
             dispatch(addPost(newPost));
+
+            CreatePost(newPost);
+
             handleModalState();
         } else {
+            // 게시글 UPDATE 업데이트
+
             const newPost = {
                 ...userInputPostInfo,
                 postId: informationOfModifyingPost.postId,
@@ -228,6 +245,9 @@ export default function PostWritingForm({ handleWritingModal }) {
 
             dispatch(deletePost(informationOfModifyingPost.postId));
             dispatch(addPost(newPost));
+
+            CreatePost(newPost);
+
             dispatch(saveEditingPost(null));
             setIsEditingForm(false);
             handleModalState();
