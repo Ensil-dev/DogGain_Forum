@@ -5,7 +5,7 @@ import { setContainerContentBox } from '../utils/util';
 import { useEffect, useState } from 'react';
 
 import { db } from '../../src/firebase';
-import { doc, getDoc } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
 
 const MainContainer = styled.div`
     display: flex;
@@ -45,9 +45,19 @@ export default function Home() {
             setTest(docSnap.data());
         }
     }
+
+    // GET: 전체 posts 데이터
+    async function fetchData() {  
+        const data = await getDocs(collection(db, "posts")); // create라는 collection 안에 모든 document를 읽어올 때 사용한다.
+        const newData = data.docs.map(doc => ({ ...doc.data()}));
+        console.log(newData);
+      }
+
+
     // 최초 마운트 시에 getTest import
     useEffect(() => {
         getTest();
+        fetchData()
     }, []);
 
     // const clickInfoStore = useSelector((state) => state.clickInfo);
