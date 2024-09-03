@@ -210,6 +210,7 @@ export default function PostWritingForm({ handleWritingModal }) {
             try {
                 const docRef = await addDoc(collection(db, 'posts'), post);
                 console.log('Document written with ID: ', docRef.id);
+                dispatch(addPost(Object.assign({}, post, { id: docRef.id })));
             } catch (e) {
                 console.error('Error adding document: ', e);
             }
@@ -217,6 +218,8 @@ export default function PostWritingForm({ handleWritingModal }) {
 
         async function UpdatePost(post) {
             // console.log('UpdatePost');
+
+            console.log(informationOfModifyingPost);
 
             if (informationOfModifyingPost.id) {
                 await updateDoc(doc(db, 'posts', String(informationOfModifyingPost.id)), post);
@@ -234,8 +237,6 @@ export default function PostWritingForm({ handleWritingModal }) {
                 ...userInputPostInfo,
                 postId: uniquePostId,
             };
-
-            dispatch(addPost(newPost));
 
             CreatePost(newPost);
 
