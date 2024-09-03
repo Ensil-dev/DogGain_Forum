@@ -9,6 +9,8 @@ import styled from 'styled-components';
 import { deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
+import usePreventRefresh from '../hooks/usePreventRefresh';
+import useRedirectOnRefresh from '../hooks/usePreventRefresh';
 
 const Content = styled.div`
     display: flex;
@@ -55,6 +57,8 @@ const SmallText = styled.div`
 `;
 
 export default function PostDetail() {
+    useRedirectOnRefresh();
+
     const param = useParams();
     const postId = param.id;
 
@@ -63,7 +67,7 @@ export default function PostDetail() {
     const posts = postInfoStore.latestPostData;
 
     const filteredPost = (fetchingPostId) => {
-        return posts.filter((post) => {
+        return posts?.filter((post) => {
             return Number(post.postId) === Number(fetchingPostId);
         })[0];
     };
@@ -88,6 +92,7 @@ export default function PostDetail() {
         } else {
         }
     };
+
     const handleClickEditButton = () => {
         let result = window.confirm('이 게시글을 수정 하시겠습니까?');
         if (result) {
@@ -100,6 +105,8 @@ export default function PostDetail() {
             alert('게시글 수정을 시작합니다!');
         }
     };
+
+    usePreventRefresh();
 
     return (
         <main>

@@ -14,15 +14,11 @@ const clickInfo = (state = initialState, action) => {
     // console.log(`🖼️ clickInfo initialState: ${state.touchedPostScrollY}`); // 여기에 console.log(state.isDarkMode) 추가
     switch (action.type) {
         case SCROLL_LOCATION_SAVE:
-            console.log('SCROLL_LOCATION_SAVE!!');
             return Object.assign({}, state, {
                 touchedPostScrollY: action.payload,
             });
 
         case SCROLL_ELEMENT_SAVE:
-            // console.log('SCROLL_ELEMENT_SAVE!!');
-            // console.log(action.payload);
-
             if (state.scrollElement === null) {
                 return Object.assign({}, state, {
                     scrollElement: action.payload,

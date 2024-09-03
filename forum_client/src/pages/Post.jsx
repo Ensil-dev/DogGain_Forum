@@ -18,33 +18,20 @@ const ContainerBox = styled.div`
     height: 40px;
 `;
 
-const mainContainerBox = ['Navigation' , 'PostDetail'];
+const mainContainerBox = ['Navigation', 'PostDetail'];
 
 export default function Post() {
-    // useEffect(() => {
-    //     console.log(window.scrollY);
-    //     if (window.scrollY > 0) {
-    //         window.scrollTo(0, 0);
-    //     }
-    // }, []);
-
     const clickInfoStore = useSelector((state) => state.clickInfo);
-    // const Store = useSelector((state) => state);
-    // console.log(Store)
-
-    console.log('Post.jsx is rendering');
 
     if (clickInfoStore.scrollElement) {
-        console.log(clickInfoStore.touchedPostScrollY);
+        // console.log(clickInfoStore.touchedPostScrollY);
     }
 
     const dispatch = useDispatch();
 
-    // const ReduxStore = useSelector(state => state.module)
     const handleClickModeButton = () => {
         // dispatch의 인자로 Action creator 사용
         dispatch(darkmodeChange());
-        // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
     };
 
     const handleHamburgerMenuModal = () => {

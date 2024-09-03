@@ -159,7 +159,6 @@ export default function PostWritingForm({ handleWritingModal }) {
     const writingFormCategoryOptions = categoryOptions.slice(1);
 
     const handleModalState = () => {
-        console.log('✅ handleModalState');
         dispatch(postWritingModalChange());
     };
 
@@ -170,17 +169,14 @@ export default function PostWritingForm({ handleWritingModal }) {
     };
 
     const listenTitleValue = (event) => {
-        console.log('TitleValue: ', event.target.value);
         setTitleInputValue(event.target.value);
     };
 
     const listenBodyValue = (event) => {
-        console.log('BodyValue: ', event.target.value);
         setBodyInputValue(event.target.value);
     };
 
     const listenNicknameInputValueValue = (event) => {
-        console.log('listenNicknameInputValueValue: ', event.target.value);
         setNicknameInputValue(event.target.value);
     };
 
@@ -194,8 +190,6 @@ export default function PostWritingForm({ handleWritingModal }) {
         if (nicknameInputValue.length < 2) {
             return alert('닉네임은 최소 2글자 이상입니다.');
         }
-
-        // const { latestPostData } = postInfoStore;
 
         const userInputPostInfo = {
             postId: latestPostData.length,
@@ -212,7 +206,7 @@ export default function PostWritingForm({ handleWritingModal }) {
         };
 
         async function CreatePost(post) {
-            console.log('CreatePost');
+            // console.log('CreatePost');
             try {
                 const docRef = await addDoc(collection(db, 'posts'), post);
                 console.log('Document written with ID: ', docRef.id);
@@ -222,7 +216,7 @@ export default function PostWritingForm({ handleWritingModal }) {
         }
 
         async function UpdatePost(post) {
-            console.log('UpdatePost');
+            // console.log('UpdatePost');
 
             if (informationOfModifyingPost.id) {
                 await updateDoc(doc(db, 'posts', String(informationOfModifyingPost.id)), post);
@@ -249,7 +243,7 @@ export default function PostWritingForm({ handleWritingModal }) {
         } else {
             // 게시글 UPDATE 업데이트
 
-            console.log('게시글 UPDATE 업데이트');
+            // console.log('게시글 UPDATE 업데이트');
 
             const newPost = {
                 ...userInputPostInfo,
