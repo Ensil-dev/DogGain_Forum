@@ -44,27 +44,26 @@
 
 ### 1차 Sprint (7.30 ~ 8.20)
 
-- 프로그래밍 언어: `Javascript`
+- [x] 프로그래밍 언어: `Javascript`
 
-- 상태관리 라이브러리: `Redux`
+- [x] 상태관리 라이브러리: `Redux`
 
-- CSS: `styled-components`
+- [x] CSS: `styled-components`
 
-- 빌드 도구: `CRA`
+- [x] 빌드 도구: `CRA`
 
-- 패키지 매니저: `yarn`
+- [x] 패키지 매니저: `yarn`
 
 
 ### 2차 Sprint (8.21 ~ 9.10)
+
+- [x] 서버 / 데이터베이스 연동: `Cloud Firestore`
 
 - 프로그래밍 언어: `Javascript` -> `Typescript`
 
 - 상태관리 라이브러리: `Redux` -> `Redux toolkit`
 
 - 빌드 도구: `CRA` -> `Vite`
-
-- 서버 / 데이터베이스 연동: `Cloud Firestore`
-
 
 ### 3차 Sprint (9.11 ~ 9.18)
 
