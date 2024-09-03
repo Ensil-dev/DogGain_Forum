@@ -13,7 +13,6 @@ const Title = styled.div`
     padding: 12px 10px 0px 10px;
 
     color: black;
-    /* font-size: large; */
     word-break: keep-all;
 `;
 

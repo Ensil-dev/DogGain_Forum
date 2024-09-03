@@ -42,13 +42,10 @@ export const ModalBackdrop = styled.div`
     height: 100vh;
     position: fixed;
     bottom: 0;
+    
     /* 자식 컴포넌트인 모달창을 가운데 오게 하기 위한 flex */
     display: flex;
     justify-content: flex-start;
-
-    /* @media screen and (min-width: 550px) {
-        justify-content: center;
-    } */
 
     align-items: center;
 `;
@@ -72,7 +69,6 @@ export const ModalView = styled.div.attrs((props) => ({
     position: fixed;
     width: ${(props) => `${props.$width}px` || '330px'};
     height: 100vh;
-    /* border-radius: 1rem; */
     background-color: white;
     > .close-btn {
         position: absolute;

@@ -1,18 +1,15 @@
-import React, { useEffect, useLayoutEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import PostHeader from './PostHeader';
 import UnifiedDivider from './UnifiedDivider';
 import ForumPost from './ForumPost';
 import { filteringPostOption, postsSortedByLatest } from '../utils/util';
 import { useDispatch, useSelector } from 'react-redux';
-import { DEV_POST_URL, getPosts, PRODUCTION_POST_URL } from '../api/api';
 import { latestPostDataSave } from '../redux/constants/constant';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import PostLoadingIndicator from './PostLoadingIndicator';
 
 export default function PostContentsBox() {
-    const [postContent, setPostContent] = useState([]);
-    const [isPostLoading, setIsPostLoading] = useState(false);
-
     const clickInfoStore = useSelector((state) => state.clickInfo);
     const postInfoStore = useSelector((state) => state.postInfo);
     const optionStore = useSelector((store) => store.filteringOption);
@@ -20,66 +17,34 @@ export default function PostContentsBox() {
     const dispatch = useDispatch();
 
     useLayoutEffect(() => {
-        if (clickInfoStore.touchedPostScrollY !== 0 && isPostLoading === true) {
+        if (clickInfoStore.touchedPostScrollY !== 0 && postInfoStore.latestPostData) {
             const rootEl = document.getElementById('topLayout');
             rootEl.scrollTo(0, clickInfoStore.touchedPostScrollY);
 
-            console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
+            // console.log(`scrollTo: ${clickInfoStore.touchedPostScrollY}`);
         }
-    }, [clickInfoStore.touchedPostScrollY, dispatch, isPostLoading]);
+    }, [clickInfoStore.touchedPostScrollY, dispatch, postInfoStore.latestPostData]);
 
     useEffect(() => {
         const postsData = postInfoStore.latestPostData;
-
-        console.log(postsData);
-
         if (postsData === null) {
-            // const postPromise = getPosts();
-            // console.log(postPromise)
-
             async function getPosts() {
-                const data = await getDocs(collection(db, 'posts')); // create라는 collection 안에 모든 document를 읽어올 때 사용한다.
-                // const newData = data.docs.map((doc) => ({ ...doc.data() }));
+                const data = await getDocs(collection(db, 'posts')); // 'posts' collection 안에 모든 document를 읽어올 때 사용한다.
                 const newData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })); // 문서 데이터에 id 필드를 추가
+                const processedPost = postsSortedByLatest(newData);
 
-                console.log(data.docs);
-                console.log(newData);
-                console.log(typeof newData);
-
-                const querySnapshot = await getDocs(collection(db, 'posts')); // Get all documents in the collection
-                querySnapshot.forEach((doc) => {
-                    console.log(`Document ID: ${doc.id}`); // Output the document ID
-                });
-
-                dispatch(latestPostDataSave(newData));
+                dispatch(latestPostDataSave(processedPost));
             }
 
             getPosts();
-
-            // fetch(DEV_POST_URL || PRODUCTION_POST_URL)
-            //     .then((res) => res.json())
-            //     .then((data) => {
-            //         const sortedPost = postsSortedByLatest(data).slice();
-
-            //         setPostContent((initialPost) => sortedPost);
-            //         dispatch(latestPostDataSave(sortedPost));
-            //         setIsPostLoading((state) => true);
-            //     });
-        } else {
-            setPostContent((initialPost) => postsData);
-            setIsPostLoading((state) => true);
         }
     }, [dispatch, postInfoStore.latestPostData]);
-
-    // useEffect(() => {
-    //     console.log(`isPostLoading: ${isPostLoading}`);
-    // }, [isPostLoading]);
 
     return (
         <main>
             <PostHeader />
             <UnifiedDivider $padding='0px 10px' $border='2px solid gray' $opacity='0.15' />
-            {isPostLoading && filteringPostOption(postContent, optionStore.filteringOption).map((post) => <ForumPost key={post.postId} post={post} />)}
+            {postInfoStore.latestPostData === null ? <PostLoadingIndicator /> : filteringPostOption(postInfoStore.latestPostData, optionStore.filteringOption).map((post) => <ForumPost key={post.postId} post={post} />)}
         </main>
     );
 }

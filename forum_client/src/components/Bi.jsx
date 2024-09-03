@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import UnifiedButton from './UnifiedButton';
-import { replace, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const BiContainer = styled.div`
     display: flex;
@@ -10,8 +10,6 @@ const BiContainer = styled.div`
     align-items: flex-start;
 
     height: 60px;
-
-    /* border: 3px solid gray; */
 `;
 
 export default function Bi() {
@@ -23,7 +21,7 @@ export default function Bi() {
 
     return (
         <BiContainer>
-            <UnifiedButton text="DogGain" $onClick={handleBiButtonTouched}></UnifiedButton>
+            <UnifiedButton text='DogGain' $onClick={handleBiButtonTouched}></UnifiedButton>
         </BiContainer>
     );
 }

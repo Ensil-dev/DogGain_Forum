@@ -224,14 +224,12 @@ export default function PostWritingForm({ handleWritingModal }) {
         async function UpdatePost(post) {
             console.log('UpdatePost');
 
-            await updateDoc(doc(db, 'posts', informationOfModifyingPost.id), post);
-
-            // try {
-            //     const docRef = await updateDoc(collection(db, 'posts', 'MtAOktLmn1yBUFXPoy2C'), post);
-            //     console.log('Document written with ID: ', docRef.id);
-            // } catch (e) {
-            //     console.error('Error adding document: ', e);
-            // }
+            if (informationOfModifyingPost.id) {
+                await updateDoc(doc(db, 'posts', String(informationOfModifyingPost.id)), post);
+            } else {
+                console.log(informationOfModifyingPost);
+                console.log(informationOfModifyingPost.id);
+            }
         }
 
         // 게시글 CREATE 생성

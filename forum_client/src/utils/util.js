@@ -5,7 +5,6 @@ import PostDetail from '../components/PostDetail';
 
 export const postsSortedByLatest = (posts) => {
     
-    if (posts.result) {
         // console.log(posts.result)
         
         return posts.sort((a, b) => {
@@ -13,7 +12,6 @@ export const postsSortedByLatest = (posts) => {
             const dateB = new Date(b.created.replace(/(\d{2})\/(\d{2})\/(\d{2})\/(\d{2}):(\d{2})/, '20$1-$2-$3T$4:$5:00'));
             return dateB - dateA;
         });
-    }
 };
 
 export const getNavigationBoxFontSize = (container) => {

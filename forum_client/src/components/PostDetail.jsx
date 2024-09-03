@@ -1,14 +1,13 @@
 import React from 'react';
 import UnifiedDivider from './UnifiedDivider';
 import { useDispatch, useSelector } from 'react-redux';
-// import { DEV_POST_URL } from '../api/api';
 import { FaEdit } from 'react-icons/fa';
 import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';
 import { deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
-import { deleteDoc, deleteField, doc, updateDoc } from 'firebase/firestore';
+import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../firebase';
 
 const Content = styled.div`
@@ -16,7 +15,6 @@ const Content = styled.div`
     width: 100%;
     padding: 12px 0px;
 
-    /* font-size: large; */
     word-break: keep-all;
 `;
 
@@ -59,18 +57,13 @@ const SmallText = styled.div`
 export default function PostDetail() {
     const param = useParams();
     const postId = param.id;
-    // console.log('postId: ', postId);
 
     const postInfoStore = useSelector((state) => state.postInfo);
-
-    // console.log(postInfoStore);
 
     const posts = postInfoStore.latestPostData;
 
     const filteredPost = (fetchingPostId) => {
         return posts.filter((post) => {
-            // console.log('post.postId: ', post.postId)
-            // console.log('fetchingPostId: ', fetchingPostId)
             return Number(post.postId) === Number(fetchingPostId);
         })[0];
     };
@@ -78,13 +71,6 @@ export default function PostDetail() {
     const postDetailInfo = filteredPost(postId);
 
     console.log(postDetailInfo);
-
-    // @media screen and (min-width: 550px) {
-    //     // 너비가 550px보다 클 때 적용할 CSS
-    //     grid-template-columns: 3fr 2fr;
-
-    //     /* background-color: black; */
-    // }
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -96,14 +82,6 @@ export default function PostDetail() {
 
             // 게시글 DELETE 삭제
             deleteDoc(doc(db, 'posts', postDetailInfo.id));
-
-            // const docRef = doc(db, "posts", 'nzwUMJzjQhLf6kdlZpOQ');
-            // updateDoc(docRef, {
-            //   delete: deleteField()
-            // });
-            // if (docRef) {
-            //   console.log('delete 성공');
-            // }
 
             navigate('/', { replace: true });
             alert('삭제 완료했습니다!');
@@ -120,7 +98,6 @@ export default function PostDetail() {
             dispatch(postWritingModalChange());
 
             alert('게시글 수정을 시작합니다!');
-        } else {
         }
     };
 

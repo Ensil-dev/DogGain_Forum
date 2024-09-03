@@ -9,10 +9,6 @@ const Table = styled.table`
     width: 100%;
     border-collapse: collapse;
     cursor: pointer;
-
-    /* &:hover {
-        background-color: #e0e0e0;
-    } */
 `;
 
 const Tr = styled.tr`
@@ -25,10 +21,6 @@ const Tr = styled.tr`
     }
 
     padding: 12px 10px;
-
-    /* &:hover {
-        background-color: #e0e0e0;
-    } */
 `;
 
 const Td = styled.td`
@@ -73,27 +65,19 @@ const Date = styled.div`
 `;
 
 export default function ForumPost({ post }) {
-    // const location = useLocation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
-    // const clickInfoStore = useSelector((state) => state.clickInfo);
 
     // 1. post를 클릭했을 때의 post id정보를 전역 데이터(redux store)에 저장 - ForumPost 컴포넌트에서 클릭 이벤트 설정
     // 2. 이전 페이지('/')로 돌아왔을 때 redux store에 저장된 post id 정보가 있다면 해당 post를 focus - 상위 컴포넌트에서 해당되는 id를 가진 ForumPost 컴포넌트를 포커싱
     const handlePostClick = (postId) => {
         dispatch(scrollLocationSave(getRootScrollTop()));
-        // console.log('get st: ', getRootScrollTop());
-
-        // console.log(clickInfoStore);
         navigate(`/post/${postId}`);
     };
 
     return (
         <>
-            {/* <Table> */}
             <Table id={post.postId} onClick={() => handlePostClick(post.postId)}>
-                {/* <Link to='/post' style={{}}> */}
                 <tbody>
                     <Tr>
                         <Td>
@@ -111,7 +95,6 @@ export default function ForumPost({ post }) {
                         </Td>
                     </Tr>
                 </tbody>
-                {/* </Link> */}
             </Table>
             <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
         </>

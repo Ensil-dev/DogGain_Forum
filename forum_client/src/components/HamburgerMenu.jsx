@@ -27,6 +27,7 @@ export const ModalBackdrop = styled.div`
     height: 100vh;
     position: fixed;
     bottom: 0;
+
     /* 자식 컴포넌트인 모달창을 가운데 오게 하기 위한 flex */
     display: flex;
     justify-content: center;

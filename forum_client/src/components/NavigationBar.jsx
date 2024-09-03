@@ -12,39 +12,26 @@ const SubNavigationContainer = styled.div`
     align-content: center;
     grid-template-columns: 1fr 1fr;
     height: 90%;
-    /* margin: 0px 12px; */
 
     @media screen and (min-width: 550px) {
         // 너비가 550px보다 클 때 적용할 CSS
         grid-template-columns: 2fr 1fr;
     }
-
-    /* border: 5px solid black; */
 `;
 
 const HomeLogoBox = styled.div`
     width: 100%;
     font-size: ${(props) => props.fontSize};
-
-    /* border: 3px solid gray; */
 `;
 
 const MenuOptionBox = styled.div`
     display: flex;
-    
-    @media screen and (min-width: 550px) {
-        // 너비가 550px보다 클 때 적용할 CSS
-        /* justify-content: space-around;   */
-    }
 
     align-items: center;
     justify-content: center;
     width: 100%;
     gap: 20px;
-    /* padding-right: 10px; */
-    /* padding: 0px 5px; */
-    /* margin-left: 30px; */
-    /* border: 3px solid gray; */
+
     font-size: ${(props) => props.fontSize};
 `;
 

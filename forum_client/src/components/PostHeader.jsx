@@ -9,7 +9,7 @@ const Table = styled.table`
 
 const Tr = styled.tr`
     display: grid;
-    grid-template-columns: 6fr 4fr 2fr 3fr;
+    grid-template-columns: 7fr 3fr 2fr 3fr;
 
     @media screen and (min-width: 550px) {
         // 너비가 550px보다 클 때 적용할 CSS
