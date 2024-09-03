@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/DogGain_Forum/static/css/main.ba8b4743.css",
-    "main.js": "/DogGain_Forum/static/js/main.b55fc66f.js",
+    "main.js": "/DogGain_Forum/static/js/main.623bf93e.js",
     "index.html": "/DogGain_Forum/index.html",
     "main.ba8b4743.css.map": "/DogGain_Forum/static/css/main.ba8b4743.css.map",
-    "main.b55fc66f.js.map": "/DogGain_Forum/static/js/main.b55fc66f.js.map"
+    "main.623bf93e.js.map": "/DogGain_Forum/static/js/main.623bf93e.js.map"
   },
   "entrypoints": [
     "static/css/main.ba8b4743.css",
-    "static/js/main.b55fc66f.js"
+    "static/js/main.623bf93e.js"
   ]
 }
