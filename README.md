@@ -57,15 +57,11 @@
 
 ### 2차 Sprint (8.21 ~ 9.10)
 
-- 프로그래밍 언어: `Typescript`
+- 프로그래밍 언어: `Javascript` -> `Typescript`
 
-- 상태관리 라이브러리: `Redux toolkit`
+- 상태관리 라이브러리: `Redux` -> `Redux toolkit`
 
-- CSS: `styled-components`
-
-- 빌드 도구: `Vite`
-
-- 패키지 매니저: `yarn`
+- 빌드 도구: `CRA` -> `Vite`
 
 - 서버 / 데이터베이스 연동: `Cloud Firestore`
 
