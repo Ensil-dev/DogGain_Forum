@@ -224,7 +224,7 @@ export default function PostWritingForm({ handleWritingModal }) {
         async function UpdatePost(post) {
             console.log('UpdatePost');
 
-            await updateDoc(doc(db, 'posts', 'MtAOktLmn1yBUFXPoy2C'), post);
+            await updateDoc(doc(db, 'posts', informationOfModifyingPost.id), post);
 
             // try {
             //     const docRef = await updateDoc(collection(db, 'posts', 'MtAOktLmn1yBUFXPoy2C'), post);

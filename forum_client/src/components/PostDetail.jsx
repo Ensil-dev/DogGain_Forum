@@ -95,7 +95,7 @@ export default function PostDetail() {
             dispatch(deletePost(postId));
 
             // 게시글 DELETE 삭제
-            deleteDoc(doc(db, 'posts', 'wHBloCx0SnFX0NRCtbVg'));
+            deleteDoc(doc(db, 'posts', postDetailInfo.id));
 
             // const docRef = doc(db, "posts", 'nzwUMJzjQhLf6kdlZpOQ');
             // updateDoc(docRef, {
