@@ -19,7 +19,7 @@ const SplashContainer = styled.div`
 export default function SplashScreen() {
     return (
         <SplashContainer>
-            <img src={PUBLIC_URL + '/logo512.png'} alt="no img" />
+            <img src={'https://ensil-dev.github.io/DogGain_Forum/logo512.png'} alt="🐬" />
         </SplashContainer>
     );
 }

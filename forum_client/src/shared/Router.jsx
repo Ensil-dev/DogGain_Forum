@@ -7,7 +7,7 @@ import SplashScreen from '../pages/SplashScreen';
 
 export default function Router() {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Suspense fallback={<SplashScreen />}>
                 <Layout>
                     <Routes>
