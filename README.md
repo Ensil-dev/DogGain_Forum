@@ -67,7 +67,7 @@
 
 - 패키지 매니저: `yarn`
 
-- 서버 / 데이터베이스 연동: Cloud Firestore
+- 서버 / 데이터베이스 연동: `Cloud Firestore`
 
 
 ### 3차 Sprint (9.11 ~ 9.18)
