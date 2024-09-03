@@ -113,9 +113,9 @@ export const filteringPostOption = (postContent, option) => {
  */
 export function getUniquePostId(post, existingPosts) {
     // Parse the postId as a number
-    console.log(post);
+    // console.log(post);
     let currentPostId = post.postId;
-    console.log('currentPostId: ', currentPostId);
+    // console.log('currentPostId: ', currentPostId);
     let maxPostId = currentPostId;
 
     // Track if the current postId is a duplicate

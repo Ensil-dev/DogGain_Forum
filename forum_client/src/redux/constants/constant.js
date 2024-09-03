@@ -50,7 +50,7 @@ export const latestPostDataSave = (posts) => {
 
 export const FILTERING_OPTION_SAVE = 'FILTERING_OPTION_SAVE';
 export const filteringOptionSave = (option) => {
-    console.log('FILTERING_OPTION_SAVE!!!');
+    // console.log('FILTERING_OPTION_SAVE!!!');
     return {
         type: FILTERING_OPTION_SAVE,
         payload: option,
@@ -76,7 +76,7 @@ export const deletePost = (postId) => {
 
 export const SAVE_EDITING_POST = 'SAVE_EDITING_POST'
 export const saveEditingPost = (postDetailInfo) => {
-    console.log('saveEditingPost!@!')
+    // console.log('saveEditingPost!@!')
     return {
         type: SAVE_EDITING_POST,
         payload: postDetailInfo,

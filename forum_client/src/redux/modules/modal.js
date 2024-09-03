@@ -25,8 +25,7 @@ const modal = (state = initialState, action) => {
 
         case POST_WRITING_MODAL_CHANGE:
             if (action.payload) {
-                console.log('🕊🕊🕊')
-                console.log(action.payload);
+                // console.log(action.payload);
             }
 
             return {

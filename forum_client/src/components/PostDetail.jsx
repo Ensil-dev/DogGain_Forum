@@ -74,7 +74,7 @@ export default function PostDetail() {
 
     const postDetailInfo = filteredPost(postId);
 
-    console.log(postDetailInfo);
+    // console.log(postDetailInfo);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();

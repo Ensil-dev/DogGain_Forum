@@ -36,12 +36,12 @@ const postInfo = (state = initialState, action) => {
             });
 
         case POST_DELETE:
-            console.log(state.latestPostData);
-            console.log(action.payload);
+            // console.log(state.latestPostData);
+            // console.log(action.payload);
             const totalDeletedPosts = state.latestPostData.slice().filter((post) => Number(post.postId) !== Number(action.payload));
             // totalDeletedPosts = totalDeletedPosts.filter(post => post.id !== action.payload)
             // console.log(action.payload);
-            console.log(totalDeletedPosts);
+            // console.log(totalDeletedPosts);
 
             // return state
             return Object.assign({}, state, {
@@ -49,21 +49,21 @@ const postInfo = (state = initialState, action) => {
             });
 
         case SAVE_EDITING_POST:
-            console.log('SAVE_EDITING_POST');
-            console.log(action.payload);
+            // console.log('SAVE_EDITING_POST');
+            // console.log(action.payload);
 
             return Object.assign({}, state, {
                 informationOfModifyingPost: action.payload,
             });
 
         case POST_UPDATE:
-            console.log(state.latestPostData);
-            console.log(action.payload);
+            // console.log(state.latestPostData);
+            // console.log(action.payload);
             const totalUpdatedPosts = state.latestPostData.slice();
 
             // totalDeletedPosts = totalDeletedPosts.filter(post => post.id !== action.payload)
             // console.log(action.payload);
-            console.log(totalUpdatedPosts);
+            // console.log(totalUpdatedPosts);
 
             // return state
             return Object.assign({}, state, {

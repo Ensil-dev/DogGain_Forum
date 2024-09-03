@@ -181,7 +181,7 @@ export default function PostWritingForm({ handleWritingModal }) {
     };
 
     const submitWritingForm = () => {
-        console.log('submitWritingForm');
+        // console.log('submitWritingForm');
 
         if (titleInputValue.length < 10) {
             return alert('제목을 10글자 이상 기입하지 않으면, 글을 추가할 수 없습니다.');
@@ -209,7 +209,6 @@ export default function PostWritingForm({ handleWritingModal }) {
             // console.log('CreatePost');
             try {
                 const docRef = await addDoc(collection(db, 'posts'), post);
-                console.log('Document written with ID: ', docRef.id);
                 dispatch(addPost(Object.assign({}, post, { id: docRef.id })));
             } catch (e) {
                 console.error('Error adding document: ', e);
@@ -219,13 +218,13 @@ export default function PostWritingForm({ handleWritingModal }) {
         async function UpdatePost(post) {
             // console.log('UpdatePost');
 
-            console.log(informationOfModifyingPost);
+            // console.log(informationOfModifyingPost);
 
             if (informationOfModifyingPost.id) {
                 await updateDoc(doc(db, 'posts', String(informationOfModifyingPost.id)), post);
             } else {
-                console.log(informationOfModifyingPost);
-                console.log(informationOfModifyingPost.id);
+                // console.log(informationOfModifyingPost);
+                // console.log(informationOfModifyingPost.id);
             }
         }
 
@@ -270,14 +269,14 @@ export default function PostWritingForm({ handleWritingModal }) {
 
     useEffect(() => {
         if (submitElem) {
-            console.log('submitElem true case');
+            // console.log('submitElem true case');
             if (titleInputValue.length >= 1 && bodyInputValue.length >= 1) {
-                console.log('⭕️ submitElem.removeAttribute disabled');
+                // console.log('⭕️ submitElem.removeAttribute disabled');
                 submitElem.style.opacity = 1;
                 submitElem.removeAttribute('disabled');
             } else {
-                console.log('❌ submitElem.setAttribute disabled');
-                console.log(submitElem);
+                // console.log('❌ submitElem.setAttribute disabled');
+                // console.log(submitElem);
 
                 submitElem.setAttribute('disabled', '');
                 submitElem.style.opacity = 0.7;
@@ -286,8 +285,8 @@ export default function PostWritingForm({ handleWritingModal }) {
     }, [titleInputValue, bodyInputValue, submitElem, isWritingFormLoad]);
 
     useEffect(() => {
-        console.log('categoryOption: ', categoryOption);
-        console.log('isEditingForm: ', isEditingForm);
+        // console.log('categoryOption: ', categoryOption);
+        // console.log('isEditingForm: ', isEditingForm);
     }, [categoryOption, isEditingForm]);
 
     useEffect(() => {
