@@ -59,12 +59,12 @@
 
 - [x] 서버 / 데이터베이스 연동: `Cloud Firestore`
 
-- 프로그래밍 언어: `Javascript` -> `Typescript`
+- [] 프로그래밍 언어: `Javascript` -> `Typescript`
 
-- 상태관리 라이브러리: `Redux` -> `Redux toolkit`
+- [] 상태관리 라이브러리: `Redux` -> `Redux toolkit`
 
-- 빌드 도구: `CRA` -> `Vite`
+- [] 빌드 도구: `CRA` -> `Vite`
 
 ### 3차 Sprint (9.11 ~ 9.18)
 
-- 리팩토링
+- [] 리팩토링
