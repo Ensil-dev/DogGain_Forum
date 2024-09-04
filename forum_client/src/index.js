@@ -10,11 +10,12 @@ import { Provider } from 'react-redux';
 // redux-persit 추가 +240904
 import { persistor, store } from './redux/config/configStore';
 import { PersistGate } from 'redux-persist/integration/react';
+import SplashScreen from './pages/SplashScreen';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
+        <PersistGate loading={<SplashScreen />} persistor={persistor}>
             <App />
         </PersistGate>
     </Provider>
