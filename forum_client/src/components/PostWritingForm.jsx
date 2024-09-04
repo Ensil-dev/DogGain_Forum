@@ -336,7 +336,7 @@ export default function PostWritingForm({ handleWritingModal }) {
                 </SelectContainer>
                 <NicknameContainer>
                     <NicknameLabel>닉네임: &nbsp;</NicknameLabel>
-                    <NicknameInput onChange={listenNicknameInputValueValue} type='text' minLength='2' maxLength='10' disabled value={nicknameInputValue} style={{ textAlign: 'center' }} />
+                    <NicknameInput onChange={listenNicknameInputValueValue} type='text' minLength='2' maxLength='10' value={nicknameInputValue} style={{ textAlign: 'center' }} />
                 </NicknameContainer>
             </OptionsContainer>
 

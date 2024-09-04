@@ -22,14 +22,30 @@ import postInfo from '../modules/postInfo';
 import filteringOption from '../modules/filtering';
 import userInfo from '../modules/userInfo';
 
-const rootReducer = combineReducers({
-    modal: modal,
-    mode: mode,
-    clickInfo: clickInfo,
-    postInfo: postInfo,
-    filteringOption: filteringOption,
-    userInfo: userInfo,
-});
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+// 1번
+import { persistReducer } from 'redux-persist';
+// 2번
+import storage from 'redux-persist/lib/storage'; // localStorage 사용
+import persistStore from 'redux-persist/es/persistStore';
 
-export default store;
+// 3번: persistConfig 설정
+export const persistConfig = {
+    key: 'root', // 로컬 스토리지에 저장될 키 이름
+    storage, // localStorage를 사용할지 sessionStorage를 사용할지 설정
+    whitelist: ['userInfo', 'postInfo'], // 저장할 reducer 목록
+};
+
+export const rootReducer = combineReducers({
+    mode,
+    modal,
+    userInfo,
+    postInfo,
+    clickInfo,
+    filteringOption,
+});
+
+export const store = createStore(persistReducer(persistConfig, rootReducer));
+export const persistor = persistStore(store);
+
+// 4번
+// export default persistReducer(persistConfig, rootReducer);

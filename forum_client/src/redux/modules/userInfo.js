@@ -7,6 +7,7 @@ const initialState = {
 
 // 리듀서
 const userInfo = (state = initialState, action) => {
+    
     // console.log(`🖼️ clickInfo action : ${action.type}`); // 여기에 console.log(action.type) 추가
     // console.log(`🖼️ clickInfo initialState: ${state}`); // 여기에 console.log(state.isDarkMode) 추가
     switch (action.type) {
