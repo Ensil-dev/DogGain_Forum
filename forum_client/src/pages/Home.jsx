@@ -23,19 +23,12 @@ const mainContainerBox = ['Navigation', 'PostControllerBar', 'PostContentsBox'];
 export default function Home() {
     const dispatch = useDispatch();
 
-    // const clickInfoStore = useSelector((state) => state.clickInfo);
-    // const Store = useSelector((state) => state);
-    // console.log(Store)
-
-    // useEffect(() => {
-    //     console.log('Home.jsx is rendering');
-    //     console.log(clickInfoStore);
-    // }, [clickInfoStore]);
-
     // const ReduxStore = useSelector(state => state.module)
-    const handleClickModeButton = () => {
+    const handleClickModeButton = (mode) => {
         // dispatch의 인자로 Action creator 사용
-        dispatch(darkmodeChange());
+        console.log(mode)
+        alert(`${mode} 기능은 아직 구현중입니다. 구현 완료 시 공지해드릴게요~ 🐬`);
+        // dispatch(darkmodeChange());
         // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
     };
 
