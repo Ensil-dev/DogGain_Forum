@@ -12,7 +12,8 @@ const Form = styled.form`
     grid-template-columns: 1fr 1fr; */
 
     width: 100%;
-    height: ${isIosSafari() ? '70%' : '100%'};
+    margin-top: ${isIosSafari() && '7.25rem'};
+    height: ${isIosSafari() ? '80%' : '100%'};
 
     border-right: 1px solid rgb(222, 226, 230);
     border-left: 1px solid rgb(222, 226, 230);
