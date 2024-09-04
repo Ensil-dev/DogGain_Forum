@@ -59,6 +59,8 @@
 
 - [x] 서버 / 데이터베이스 연동: `Cloud Firestore`
 
+- [x] 로그인 기능: `FirebaseAuthentication: Google`
+
 - [ ] 프로그래밍 언어: `Javascript` -> `Typescript`
 
 - [ ] 상태관리 라이브러리: `Redux` -> `Redux toolkit`
