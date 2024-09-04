@@ -3,7 +3,8 @@
 <br/>
 
 
-## 🎯 목표: 나만의 React App 만들기
+## 📄 DogGain_Forum
+[DogGain_Forum](https://ensil-dev.github.io/DogGain_Forum/)
 
 <br/>
 
@@ -59,7 +60,7 @@
 
 - [x] 서버 / 데이터베이스 연동: `Cloud Firestore`
 
-- [x] 로그인 기능: `FirebaseAuthentication: Google`
+- [x] 로그인 기능: `Firebase Authentication: Google`
 
 - [ ] 프로그래밍 언어: `Javascript` -> `Typescript`
 
