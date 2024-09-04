@@ -90,3 +90,11 @@ export const updatePost = (newPostDetailInfo) => {
         payload: newPostDetailInfo,
     };
 };
+
+export const LOGIN_USER_SAVE = 'LOGIN_USER_SAVE';
+export const saveLoginUser = (loginUser) => {
+    return {
+        type: LOGIN_USER_SAVE,
+        payload: loginUser,
+    };
+};

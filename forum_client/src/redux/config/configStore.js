@@ -20,6 +20,7 @@ import mode from '../modules/mode';
 import clickInfo from '../modules/clickInfo';
 import postInfo from '../modules/postInfo';
 import filteringOption from '../modules/filtering';
+import userInfo from '../modules/userInfo';
 
 const rootReducer = combineReducers({
     modal: modal,
@@ -27,7 +28,8 @@ const rootReducer = combineReducers({
     clickInfo: clickInfo,
     postInfo: postInfo,
     filteringOption: filteringOption,
+    userInfo: userInfo,
 });
-const store = createStore(rootReducer);
+const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
 
 export default store;

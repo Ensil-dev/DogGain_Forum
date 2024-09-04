@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { PUBLIC_URL } from '../api/api';
 
 const SplashContainer = styled.div`
     position: fixed;

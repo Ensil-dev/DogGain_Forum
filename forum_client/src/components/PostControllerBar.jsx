@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import SelectedComponent from './SelectedComponent';
 import UnifiedButton from './UnifiedButton';
 import { categoryOptions, getNavigationBoxFontSize } from '../utils/util';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { postWritingModalChange } from '../redux/constants/constant';
 
 const FilteringContainer = styled.div`
@@ -24,6 +24,7 @@ const SelectFilteringContainer = styled.div`
 `;
 
 export default function PostControllerBar() {
+    const loginStore = useSelector((state) => state.userInfo);
     const dispatch = useDispatch();
 
     const handlePostWritingTouched = () => {
@@ -34,7 +35,9 @@ export default function PostControllerBar() {
         <FilteringContainer>
             <SelectedComponent options={categoryOptions} />
             <SelectFilteringContainer fontSize={getNavigationBoxFontSize('writeBox')}>
-                <UnifiedButton $onClick={handlePostWritingTouched} text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifiedButton>
+                {loginStore.loginUser && (
+                    <UnifiedButton $onClick={handlePostWritingTouched} text='✚ 글쓰기' $backgroundColor='#E9E9E9' $padding='6px 12px' $radius='6px' $fontSize='18px' $fontWeight='larger' $color='orange'></UnifiedButton>
+                )}
             </SelectFilteringContainer>
         </FilteringContainer>
     );
