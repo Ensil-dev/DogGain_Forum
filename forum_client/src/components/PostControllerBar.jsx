@@ -13,8 +13,6 @@ const FilteringContainer = styled.div`
 
     height: 100%;
     margin-top: 10px;
-    /* padding-top: 10px; */
-    /* border: 5px solid black; */
 `;
 
 const SelectFilteringContainer = styled.div`

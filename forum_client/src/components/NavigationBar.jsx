@@ -87,8 +87,8 @@ export default function NavigationBar({ handleClickModeButton, handleHamburgerMe
     const modeStore = useSelector((state) => state.mode);
     const loginStore = useSelector((state) => state.userInfo);
     const dispatch = useDispatch();
-
-    console.log(loginStore);
+    
+    // console.log(loginStore);
     // console.log(loginStore.loginUser)
 
     const navigate = useNavigate();
@@ -97,7 +97,7 @@ export default function NavigationBar({ handleClickModeButton, handleHamburgerMe
         const provider = new GoogleAuthProvider(); // provider를 구글로 설정
         signInWithPopup(auth, provider) // popup을 이용한 signup
             .then((data) => {
-                console.log(data.user); // console로 들어온 데이터 표시
+                // console.log(data.user); // console로 들어온 데이터 표시
                 dispatch(saveLoginUser(data.user));
                 // setUserData(data.user); // user data 설정
                 checkGoogleLogin();
