@@ -57,6 +57,8 @@ export default function Bi() {
     const loginStore = useSelector((state) => state.userInfo);
     const { loginUser } = loginStore;
 
+    console.log(loginUser);
+
     const navigate = useNavigate();
     const handleBiButtonTouched = () => {
         navigate('/', { replace: true });
@@ -72,7 +74,9 @@ export default function Bi() {
             <UserProfileWrapper>
                 <LayoutDummyContainer />
                 <LayoutDummyContainer />
-                <ImageContainer>{loginUser !== null && <StyledImage src={loginUser.photoURL ? loginUser.photoURL : 'https://ensil-dev.github.io/DogGain_Forum/logo512.png'} alt='' />}</ImageContainer>
+                <ImageContainer>
+                    {loginUser !== null && <StyledImage src={loginUser.photoURL ? loginUser.photoURL : 'https://ensil-dev.github.io/DogGain_Forum/logo512.png'} alt='' referrerPolicy='no-referrer' />}
+                </ImageContainer>
             </UserProfileWrapper>
         </BiContainer>
     );
