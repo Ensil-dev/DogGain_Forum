@@ -4,7 +4,6 @@
 
 
 ## 📄 DogGain_Forum
-[DogGain_Forum](https://ensil-dev.github.io/DogGain_Forum/)
 
 <br/>
 
