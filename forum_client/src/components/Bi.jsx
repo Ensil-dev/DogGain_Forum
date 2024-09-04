@@ -39,11 +39,11 @@ const ImageContainer = styled.div`
 `;
 
 const StyledImage = styled.img`
-    border: 1px solid lightgray;
     padding: 3px 6px;
     width: 36px;
     height: 36px;
     border-radius: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Added shadow */
 `;
 
 const LogoContainer = styled.div``;
