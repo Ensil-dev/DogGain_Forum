@@ -61,7 +61,7 @@ export default function Bi() {
 
     const navigate = useNavigate();
     const handleBiButtonTouched = () => {
-        navigate('/', { replace: true });
+        // navigate('/', { replace: true });
         window.location.reload();
     };
 

@@ -21,11 +21,6 @@ const ContainerBox = styled.div`
 const mainContainerBox = ['Navigation', 'PostDetail'];
 
 export default function Post() {
-    const clickInfoStore = useSelector((state) => state.clickInfo);
-
-    if (clickInfoStore.scrollElement) {
-        // console.log(clickInfoStore.touchedPostScrollY);
-    }
 
     const dispatch = useDispatch();
 

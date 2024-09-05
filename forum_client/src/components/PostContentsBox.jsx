@@ -45,7 +45,7 @@ export default function PostContentsBox() {
         }
     }, [dispatch, postInfoStore.latestPostData]);
 
-    console.log(postInfoStore.latestPostData)
+    // console.log(postInfoStore.latestPostData)
 
     return (
         <main>

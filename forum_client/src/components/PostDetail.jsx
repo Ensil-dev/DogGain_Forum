@@ -80,8 +80,11 @@ export default function PostDetail() {
         console.log(postDetailInfo);
 
         if (postDetailInfo === undefined) {
-            console.log('없어유!');
+            console.log('postDetailInfo 없어유!');
+            // navigate(`/post/${postId}`);
+
             async function getPosts() {
+                // navigate('/', { replace: true });
                 const data = await getDocs(collection(db, 'posts')); // 'posts' collection 안에 모든 document를 읽어올 때 사용한다.
                 const newData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })); // 문서 데이터에 id 필드를 추가
 
@@ -98,7 +101,7 @@ export default function PostDetail() {
         }
 
         dispatch(saveDetailPost(postDetailInfo));
-    }, [dispatch, postDetailInfo]);
+    }, [dispatch, navigate, postDetailInfo, postId]);
 
     // console.log(postDetailInfo);
 
