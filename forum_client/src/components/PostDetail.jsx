@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import UnifiedDivider from './UnifiedDivider';
 import { useDispatch, useSelector } from 'react-redux';
 import { FaEdit } from 'react-icons/fa';
@@ -6,11 +6,13 @@ import { MdDeleteForever } from 'react-icons/md';
 import { useNavigate, useParams } from 'react-router-dom';
 import PostDetailHeader from './PostDetailHeader';
 import styled from 'styled-components';
-import { deletePost, postWritingModalChange, saveEditingPost } from '../redux/constants/constant';
-import { deleteDoc, doc } from 'firebase/firestore';
+import { deletePost, latestPostDataSave, postWritingModalChange, saveDetailPost, saveEditingPost } from '../redux/constants/constant';
+import { collection, deleteDoc, doc, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import usePreventRefresh from '../hooks/usePreventRefresh';
 import useRedirectOnRefresh from '../hooks/usePreventRefresh';
+import { filteredPost, postsSortedByLatest } from '../utils/util';
+import PostLoadingIndicator from './PostLoadingIndicator';
 
 const Content = styled.div`
     display: flex;
@@ -57,27 +59,48 @@ const SmallText = styled.div`
 `;
 
 export default function PostDetail() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const detailPostStore = useSelector((state) => state.detailPostInfo);
+
     useRedirectOnRefresh();
 
     const param = useParams();
     const postId = param.id;
 
-    const postInfoStore = useSelector((state) => state.postInfo);
+    console.log(postId);
+
+    let postInfoStore = useSelector((state) => state.postInfo);
 
     const posts = postInfoStore.latestPostData;
 
-    const filteredPost = (fetchingPostId) => {
-        return posts?.filter((post) => {
-            return Number(post.postId) === Number(fetchingPostId);
-        })[0];
-    };
+    const postDetailInfo = filteredPost(posts, postId);
 
-    const postDetailInfo = filteredPost(postId);
+    useEffect(() => {
+        console.log(postDetailInfo);
+
+        if (postDetailInfo === undefined) {
+            console.log('없어유!');
+            async function getPosts() {
+                const data = await getDocs(collection(db, 'posts')); // 'posts' collection 안에 모든 document를 읽어올 때 사용한다.
+                const newData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })); // 문서 데이터에 id 필드를 추가
+
+                console.log(newData);
+
+                const processedPost = postsSortedByLatest(newData);
+
+                // console.log(processedPost)
+
+                dispatch(latestPostDataSave(processedPost));
+            }
+
+            getPosts();
+        }
+
+        dispatch(saveDetailPost(postDetailInfo));
+    }, [dispatch, postDetailInfo]);
 
     // console.log(postDetailInfo);
-
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
 
     const handleClickDeleteButton = () => {
         let result = window.confirm('정말로 이 게시글을 삭제 하시겠습니까?');
@@ -106,31 +129,31 @@ export default function PostDetail() {
         }
     };
 
-    usePreventRefresh();
-
     return (
         <main>
-            <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
-
-            <Content>
-                <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>{postDetailInfo.content}</p>
-            </Content>
-
-            <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
-
-            <UserControlContainer>
-                <Nickname>{postDetailInfo.profile.nickname}</Nickname>
-                <Button onClick={handleClickEditButton}>
-                    <Icon as={FaEdit} />
-                    <SmallText>수정</SmallText>
-                </Button>
-                <Button onClick={handleClickDeleteButton} style={{ marginRight: '20px' }}>
-                    <Icon as={MdDeleteForever} />
-                    <SmallText>삭제</SmallText>
-                </Button>
-            </UserControlContainer>
-
-            <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />
+            {postDetailInfo ? (
+                <>
+                    <PostDetailHeader title={postDetailInfo.title} category={postDetailInfo.category.name} />
+                    <Content>
+                        <p style={{ padding: '0px 20px 0px 20px', lineHeight: 1.8, whiteSpace: 'pre-wrap' }}>{postDetailInfo.content}</p>
+                    </Content>
+                    <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
+                    <UserControlContainer>
+                        <Nickname>{postDetailInfo.profile.nickname}</Nickname>
+                        <Button onClick={handleClickEditButton}>
+                            <Icon as={FaEdit} />
+                            <SmallText>수정</SmallText>
+                        </Button>
+                        <Button onClick={handleClickDeleteButton} style={{ marginRight: '20px' }}>
+                            <Icon as={MdDeleteForever} />
+                            <SmallText>삭제</SmallText>
+                        </Button>
+                    </UserControlContainer>
+                    <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />
+                </>
+            ) : (
+                <PostLoadingIndicator />
+            )}
         </main>
     );
 }

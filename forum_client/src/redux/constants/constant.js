@@ -18,7 +18,7 @@ export const POST_WRITING_MODAL_CHANGE = 'POST_WRITING_MODAL_CHANGE';
 export const postWritingModalChange = (postDetailInfo) => {
     return {
         type: POST_WRITING_MODAL_CHANGE,
-        payload: postDetailInfo
+        payload: postDetailInfo,
     };
 };
 
@@ -71,10 +71,9 @@ export const deletePost = (postId) => {
         type: POST_DELETE,
         payload: postId,
     };
-
 };
 
-export const SAVE_EDITING_POST = 'SAVE_EDITING_POST'
+export const SAVE_EDITING_POST = 'SAVE_EDITING_POST';
 export const saveEditingPost = (postDetailInfo) => {
     // console.log('saveEditingPost!@!')
     return {
@@ -96,5 +95,13 @@ export const saveLoginUser = (loginUser) => {
     return {
         type: LOGIN_USER_SAVE,
         payload: loginUser,
+    };
+};
+
+export const SAVE_DETAIL_POST = 'SAVE_DETAIL_POST';
+export const saveDetailPost = (post) => {
+    return {
+        type: SAVE_DETAIL_POST,
+        payload: post,
     };
 };

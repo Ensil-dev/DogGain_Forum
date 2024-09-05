@@ -57,7 +57,7 @@ export default function Bi() {
     const loginStore = useSelector((state) => state.userInfo);
     const { loginUser } = loginStore;
 
-    console.log(loginUser);
+    // console.log(loginUser);
 
     const navigate = useNavigate();
     const handleBiButtonTouched = () => {

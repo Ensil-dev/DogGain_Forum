@@ -104,7 +104,7 @@ export default function NavigationBar({ handleClickModeButton, handleHamburgerMe
             })
             .catch((err) => {
                 console.log(err);
-                alert('로그인이 동작하지 않습니다.');
+                // alert('로그인이 동작하지 않습니다.');
             });
     }
 

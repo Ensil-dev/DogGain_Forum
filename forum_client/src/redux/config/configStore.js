@@ -27,12 +27,14 @@ import { persistReducer } from 'redux-persist';
 // 2번
 import storage from 'redux-persist/lib/storage'; // localStorage 사용
 import persistStore from 'redux-persist/es/persistStore';
+import detailPostInfo from '../modules/detailPostInfo';
 
 // 3번: persistConfig 설정
 export const persistConfig = {
     key: 'root', // 로컬 스토리지에 저장될 키 이름
     storage, // localStorage를 사용할지 sessionStorage를 사용할지 설정
-    whitelist: ['userInfo', 'postInfo'], // 저장할 reducer 목록
+    // whitelist: ['userInfo', 'postInfo'], // 저장할 reducer 목록
+    whitelist: ['userInfo', 'detailPostInfo'], // 저장할 reducer 목록
 };
 
 export const rootReducer = combineReducers({
@@ -40,6 +42,7 @@ export const rootReducer = combineReducers({
     modal,
     userInfo,
     postInfo,
+    detailPostInfo,
     clickInfo,
     filteringOption,
 });

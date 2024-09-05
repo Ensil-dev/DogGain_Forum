@@ -25,7 +25,7 @@ const userInfo = (state = initialState, action) => {
                     photoURL,
                 };
 
-                console.log(userInfo);
+                // console.log(userInfo);
 
                 return Object.assign({}, state, {
                     loginUser: userInfo,

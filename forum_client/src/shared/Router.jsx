@@ -6,8 +6,9 @@ import Layout from './Layout';
 import SplashScreen from '../pages/SplashScreen';
 
 export default function Router() {
+
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL || '/'}>
+        <BrowserRouter basename={process.env.REACT_APP_localUrl || process.env.PUBLIC_URL}>
             <Suspense fallback={<SplashScreen />}>
                 <Layout>
                     <Routes>
