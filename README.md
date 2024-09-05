@@ -61,6 +61,8 @@
 
 - [x] 로그인 기능: `Firebase Authentication: Google`
 
+- [x] Local Storage: `Redux-persit`
+
 - [ ] 프로그래밍 언어: `Javascript` -> `Typescript`
 
 - [ ] 상태관리 라이브러리: `Redux` -> `Redux toolkit`
