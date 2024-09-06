@@ -32,7 +32,7 @@ export default function PostContentsBox() {
                 const data = await getDocs(collection(db, 'posts')); // 'posts' collection 안에 모든 document를 읽어올 때 사용한다.
                 const newData = data.docs.map((doc) => ({ ...doc.data(), id: doc.id })); // 문서 데이터에 id 필드를 추가
 
-                console.log(newData)
+                // console.log(newData)
 
                 const processedPost = postsSortedByLatest(newData);
 

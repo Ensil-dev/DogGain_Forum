@@ -12,7 +12,7 @@ const detailPostInfo = (state = initialState, action) => {
     switch (action.type) {
         case SAVE_DETAIL_POST:
             // console.log('SAVE_EDITING_POST');
-            console.log(action.payload);
+            // console.log(action.payload);
 
             return Object.assign({}, state, {
                 detailPostInfo: action.payload,
