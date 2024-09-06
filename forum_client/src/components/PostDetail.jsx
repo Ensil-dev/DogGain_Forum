@@ -62,6 +62,7 @@ export default function PostDetail() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const detailPostStore = useSelector((state) => state.detailPostInfo);
+    const loginStore = useSelector((state) => state.userInfo);
 
     useRedirectOnRefresh();
 
@@ -143,14 +144,20 @@ export default function PostDetail() {
                     <UnifiedDivider $padding='0px 10px' $border='1px solid gray' $opacity='0.15' />
                     <UserControlContainer>
                         <Nickname>{postDetailInfo.profile.nickname}</Nickname>
-                        <Button onClick={handleClickEditButton}>
-                            <Icon as={FaEdit} />
-                            <SmallText>수정</SmallText>
-                        </Button>
-                        <Button onClick={handleClickDeleteButton} style={{ marginRight: '20px' }}>
-                            <Icon as={MdDeleteForever} />
-                            <SmallText>삭제</SmallText>
-                        </Button>
+                        {loginStore.loginUser && (
+                            <Button onClick={handleClickEditButton}>
+                                <Icon as={FaEdit} />
+                                <SmallText>수정</SmallText>
+                            </Button>
+                        )}
+
+                        {loginStore.loginUser && (
+                            <Button onClick={handleClickDeleteButton} style={{ marginRight: '20px' }}>
+                                <Icon as={MdDeleteForever} />
+                                <SmallText>삭제</SmallText>
+                            </Button>
+                        )}
+                        
                     </UserControlContainer>
                     <UnifiedDivider $padding='0px 0px' $border='4px solid gray' $opacity='0.15' />
                 </>
