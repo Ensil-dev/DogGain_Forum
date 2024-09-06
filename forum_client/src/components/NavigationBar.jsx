@@ -83,7 +83,7 @@ const LightModeIcon = styled(MdLightMode)`
     animation: ${fadeIn} 1.5s ease-in-out;
 `;
 
-export default function NavigationBar({ handleClickModeButton, handleHamburgerMenuModal }) {
+export default function NavigationBar({ handleClickUnimplementedButton, handleHamburgerMenuModal }) {
     const modeStore = useSelector((state) => state.mode);
     const loginStore = useSelector((state) => state.userInfo);
     const dispatch = useDispatch();
@@ -115,9 +115,9 @@ export default function NavigationBar({ handleClickModeButton, handleHamburgerMe
                     <UnifiedButton text='Forum' $onClick={() => navigate('/')}></UnifiedButton>
                 </HomeLogoBox>
                 <MenuOptionBox fontSize={getNavigationBoxFontSize('MenuOptionBox')}>
-                    {modeStore.isDarkMode === false ? <DarkModeIcon onClick={() => handleClickModeButton('다크모드')} /> : <LightModeIcon onClick={() => handleClickModeButton('다크모드')} />}
+                    {modeStore.isDarkMode === false ? <DarkModeIcon onClick={() => handleClickUnimplementedButton('다크모드')} /> : <LightModeIcon onClick={() => handleClickUnimplementedButton('다크모드')} />}
 
-                    <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray', cursor: 'pointer' }} onClick={() => handleClickModeButton('검색')} />
+                    <FaSearch style={{ width: '24px', height: '24px', color: 'lightgray', cursor: 'pointer' }} onClick={() => handleClickUnimplementedButton('검색')} />
 
                     {loginStore?.loginUser === null ? (
                         <UnifiedButton

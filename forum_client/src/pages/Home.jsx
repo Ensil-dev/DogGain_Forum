@@ -26,7 +26,7 @@ export default function Home() {
     // const ReduxStore = useSelector(state => state.module)
     const handleClickModeButton = (mode) => {
         // dispatch의 인자로 Action creator 사용
-        console.log(mode)
+        // console.log(mode)
         alert(`${mode} 기능은 아직 구현중입니다. 구현 완료 시 공지해드릴게요~ 🐬`);
         // dispatch(darkmodeChange());
         // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { darkmodeChange, hamburgerModalChange } from '../redux/constants/constant';
-import { setContainerContentBox } from '../utils/util';
+import { handleClickUnimplementedButton, setContainerContentBox } from '../utils/util';
 
 const MainContainer = styled.div`
     display: flex;
@@ -36,7 +36,7 @@ export default function Post() {
     return (
         <MainContainer>
             {mainContainerBox.map((container) => {
-                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickModeButton, handleHamburgerMenuModal)}</ContainerBox>;
+                return <ContainerBox key={container}>{setContainerContentBox(container, handleClickUnimplementedButton, handleHamburgerMenuModal)}</ContainerBox>;
             })}
         </MainContainer>
     );

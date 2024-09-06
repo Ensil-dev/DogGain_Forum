@@ -63,10 +63,10 @@ export const getBrowserValue = function (userAgent) {
     }
 };
 
-export const setContainerContentBox = (container, handleClickModeButton, handleHamburgerMenuModal) => {
+export const setContainerContentBox = (container, handleClickUnimplementedButton, handleHamburgerMenuModal) => {
     switch (container) {
         case 'Navigation':
-            return <NavigationBar handleClickModeButton={handleClickModeButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
+            return <NavigationBar handleClickUnimplementedButton={handleClickUnimplementedButton} handleHamburgerMenuModal={handleHamburgerMenuModal} />;
         case 'PostControllerBar':
             return <PostControllerBar />;
         case 'PostContentsBox':
@@ -155,4 +155,12 @@ export const filteredPost = (posts, fetchingPostId) => {
     return posts?.filter((post) => {
         return Number(post.postId) === Number(fetchingPostId);
     })[0];
+};
+
+export const handleClickUnimplementedButton = (mode) => {
+    // dispatch의 인자로 Action creator 사용
+    // console.log(mode)
+    alert(`${mode} 기능은 아직 구현중입니다. 구현 완료 시 공지해드릴게요~ 🐬`);
+    // dispatch(darkmodeChange());
+    // console.log(`modeStore.isDarkMode: ${modeStore.isDarkMode}`);
 };
