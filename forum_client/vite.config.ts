@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig({
-    base: 'DogGain_Forum',
+    base: '/DogGain_Forum/',
     plugins: [react()],
     build: {
         rollupOptions: {

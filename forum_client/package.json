@@ -4,6 +4,15 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "vite --host",
+    "start": "vite --host",
+    "build": "vite build",
+    "postbuild": "cp -f dist/index.html dist/404.html && npx shx touch dist/.nojekyll",
+    "preview": "vite preview",
+    "predeploy": "npm run build && npm run postbuild",
+    "deploy": "gh-pages -d dist -b gh-pages --dotfiles"
+  },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.5",
     "@testing-library/jest-dom": "^5.17.0",
@@ -29,37 +38,18 @@
     "vite": "^5.4.3",
     "web-vitals": "^2.1.4"
   },
-  "scripts": {
-    "start": "vite --host",
-    "build": "vite build",
-    "serve": "vite preview",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
   "devDependencies": {
     "@types/node": "^24.0.3",
     "@types/react": "^18",
     "@types/react-dom": "^19.1.6",
+    "shx": "^0.3.4",
     "typescript": "^5.8.3"
+  },
+  "eslintConfig": {
+    "extends": ["react-app", "react-app/jest"]
+  },
+  "browserslist": {
+    "production": [">0.2%", "not dead", "not op_mini all"],
+    "development": ["last 1 chrome version", "last 1 firefox version", "last 1 safari version"]
   }
 }
