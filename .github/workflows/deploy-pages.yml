@@ -1,0 +1,134 @@
+name: Deploy Vite app (forum_client) to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  NODE_VERSION: "20"
+  APP_DIR: "forum_client"
+  BUILD_DIR: "forum_client/dist"
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 1) Node 설치
+      - name: Use Node.js ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      # 2) pnpm 활성화 (Corepack)
+      - name: Setup pnpm (Corepack)
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+          pnpm --version
+
+      # 3) pnpm 스토어 캐시
+      - name: Get pnpm store path
+        id: pnpm-store
+        run: echo "STORE_PATH=$(pnpm store path)" >> "$GITHUB_OUTPUT"
+
+      - name: Restore pnpm store cache
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.pnpm-store.outputs.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      # 4) 의존성 설치 (락파일 엄격)
+      - name: Install dependencies
+        working-directory: ${{ env.APP_DIR }}
+        run: pnpm install --frozen-lockfile
+
+      # 4.5) 필요한 Secrets가 모두 등록되었는지 사전 검증 (fail-fast)
+      - name: Verify required secrets
+        env:
+          S_VITE_apiKey:              ${{ secrets.VITE_apiKey }}
+          S_VITE_authDomain:          ${{ secrets.VITE_authDomain }}
+          S_VITE_projectId:           ${{ secrets.VITE_projectId }}
+          S_VITE_storageBucket:       ${{ secrets.VITE_storageBucket }}
+          S_VITE_messagingSenderId:   ${{ secrets.VITE_messagingSenderId }}
+          S_VITE_appId:               ${{ secrets.VITE_appId }}
+          S_VITE_measurementId:       ${{ secrets.VITE_measurementId }}
+          S_VITE_KAKAO_JAVASCRIPT_KEY: ${{ secrets.VITE_KAKAO_JAVASCRIPT_KEY }}
+        run: |
+          check() { [ -n "$1" ] || { echo "Missing required secret: $2" >&2; exit 1; }; }
+          check "$S_VITE_apiKey"              VITE_apiKey
+          check "$S_VITE_authDomain"          VITE_authDomain
+          check "$S_VITE_projectId"           VITE_projectId
+          check "$S_VITE_storageBucket"       VITE_storageBucket
+          check "$S_VITE_messagingSenderId"   VITE_messagingSenderId
+          check "$S_VITE_appId"               VITE_appId
+          check "$S_VITE_measurementId"       VITE_measurementId
+          check "$S_VITE_KAKAO_JAVASCRIPT_KEY" VITE_KAKAO_JAVASCRIPT_KEY
+
+      # 5) 빌드 (Secrets → Vite env로 주입)
+      - name: Build
+        working-directory: ${{ env.APP_DIR }}
+        env:
+          VITE_apiKey:              ${{ secrets.VITE_apiKey }}
+          VITE_authDomain:          ${{ secrets.VITE_authDomain }}
+          VITE_projectId:           ${{ secrets.VITE_projectId }}
+          VITE_storageBucket:       ${{ secrets.VITE_storageBucket }}
+          VITE_messagingSenderId:   ${{ secrets.VITE_messagingSenderId }}
+          VITE_appId:               ${{ secrets.VITE_appId }}
+          VITE_measurementId:       ${{ secrets.VITE_measurementId }}
+          VITE_KAKAO_JAVASCRIPT_KEY: ${{ secrets.VITE_KAKAO_JAVASCRIPT_KEY }}
+        run: pnpm run build
+
+      # 5.5) 번들에 빈 apiKey가 들어갔는지 간단 검증 (선택)
+      - name: Assert bundled apiKey is not empty
+        run: |
+          if grep -R 'apiKey:""' ${{ env.BUILD_DIR }} >/dev/null; then
+            echo "apiKey is empty in the built bundle. Check env name mapping and secret values." >&2
+            exit 1
+          fi
+
+      # 6) SPA 404 대응 & .nojekyll
+      - name: Add 404.html and .nojekyll to build output
+        run: |
+          mkdir -p "${{ env.BUILD_DIR }}"
+          if [ -f "${{ env.BUILD_DIR }}/index.html" ] && [ ! -f "${{ env.BUILD_DIR }}/404.html" ]; then
+            cp "${{ env.BUILD_DIR }}/index.html" "${{ env.BUILD_DIR }}/404.html"
+          fi
+          touch "${{ env.BUILD_DIR }}/.nojekyll"
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ env.BUILD_DIR }}
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
