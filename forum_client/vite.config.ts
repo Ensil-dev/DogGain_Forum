@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 
 export default defineConfig(({ command }) => ({
-    // GitHub Pages용은 /DogGain_Forum/, Docker용은 / 사용
-    base: command === 'build' ? '/DogGain_Forum/' : '/',
+    // 환경변수로 base path 결정: Docker용은 /, GitHub Pages용은 /DogGain_Forum/
+    base: command === 'build' && process.env.BUILD_TARGET !== 'docker' ? '/DogGain_Forum/' : '/',
     plugins: [react()],
     build: {
         rollupOptions: {

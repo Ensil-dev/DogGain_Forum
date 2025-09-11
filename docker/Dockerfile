@@ -14,6 +14,7 @@ RUN pnpm install --frozen-lockfile --prod=false
 COPY forum_client/ .
 
 # Build the app for Docker (base path = /)
+ENV BUILD_TARGET=docker
 RUN npm run build
 
 # Stage 2: Production stage with Nginx
