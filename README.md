@@ -187,16 +187,33 @@ VITE_KAKAO_JAVASCRIPT_KEY=your_KAKAO_JAVASCRIPT_KEY
 
 ## 🐳 Docker로 실행하기
 
-Docker를 사용하면 환경에 관계없이 일관된 실행 환경에서 애플리케이션을 실행할 수 있습니다.
+Docker를 사용하면 환경에 관계없이 일관된 실행 환경에서 애플리케이션을 실행할 수 있습니다. 프로덕션 환경 시뮬레이션과 배포 테스트에 최적화되어 있습니다.
 
 ### 필수 요구사항
 
 - Docker
 - Docker Compose (선택사항)
 
-### 빠른 시작
+### 🚀 NPM Scripts 사용 (가장 간편)
 
-#### 방법 1: 스크립트 사용 (추천)
+```bash
+# 1. 저장소 클론 및 의존성 설치
+git clone https://github.com/ensil-dev/DogGain_Forum.git
+cd DogGain_Forum/forum_client
+npm install
+
+# 2. 원스톱 배포 테스트 (빌드 + 실행)
+npm run docker:test
+
+# 또는 단계별 실행
+npm run docker:build    # Docker 이미지 빌드
+npm run docker:start    # 컨테이너 시작
+npm run docker:stop     # 컨테이너 중지
+```
+
+### 🔧 기존 스크립트 사용
+
+#### 방법 1: 스크립트 사용
 
 ```bash
 # 1. 저장소 클론
