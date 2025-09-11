@@ -192,6 +192,7 @@ Docker를 사용하면 환경에 관계없이 일관된 실행 환경에서 애�
 ### 필수 요구사항
 
 - Docker
+- ⚠️ **환경변수 설정 필요** - [환경변수 설정](#-실행-방법) 섹션 참고
 
 ### 실행 방법
 
@@ -201,7 +202,11 @@ git clone https://github.com/ensil-dev/DogGain_Forum.git
 cd DogGain_Forum/forum_client
 npm install
 
-# 2. 원스톱 배포 테스트 (빌드 + 실행)
+# 2. 환경변수 설정 (.env 파일 생성)
+# ⚠️ 이 단계 없이는 Firebase 연결이 실패하여 앱이 정상 동작하지 않습니다
+# 환경변수 설정 방법은 위 '실행 방법' 섹션의 '환경 변수 설정' 참고
+
+# 3. 원스톱 배포 테스트 (빌드 + 실행)
 npm run docker:test
 ```
 
