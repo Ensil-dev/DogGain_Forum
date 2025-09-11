@@ -192,9 +192,8 @@ Docker를 사용하면 환경에 관계없이 일관된 실행 환경에서 애�
 ### 필수 요구사항
 
 - Docker
-- Docker Compose (선택사항)
 
-### 🚀 NPM Scripts 사용 (가장 간편)
+### 실행 방법
 
 ```bash
 # 1. 저장소 클론 및 의존성 설치
@@ -204,53 +203,14 @@ npm install
 
 # 2. 원스톱 배포 테스트 (빌드 + 실행)
 npm run docker:test
+```
 
-# 또는 단계별 실행
+### 단계별 실행 (선택사항)
+
+```bash
 npm run docker:build    # Docker 이미지 빌드
-npm run docker:start    # 컨테이너 시작
+npm run docker:start    # 컨테이너 시작 (8080 포트)
 npm run docker:stop     # 컨테이너 중지
-```
-
-### 🔧 기존 스크립트 사용
-
-#### 방법 1: 스크립트 사용
-
-```bash
-# 1. 저장소 클론
-git clone https://github.com/ensil-dev/DogGain_Forum.git
-cd DogGain_Forum
-
-# 2. Docker 이미지 빌드
-./docker-build.sh
-
-# 3. 컨테이너 실행
-./docker-run.sh
-```
-
-#### 방법 2: Docker Compose 사용
-
-```bash
-# 1. 저장소 클론
-git clone https://github.com/ensil-dev/DogGain_Forum.git
-cd DogGain_Forum
-
-# 2. Docker Compose로 실행
-cd docker
-docker-compose up -d
-```
-
-#### 방법 3: 수동 명령어
-
-```bash
-# 1. 저장소 클론
-git clone https://github.com/ensil-dev/DogGain_Forum.git
-cd DogGain_Forum
-
-# 2. Docker 이미지 빌드
-docker build -f docker/Dockerfile -t doggain-forum:latest .
-
-# 3. 컨테이너 실행
-docker run -d --name doggain-forum -p 8080:80 doggain-forum:latest
 ```
 
 ### 접속 확인
