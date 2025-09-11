@@ -2,9 +2,9 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ command }) => ({
     // GitHub Pages용은 /DogGain_Forum/, Docker용은 / 사용
-    base: mode === 'github-pages' ? '/DogGain_Forum/' : '/',
+    base: command === 'build' ? '/DogGain_Forum/' : '/',
     plugins: [react()],
     build: {
         rollupOptions: {
