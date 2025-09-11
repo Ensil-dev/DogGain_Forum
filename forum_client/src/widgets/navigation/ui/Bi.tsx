@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 import styled, { useTheme } from 'styled-components';
 import UnifiedButton from '../../../shared/ui/UnifiedButton';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ProfileMenu from '../../../features/profile/ui/ProfileMenu';
 import { createProfileImage } from '../../../shared/lib/utils/profileImage';
 import type { RootState } from '../../../app/model/store';
+import { searchClear } from '../../../app/model/search/search';
 
 const BiContainer = styled.div`
     align-content: center;
@@ -65,11 +66,13 @@ export default function Bi() {
 
     const [showModal, setShowModal] = useState(false);
     const theme = useTheme();
+    const dispatch = useDispatch();
 
     // console.log(loginUser);
 
     const navigate = useNavigate();
     const handleBiButtonTouched = () => {
+        dispatch(searchClear());
         navigate('/', { replace: true });
     };
 
